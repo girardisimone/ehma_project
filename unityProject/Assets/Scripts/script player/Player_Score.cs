@@ -1,17 +1,37 @@
 using UnityEngine;
 
-public class PlayerScore : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    // Rende il punteggio visibile nell'Inspector
-    public int score = 0;
+    // Variabile statica per tenere traccia del punteggio
+    // 'static' lo rende accessibile da qualsiasi altro script facilmente.
+    public static int GemCount = 0;
 
-    // Metodo per aumentare il punteggio (chiamato dalla moneta)
-    public void AddScore(int amount)
+    // Riferimento allo script che aggiorna la UI
+    private ScoreManager scoreManager;
+
+    void Start()
     {
-        score += amount;
-        // Questo apparirà nella Console:
-        Debug.Log("Punteggio attuale: " + score);
+        // Trova il ScoreManager all'inizio del gioco
+        scoreManager = FindObjectOfType<ScoreManager>();
+    }
 
-        // In un gioco vero, qui aggiorneresti la UI!
+    // Questa funzione viene chiamata quando il giocatore tocca qualcosa
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Controlla se l'oggetto toccato ha il tag "Gem"
+        if (collision.CompareTag("Gem"))
+        {
+            // 1. Distruggi la gemma
+            Destroy(collision.gameObject);
+
+            // 2. Aumenta il conteggio
+            GemCount++;
+
+            // 3. Notifica lo ScoreManager di aggiornare la UI
+            if (scoreManager != null)
+            {
+                scoreManager.UpdateScoreText(GemCount);
+            }
+        }
     }
 }
