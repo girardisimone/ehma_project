@@ -26,7 +26,7 @@ public class RoomCameraFollow : MonoBehaviour
         int roomY = Mathf.RoundToInt(targetY / roomHeight);
 
         // 2. Calcola la posizione centrale esatta di quella stanza
-        float cameraX = roomX * roomWidth;
+        float cameraX = roomX * roomWidth; ;
         float cameraY = roomY * roomHeight;
 
         // 3. Imposta la posizione di destinazione (con la Z della telecamera)
