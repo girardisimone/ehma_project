@@ -1,25 +1,44 @@
 using UnityEngine;
-using TMPro; // *** IMPORTANTE: Devi importare la libreria TextMeshPro ***
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    // Drag & Drop: Riferimento al tuo oggetto ScoreText nel pannello Inspector
+    // 1. SINGLETON INSTANCE: Accessibile da ScoreManager.Instance in tutta la scena
+    public static ScoreManager Instance;
+
+    // Il contatore statico è gestito qui
+    public static int GemCount = 0;
+
     public TextMeshProUGUI scoreText;
 
-    void Start()
+    private void Awake()
     {
-        // Inizializza il testo all'avvio del gioco
-        UpdateScoreText(PlayerController.GemCount);
+        // Imposta l'istanza unica. Questo previene problemi di ricerca.
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            // Distrugge le copie duplicate se per errore ne crei più di una
+            Destroy(gameObject);
+            return;
+        }
+
+        // Resetta e inizializza il display
+        GemCount = 0;
+        UpdateScoreText(GemCount);
     }
 
-    // Funzione pubblica chiamata dallo script PlayerController
+    // Aggiorna il valore interno e la visualizzazione UI
     public void UpdateScoreText(int newScore)
     {
-        // Controlla se il riferimento al testo è valido
         if (scoreText != null)
         {
-            // Aggiorna la stringa di testo con il nuovo punteggio
-            scoreText.text = "Score: " + newScore.ToString();
+            GemCount = newScore;
+            scoreText.text = "Score: " + GemCount.ToString();
+            scoreText.ForceMeshUpdate();
+            Debug.Log($"ScoreManager: UI aggiornata a {GemCount}");
         }
     }
 }

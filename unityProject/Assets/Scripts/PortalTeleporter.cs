@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class PortalTeleporter : MonoBehaviour
 {
-    // --- Configurazione del Portale (Impostare nell'Inspector) ---
+    // --- Configurazione del Portale ---
 
     [Tooltip("Il Portale di destinazione a cui il giocatore verrà teletrasportato.")]
     public PortalTeleporter destinationPortal;
+
+    [Tooltip("Il numero di gemme richieste per usare questo portale.")]
+    public int travelCost = 5;
 
     // Variabile per evitare teletrasporti immediati di ritorno.
     private bool isPlayerInside = false;
@@ -14,24 +17,45 @@ public class PortalTeleporter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // 1. Controlla il Tag (e che non sia già dentro)
         if (other.CompareTag("Player") && !isPlayerInside)
         {
-            // Se il portale di destinazione è valido
-            if (destinationPortal != null)
+            int currentGems = ScoreManager.GemCount;
+
+            // ***** LOGICA DI PAGAMENTO *****
+
+            if (currentGems >= travelCost)
             {
-                // Dici al portale di destinazione che il player sta arrivando
-                destinationPortal.isPlayerInside = true;
+                // *** PAGAMENTO E TELETRASPORTO AUTORIZZATO ***
 
-                // Teletrasporta il giocatore al centro del portale di destinazione
-                // Usiamo la posizione del Portale di Destinazione come nuovo punto
-                other.transform.position = destinationPortal.transform.position;
+                // 1. Sottrai il costo
+                ScoreManager.GemCount -= travelCost;
 
-                Debug.Log($"Teletrasporto riuscito da {gameObject.name} a {destinationPortal.gameObject.name}");
+                // 2. AGGIORNA LA UI (RICHIAMO AL SINGLETON INFALLIBILE)
+                if (ScoreManager.Instance != null)
+                {
+                    ScoreManager.Instance.UpdateScoreText(ScoreManager.GemCount);
+                    Debug.Log($"ScoreManager: UI aggiornata dopo il pagamento a {ScoreManager.GemCount}.");
+                }
+
+                // 3. Esegui il Teletrasporto
+                if (destinationPortal != null)
+                {
+                    destinationPortal.isPlayerInside = true;
+                    other.transform.position = destinationPortal.transform.position;
+
+                    // MESSAGGIO DI DEBUG CORRETTO: Ora usa travelCost
+                    Debug.Log($"Pagamento di {travelCost} gemme riuscito. Teletrasporto completato.");
+                }
+                else
+                {
+                    Debug.LogError("Il Portale di destinazione non è impostato per " + gameObject.name);
+                }
+
             }
             else
             {
-                Debug.LogError("Il Portale di destinazione non è impostato per " + gameObject.name);
+                // *** PAGAMENTO RIFIUTATO ***
+                Debug.Log($"Gemme insufficienti! Costo: {travelCost}, possedute: {currentGems}.");
             }
         }
     }
@@ -40,8 +64,6 @@ public class PortalTeleporter : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        // Quando il giocatore esce da UNO QUALSIASI dei trigger (o quello di arrivo o quello di partenza),
-        // resetta la bandiera per consentire il prossimo teletrasporto.
         if (other.CompareTag("Player"))
         {
             isPlayerInside = false;

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3510882239784258460}
   m_Layer: 0
   m_Name: gemma
-  m_TagString: Untagged
+  m_TagString: Gem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,4 +140,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b8d8b6c8be07dc41966492f1610fa34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Coin
-  value: 1
+  scoreText: {fileID: 0}
