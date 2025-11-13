@@ -37,20 +37,21 @@ public class PortalTeleporter : MonoBehaviour
                     Debug.Log($"ScoreManager: UI aggiornata dopo il pagamento a {ScoreManager.GemCount}.");
                 }
 
-                // 3. Esegui il Teletrasporto
+                // 3. Esegui il Teletrasporto e la Distruzione
                 if (destinationPortal != null)
                 {
                     destinationPortal.isPlayerInside = true;
                     other.transform.position = destinationPortal.transform.position;
 
-                    // MESSAGGIO DI DEBUG CORRETTO: Ora usa travelCost
+                    // CORREZIONE: Distruggi l'oggetto GameObject associato al Portale di Destinazione
+                    Destroy(destinationPortal.gameObject);
+
                     Debug.Log($"Pagamento di {travelCost} gemme riuscito. Teletrasporto completato.");
                 }
                 else
                 {
                     Debug.LogError("Il Portale di destinazione non è impostato per " + gameObject.name);
                 }
-
             }
             else
             {
