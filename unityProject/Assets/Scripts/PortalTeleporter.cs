@@ -17,8 +17,10 @@ public class PortalTeleporter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // 1. Controlla il Tag e la bandiera anti-loop
         if (other.CompareTag("Player") && !isPlayerInside)
         {
+            // Otteniamo il conteggio globale STATICO dal ScoreManager
             int currentGems = ScoreManager.GemCount;
 
             // ***** LOGICA DI PAGAMENTO *****
@@ -27,23 +29,30 @@ public class PortalTeleporter : MonoBehaviour
             {
                 // *** PAGAMENTO E TELETRASPORTO AUTORIZZATO ***
 
-                // 1. Sottrai il costo
+                // 2. Sottrai il costo dal contatore statico
                 ScoreManager.GemCount -= travelCost;
 
-                // 2. AGGIORNA LA UI (RICHIAMO AL SINGLETON INFALLIBILE)
+                // 3. AGGIORNA LA UI (RICHIAMO AL SINGLETON INFALLIBILE)
                 if (ScoreManager.Instance != null)
                 {
                     ScoreManager.Instance.UpdateScoreText(ScoreManager.GemCount);
                     Debug.Log($"ScoreManager: UI aggiornata dopo il pagamento a {ScoreManager.GemCount}.");
                 }
 
-                // 3. Esegui il Teletrasporto e la Distruzione
+                // 4. Esegui il Teletrasporto e la Logica di Difficoltà
                 if (destinationPortal != null)
                 {
+                    // 4a. TELETRASPORTO
                     destinationPortal.isPlayerInside = true;
                     other.transform.position = destinationPortal.transform.position;
 
-                    // CORREZIONE: Distruggi l'oggetto GameObject associato al Portale di Destinazione
+                    // 4b. NOTIFICA IL GESTORE DELLA DIFFICOLTÀ
+                    if (DifficultyManager.Instance != null)
+                    {
+                        DifficultyManager.Instance.RegisterPortalUse();
+                    }
+
+                    // 4c. DISTRUGGI PORTALE DI DESTINAZIONE
                     Destroy(destinationPortal.gameObject);
 
                     Debug.Log($"Pagamento di {travelCost} gemme riuscito. Teletrasporto completato.");
@@ -67,6 +76,7 @@ public class PortalTeleporter : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            // Quando il giocatore esce, resetta la bandiera anti-loop.
             isPlayerInside = false;
         }
     }
