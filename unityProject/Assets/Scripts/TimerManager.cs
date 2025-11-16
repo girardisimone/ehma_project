@@ -41,7 +41,7 @@ public class TimerManager : MonoBehaviour
             int milliseconds = (int)((timeElapsed * 100f) % 100f);
 
             // NUOVA RIGA: Formatta la stringa SENZA "Tempo:"
-            // L'output sarà: 00:00.00
+            // L'output sarï¿½: 00:00.00
             string formattedTime = string.Format("{0:00}:{1:00}.{2:00}", minutes, seconds, milliseconds);
 
 
@@ -59,5 +59,14 @@ public class TimerManager : MonoBehaviour
     {
         timerRunning = false;
         Debug.Log($"Cronometro fermato. Tempo finale: {timerText.text}");
+    }
+    // Restituisce il tempo attuale formattato come stringa (quello mostrato a schermo)
+    public string GetCurrentTimeString()
+    {
+        if (timerText != null)
+        {
+            return timerText.text;
+        }
+        return "";
     }
 }
