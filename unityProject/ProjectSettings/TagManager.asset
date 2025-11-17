@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Gem
+  - portal_arrivo
   layers:
   - Default
   - TransparentFX

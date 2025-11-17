@@ -1,73 +1,100 @@
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider2D))]
 public class PortalTeleporter : MonoBehaviour
 {
-    // --- Configurazione del Portale ---
+    [Header("Impostazioni Portale")]
+    public PortalTeleporter destinationPortal; // Portale di arrivo
+    public int gemCost = 3;                    // Costo in gemme per usare il portale
 
-    [Tooltip("Il Portale di destinazione a cui il giocatore verr� teletrasportato.")]
-    public PortalTeleporter destinationPortal;
+    private bool playerInside = false;
 
-    [Tooltip("Il numero di gemme richieste per usare questo portale.")]
-    public int travelCost = 5;
-
-    // Variabile per evitare teletrasporti immediati di ritorno.
-    private bool isPlayerInside = false;
-
-    // --- Logica di Teletrasporto (Entrata) ---
+    private void Reset()
+    {
+        // Assicuriamoci che il collider sia un trigger
+        var col = GetComponent<BoxCollider2D>();
+        if (col != null)
+            col.isTrigger = true;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !isPlayerInside)
+        // Entra solo il player
+        if (!other.CompareTag("Player")) return;
+
+        // SE QUESTO è un portale di ARRIVO, non fare nulla
+        if (CompareTag("portal_arrivo")) return;
+
+        playerInside = true;
+
+        bool canUsePortal = ScoreManager.GemCount >= gemCost;
+
+        if (PortalPopupController.Instance != null)
         {
-            int currentGems = ScoreManager.GemCount;
-
-            // ***** LOGICA DI PAGAMENTO *****
-
-            if (currentGems >= travelCost)
-            {
-                // *** PAGAMENTO E TELETRASPORTO AUTORIZZATO ***
-
-                // 1. Sottrai il costo
-                ScoreManager.GemCount -= travelCost;
-
-                // 2. AGGIORNA LA UI (RICHIAMO AL SINGLETON INFALLIBILE)
-                if (ScoreManager.Instance != null)
-                {
-                    ScoreManager.Instance.UpdateScoreText(ScoreManager.GemCount);
-                    Debug.Log($"ScoreManager: UI aggiornata dopo il pagamento a {ScoreManager.GemCount}.");
-                }
-
-                // 3. Esegui il Teletrasporto e la Distruzione
-                if (destinationPortal != null)
-                {
-                    destinationPortal.isPlayerInside = true;
-                    other.transform.position = destinationPortal.transform.position;
-
-                    // CORREZIONE: Distruggi l'oggetto GameObject associato al Portale di Destinazione
-                    Destroy(destinationPortal.gameObject);
-
-                    Debug.Log($"Pagamento di {travelCost} gemme riuscito. Teletrasporto completato.");
-                }
-                else
-                {
-                    Debug.LogError("Il Portale di destinazione non � impostato per " + gameObject.name);
-                }
-            }
-            else
-            {
-                // *** PAGAMENTO RIFIUTATO ***
-                Debug.Log($"Gemme insufficienti! Costo: {travelCost}, possedute: {currentGems}.");
-            }
+            PortalPopupController.Instance.Show(this, canUsePortal, gemCost);
+        }
+        else
+        {
+            Debug.LogWarning("PortalPopupController non presente in scena.");
         }
     }
 
-    // --- Logica di Teletrasporto (Uscita) ---
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (!other.CompareTag("Player")) return;
+
+        // Anche qui: se è un portale di arrivo, ignoriamo
+        if (CompareTag("portal_arrivo")) return;
+
+        playerInside = false;
+
+        if (PortalPopupController.Instance != null)
         {
-            isPlayerInside = false;
+            PortalPopupController.Instance.HideIfCurrent(this);
         }
     }
+
+    /// <summary>
+    /// Chiamato dal popup quando il giocatore sceglie di usare il portale.
+    /// Scala le gemme e teletrasporta il player al portale di destinazione.
+    /// </summary>
+    public void TeleportPlayerAndPay(int cost)
+    {
+        if (!playerInside)
+        {
+            // Il player è uscito dal trigger nel frattempo
+            Debug.Log("Il player non è più nel portale, teletrasporto annullato.");
+            return;
+        }
+
+        if (destinationPortal == null)
+        {
+            Debug.LogWarning("PortalTeleporter: destinationPortal non assegnato su " + name);
+            return;
+        }
+
+        // Controllo gemme (di sicurezza)
+        if (ScoreManager.GemCount < cost)
+        {
+            Debug.Log("Punteggio insufficiente per usare il portale.");
+            return;
+        }
+
+        // Scala le gemme e aggiorna la UI
+        int newScore = ScoreManager.GemCount - cost;
+        ScoreManager.Instance.UpdateScoreText(newScore);  // Aggiorna lo score in UI
+
+        // Trova il player e teletrasportalo
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            player.transform.position = destinationPortal.transform.position;
+        }
+        else
+        {
+            Debug.LogWarning("Player con tag 'Player' non trovato in scena.");
+        }
+    }
+
 }
