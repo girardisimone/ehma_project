@@ -5,10 +5,25 @@ public class PortalTeleporter : MonoBehaviour
 {
     [Header("Impostazioni Portale")]
     public PortalTeleporter destinationPortal; // Portale di arrivo
-    public int gemCost = 3;                    // Costo in gemme per usare il portale
-
+    public int travelCost = 3;                    // Costo in gemme per usare il portale
+    public enum PortalType { In, Out}
+    public PortalType portalType = PortalType.In;
     private bool playerInside = false;
+    private PortalManager portalManager;
+    private void Start()
+    {
+        
 
+        // Registrazione nel manager
+        if (PortalManager.Instance != null)
+        {
+            PortalManager.Instance.RegisterPortal(this);
+            portalManager = PortalManager.Instance;
+        }
+        else
+            Debug.LogWarning($"Nessun PortalManager trovato per {name}");
+    }
+    
     private void Reset()
     {
         // Assicuriamoci che il collider sia un trigger
@@ -23,15 +38,15 @@ public class PortalTeleporter : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         // SE QUESTO è un portale di ARRIVO, non fare nulla
-        if (CompareTag("portal_arrivo")) return;
+        if (portalType == PortalType.Out) return;
 
         playerInside = true;
 
-        bool canUsePortal = ScoreManager.GemCount >= gemCost;
+        bool canUsePortal = ScoreManager.GemCount >= travelCost;
 
         if (PortalPopupController.Instance != null)
         {
-            PortalPopupController.Instance.Show(this, canUsePortal, gemCost);
+            PortalPopupController.Instance.Show(this, canUsePortal, travelCost);
         }
         else
         {
@@ -59,7 +74,7 @@ public class PortalTeleporter : MonoBehaviour
     /// Chiamato dal popup quando il giocatore sceglie di usare il portale.
     /// Scala le gemme e teletrasporta il player al portale di destinazione.
     /// </summary>
-    public void TeleportPlayerAndPay(int cost)
+    public void TeleportPlayerAndPay()
     {
         if (!playerInside)
         {
@@ -67,7 +82,13 @@ public class PortalTeleporter : MonoBehaviour
             Debug.Log("Il player non è più nel portale, teletrasporto annullato.");
             return;
         }
-
+        
+            // destinazione casuale badata su probabilità
+        if (portalManager.isRandomConnections())
+        {
+            destinationPortal = portalManager.getRandomGrid().getDestinationPortal();
+        }
+        
         if (destinationPortal == null)
         {
             Debug.LogWarning("PortalTeleporter: destinationPortal non assegnato su " + name);
@@ -75,14 +96,14 @@ public class PortalTeleporter : MonoBehaviour
         }
 
         // Controllo gemme (di sicurezza)
-        if (ScoreManager.GemCount < cost)
+        if (ScoreManager.GemCount < travelCost)
         {
             Debug.Log("Punteggio insufficiente per usare il portale.");
             return;
         }
 
         // Scala le gemme e aggiorna la UI
-        int newScore = ScoreManager.GemCount - cost;
+        int newScore = ScoreManager.GemCount - travelCost;
         ScoreManager.Instance.UpdateScoreText(newScore);  // Aggiorna lo score in UI
 
         // Trova il player e teletrasportalo
@@ -90,6 +111,7 @@ public class PortalTeleporter : MonoBehaviour
         if (player != null)
         {
             player.transform.position = destinationPortal.transform.position;
+            travelCost ++;
             // 4b. NOTIFICA IL GESTORE DELLA DIFFICOLT�
             if (DifficultyManager.Instance != null)
             {
@@ -102,4 +124,18 @@ public class PortalTeleporter : MonoBehaviour
         }
     }
 
+    public bool isDestinationPortal()
+    {
+        return portalType == PortalType.Out;
+    }
+
+    public int getTravelCost()
+    {
+        return travelCost;
+    }
+
+    public void setTravelCost(int newCost)
+    {
+        travelCost = newCost;
+    }
 }

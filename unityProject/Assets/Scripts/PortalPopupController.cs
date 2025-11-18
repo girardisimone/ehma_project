@@ -56,7 +56,7 @@ public class PortalPopupController : MonoBehaviour
     {
         if (currentPortal != null)
         {
-            currentPortal.TeleportPlayerAndPay(currentCost);
+            currentPortal.TeleportPlayerAndPay();
         }
 
         Hide();

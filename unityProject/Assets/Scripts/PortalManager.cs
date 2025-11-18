@@ -11,13 +11,9 @@ public class PortalManager : MonoBehaviour
 
     [Tooltip("Se attivo, i portali verranno collegati in modo casuale.")]
     public bool randomConnections = false;
-
-    [Header("⚙️ Default Portal Settings")]
-    [Tooltip("Modalità di default per tutti i portali.")]
-    public Portal.ActivationMode defaultActivationMode = Portal.ActivationMode.Automatic;
-
+    
     [Header("📜 Elenco Portali (auto compilato)")]
-    public List<Portal> allPortals = new List<Portal>();
+    public List<PortalTeleporter> allPortals = new List<PortalTeleporter>();
     
     [Header("Probabilità di teletrasporto per ogni griglia")]
     public List<GridProbability> gridProbabilities = new List<GridProbability>();
@@ -34,64 +30,41 @@ public class PortalManager : MonoBehaviour
 
     private void Start()
     {
-        SetDefaultActivationMode();
+        
     }
 
     /// <summary>
     /// Registra un portale nella lista globale.
     /// </summary>
-    public void RegisterPortal(Portal portal)
+    public void RegisterPortal(PortalTeleporter portal)
     {
         if (!allPortals.Contains(portal))
             allPortals.Add(portal);
     }
     
-    /// <summary>
-    /// Imposta la modalità di attivazione di default per tutti i portali.
-    /// </summary>
-    public void SetDefaultActivationMode()
-    {
-        foreach (var portal in allPortals)
-        {
-            portal.SetActivationMode(defaultActivationMode);
-        }
-        Debug.Log($"PortalManager: impostata modalità {defaultActivationMode} a tutti i portali.");
-    }
+ 
 
     // --- METODI GLOBALI DI CONTROLLO ---
-
     public void SetAllCosts(int newCost)
     {
         foreach (var p in allPortals)
-            p.SetTravelCost(newCost);
+            p.setTravelCost(newCost);
     }
 
-    public void ActivateAll(bool value)
-    {
-        foreach (var p in allPortals)
-            p.SetActive(value);
-    }
+   
 
-    public void SetAllModes(Portal.ActivationMode mode)
-    {
-        foreach (var p in allPortals)
-            p.SetActivationMode(mode);
-    }
-
-    public void SetAllTypes(Portal.PortalType type)
-    {
-        foreach (var p in allPortals)
-            p.SetType(type);
-    }
-    
     
     /// <summary>
     /// Restituisce una Grid selezionata casualmente in base alle probabilità intere
     /// </summary>
     public Grid getRandomGrid()
-    {
+    {   
+        Debug.Log($"Estrazione di una griglia casuale di destinazione...");
         if (gridProbabilities == null || gridProbabilities.Count == 0)
+        {
+            Debug.LogWarning($"Non sono state inserite le griglie e le probabilità nell'oggetto PortalManager");
             return null;
+        }
 
         // 1️⃣ Somma totale dei pesi
         int totalWeight = 0;
@@ -108,11 +81,14 @@ public class PortalManager : MonoBehaviour
         foreach (var item in gridProbabilities)
         {
             if (randomValue < item.probability)
+            {
+                Debug.Log($"Estratta la griglia {item.grid}");
                 return item.grid;
+            }
 
             randomValue -= item.probability;
         }
-
+       
         // fallback (non dovrebbe mai succedere)
         return gridProbabilities[gridProbabilities.Count - 1].grid;
     }

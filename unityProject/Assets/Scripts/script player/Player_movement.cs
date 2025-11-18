@@ -3,7 +3,7 @@ using UnityEngine.InputSystem; // Importante: devi importare la libreria del nuo
 
 public class NewPlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public float moveSpeed = 10f;
     private Rigidbody2D rb;
     private Vector2 moveInput;
 

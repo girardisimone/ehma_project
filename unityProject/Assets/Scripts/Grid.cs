@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
-    [Header("Link ai contenitori nella gerarchia che \n contengono portali e gemme di questa grid")]
+    [Header("Link alle 'cartelle' nella gerarchia che \n contengono portali e gemme di questa grid")]
     public Transform Portals;   // ← trascina qui l'oggetto "Portals"
     public Transform Gem;       // ← trascina qui l'oggetto "Gem"
 
-    [Header("Liste generate automaticamente")]
-    public List<Portal> portalsList = new List<Portal>();
+    [Header("Liste generate automaticamente durante il gioco \n prendendo i  componenti nella cartella \n indicata sopra")]
+    public List<PortalTeleporter> portalsList = new List<PortalTeleporter>();
     public List<Gem> gemsList = new List<Gem>();
 
 
@@ -16,13 +16,13 @@ public class Grid : MonoBehaviour
     {
         portalsList.Clear();
         gemsList.Clear();
-
+        
         // --- Popola lista Portals ---
         if (Portals != null)
         {
             foreach (Transform child in Portals)
             {
-                Portal p = child.GetComponent<Portal>();
+                PortalTeleporter p = child.GetComponent<PortalTeleporter>();
                 if (p != null)
                 {
                     portalsList.Add(p);
@@ -44,22 +44,25 @@ public class Grid : MonoBehaviour
         }
     }
 
-
+    public void Start()
+    {
+        UpdateLists();
+    }
     private void Awake()
     {
         UpdateLists();
     }
 
-    public Portal getDestinationPortal()
+    public PortalTeleporter getDestinationPortal()
     {
-        foreach (Portal p in  portalsList )
+        foreach (PortalTeleporter p in  portalsList )
         {
             if (p.isDestinationPortal())
             {
                 return p;
             }
         }
-        Debug.Log($"non c'è un portale di arrivo nella griglia selezionata come destinazione del portale");
+        Debug.LogWarning($"Non c'è un portale di arrivo nella griglia selezionata come destinazione del portale");
         return null;
     }
 
