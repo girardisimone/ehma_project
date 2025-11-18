@@ -90,6 +90,11 @@ public class PortalTeleporter : MonoBehaviour
         if (player != null)
         {
             player.transform.position = destinationPortal.transform.position;
+            // 4b. NOTIFICA IL GESTORE DELLA DIFFICOLT�
+            if (DifficultyManager.Instance != null)
+            {
+                DifficultyManager.Instance.RegisterPortalUse();
+            }
         }
         else
         {

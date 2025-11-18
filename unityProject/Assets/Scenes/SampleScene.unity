@@ -2353,6 +2353,7 @@ GameObject:
   - component: {fileID: 1451423096}
   - component: {fileID: 1451423095}
   - component: {fileID: 1451423097}
+  - component: {fileID: 1451423098}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2401,6 +2402,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimerManager
   timerText: {fileID: 992319885}
+--- !u!114 &1451423098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451423094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc1a72254ed6b284a970e98337cbfc85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DifficultyManager
+  portalsToTriggerEffect: 1
+  effectDuration: 5
+  globalLight: {fileID: 619394801}
 --- !u!1 &1451593678
 GameObject:
   m_ObjectHideFlags: 0
