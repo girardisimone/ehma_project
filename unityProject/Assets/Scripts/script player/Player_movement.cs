@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.InputSystem; // Importante: devi importare la libreria del nuovo sistema
+using UnityEngine.InputSystem;
 
 public class NewPlayerMovement : MonoBehaviour
 {
@@ -7,30 +7,34 @@ public class NewPlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 moveInput;
 
+    private Animator animator;
+
     void Start()
     {
-        // Ottiene il riferimento al Rigidbody (la fisica)
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
-        // Assicurati che l'oggetto abbia il Rigidbody e il Collider 2D
-        if (rb == null || GetComponent<Collider2D>() == null)
-        {
-            Debug.LogError("Il giocatore necessita di Rigidbody2D e Collider2D!");
-        }
+        if (rb == null) Debug.LogError("Manca il Rigidbody2D!");
+        if (animator == null) Debug.LogError("Manca l'Animator!");
     }
 
-    // Metodo chiamato automaticamente da Player Input quando l'azione 'Move' cambia.
-    // Il nome di questo metodo deve corrispondere al nome dell'azione (OnMove).
     public void OnMove(InputAction.CallbackContext context)
     {
-        // Legge il valore Vector2 dall'azione
         moveInput = context.ReadValue<Vector2>();
     }
 
     void FixedUpdate()
     {
-        // Applica il movimento basato sulla fisica
+        // 1. Movimento Fisico
         Vector2 finalVelocity = moveInput * moveSpeed;
         rb.linearVelocity = finalVelocity;
+
+        // 2. Gestione Animazione (2D Blend Tree)
+        if (animator != null)
+        {
+            // Passiamo InputX e InputY all'Animator
+            animator.SetFloat("InputX", moveInput.x);
+            animator.SetFloat("InputY", moveInput.y);
+        }
     }
 }
