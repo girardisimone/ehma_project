@@ -42,12 +42,12 @@ public class PortalPopupController : MonoBehaviour
 
         if (canUsePortal)
         {
-            messageText.text = $"Vuoi accedere al portale e lasciare {gemCost} gemme?";
+            messageText.text = $"Do you want to teleport? Cost: {gemCost} gems";
             usePortalButton.gameObject.SetActive(true);
         }
         else
         {
-            messageText.text = $"Per accedere ai portali ti servono almeno {gemCost} gemme.";
+            messageText.text = $"To use the portal you need {gemCost} gems.";
             usePortalButton.gameObject.SetActive(false);
         }
     }
