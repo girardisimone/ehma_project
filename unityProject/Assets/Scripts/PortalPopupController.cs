@@ -49,6 +49,7 @@ public class PortalPopupController : MonoBehaviour
         {
             messageText.text = $"To use the portal you need {gemCost} gems.";
             usePortalButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
         }
     }
 

@@ -5,14 +5,33 @@ public class PortalTeleporter : MonoBehaviour
 {
     [Header("Impostazioni Portale")]
     public PortalTeleporter destinationPortal; // Portale di arrivo
-    public int travelCost = 3;                    // Costo in gemme per usare il portale
-    public enum PortalType { In, Out}
+    public int travelCost = 3;                     // Costo in gemme per usare il portale
+    public enum PortalType { In, Out }
     public PortalType portalType = PortalType.In;
     private bool playerInside = false;
     private PortalManager portalManager;
+
     private void Start()
     {
-        
+        // --- MODIFICA: NASCONDI PORTALI DI ARRIVO ---
+        // Se questo è un portale di uscita (Out), lo rendiamo invisibile
+        if (portalType == PortalType.Out)
+        {
+            // Cerca il componente che disegna l'immagine (SpriteRenderer) e lo spegne
+            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+            if (sr != null)
+            {
+                sr.enabled = false;
+            }
+
+            // Se il portale ha figli grafici (es. decorazioni), nascondiamo anche quelli
+            SpriteRenderer[] childRenderers = GetComponentsInChildren<SpriteRenderer>();
+            foreach (var child in childRenderers)
+            {
+                child.enabled = false;
+            }
+        }
+        // ---------------------------------------------
 
         // Registrazione nel manager
         if (PortalManager.Instance != null)
@@ -23,7 +42,7 @@ public class PortalTeleporter : MonoBehaviour
         else
             Debug.LogWarning($"Nessun PortalManager trovato per {name}");
     }
-    
+
     private void Reset()
     {
         // Assicuriamoci che il collider sia un trigger
@@ -60,7 +79,7 @@ public class PortalTeleporter : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         // Anche qui: se è un portale di arrivo, ignoriamo
-        if (CompareTag("portal_arrivo")) return;
+        if (portalType == PortalType.Out) return; // Nota: ho corretto il controllo qui, prima usavi CompareTag su se stesso
 
         playerInside = false;
 
@@ -82,13 +101,17 @@ public class PortalTeleporter : MonoBehaviour
             Debug.Log("Il player non è più nel portale, teletrasporto annullato.");
             return;
         }
-        
-            // destinazione casuale badata su probabilità
-        if (portalManager.isRandomConnections())
+
+        // destinazione casuale basata su probabilità
+        if (portalManager != null && portalManager.isRandomConnections())
         {
-            destinationPortal = portalManager.getRandomGrid().getDestinationPortal();
+            var grid = portalManager.getRandomGrid();
+            if (grid != null)
+            {
+                destinationPortal = grid.getDestinationPortal();
+            }
         }
-        
+
         if (destinationPortal == null)
         {
             Debug.LogWarning("PortalTeleporter: destinationPortal non assegnato su " + name);
@@ -104,15 +127,19 @@ public class PortalTeleporter : MonoBehaviour
 
         // Scala le gemme e aggiorna la UI
         int newScore = ScoreManager.GemCount - travelCost;
-        ScoreManager.Instance.UpdateScoreText(newScore);  // Aggiorna lo score in UI
+        if (ScoreManager.Instance != null)
+        {
+            ScoreManager.Instance.UpdateScoreText(newScore);  // Aggiorna lo score in UI
+        }
 
         // Trova il player e teletrasportalo
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             player.transform.position = destinationPortal.transform.position;
-            travelCost ++;
-            // 4b. NOTIFICA IL GESTORE DELLA DIFFICOLT�
+            travelCost++; // Aumenta il costo per il prossimo utilizzo? (Logica tua originale)
+
+            // 4b. NOTIFICA IL GESTORE DELLA DIFFICOLTÀ
             if (DifficultyManager.Instance != null)
             {
                 DifficultyManager.Instance.RegisterPortalUse();
