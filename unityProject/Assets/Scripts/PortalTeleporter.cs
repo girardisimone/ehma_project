@@ -10,7 +10,7 @@ public class PortalTeleporter : MonoBehaviour
     public PortalType portalType = PortalType.In;
     private bool playerInside = false;
     private PortalManager portalManager;
-
+    public float speed = 100f;
     private void Start()
     {
         // --- MODIFICA: NASCONDI PORTALI DI ARRIVO ---
@@ -164,5 +164,11 @@ public class PortalTeleporter : MonoBehaviour
     public void setTravelCost(int newCost)
     {
         travelCost = newCost;
+    }
+    void Update()
+    {
+        // Ruota sull'asse Z (quello che "esce" dallo schermo in 2D)
+        // Time.deltaTime rende il movimento fluido indipendentemente dagli FPS
+        transform.Rotate(0, 0, speed * Time.deltaTime);
     }
 }
