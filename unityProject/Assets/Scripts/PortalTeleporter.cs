@@ -144,6 +144,10 @@ public class PortalTeleporter : MonoBehaviour
             {
                 DifficultyManager.Instance.RegisterPortalUse();
             }
+            else
+            {
+                Debug.LogWarning("DifficultyManager mancante nella scena!");
+            }
         }
         else
         {
