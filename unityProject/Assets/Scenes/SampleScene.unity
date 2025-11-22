@@ -1392,17 +1392,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 558126784}
   m_CullTransparentMesh: 1
---- !u!114 &562506036 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4693238232199852938, guid: 1c8d094d3145da14687c3791b026b954, type: 3}
-  m_PrefabInstance: {fileID: 7042412588462521138}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cb75b218f5a74c419f163e520e4f1d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PortalTeleporter
 --- !u!1 &577964823
 GameObject:
   m_ObjectHideFlags: 0
@@ -2732,17 +2721,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1038645509 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6442035416140937313, guid: 23388cf6e86d6b246b773026a9971212, type: 3}
-  m_PrefabInstance: {fileID: 3412860048380667724}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cb75b218f5a74c419f163e520e4f1d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PortalTeleporter
 --- !u!1 &1088728104
 GameObject:
   m_ObjectHideFlags: 0
@@ -4047,6 +4025,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634515695}
   m_CullTransparentMesh: 1
+--- !u!114 &1645328202 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3810816523931607189, guid: 1c8d094d3145da14687c3791b026b954, type: 3}
+  m_PrefabInstance: {fileID: 7042412588462521138}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb75b218f5a74c419f163e520e4f1d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PortalTeleporter
 --- !u!114 &1785759851 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2130592497906864475, guid: 23388cf6e86d6b246b773026a9971212, type: 3}
@@ -4269,6 +4258,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1845321297}
   m_CullTransparentMesh: 1
+--- !u!114 &1860850916 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1073501226060990068, guid: 23388cf6e86d6b246b773026a9971212, type: 3}
+  m_PrefabInstance: {fileID: 3412860048380667724}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb75b218f5a74c419f163e520e4f1d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PortalTeleporter
 --- !u!4 &1881657762 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5636681666268584671, guid: 1c8d094d3145da14687c3791b026b954, type: 3}
@@ -9049,7 +9049,7 @@ PrefabInstance:
     - target: {fileID: -9169379985144978286, guid: 23388cf6e86d6b246b773026a9971212, type: 3}
       propertyPath: 'portalsList.Array.data[1]'
       value: 
-      objectReference: {fileID: 1038645509}
+      objectReference: {fileID: 1860850916}
     - target: {fileID: 2130592497906864475, guid: 23388cf6e86d6b246b773026a9971212, type: 3}
       propertyPath: portalType
       value: 1
@@ -9603,17 +9603,25 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1913083537881452079, guid: 818006728614c2d4f99a4536ea05e19b, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 1913083537881452079, guid: 818006728614c2d4f99a4536ea05e19b, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.2285714
+      value: 1.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369882345891202617, guid: 818006728614c2d4f99a4536ea05e19b, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.09
       objectReference: {fileID: 0}
     - target: {fileID: 2369882345891202617, guid: 818006728614c2d4f99a4536ea05e19b, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.2285714
+      value: 1.02
       objectReference: {fileID: 0}
     - target: {fileID: 3069688550959543185, guid: 818006728614c2d4f99a4536ea05e19b, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -2781461747465674676, guid: e507b0111a4f9964784209b3b2294c13, type: 3}
+      objectReference: {fileID: 9021225437764120461, guid: f5f071afe5cee8d4da7e21977a2aa87c, type: 3}
     - target: {fileID: 3069688550959543185, guid: 818006728614c2d4f99a4536ea05e19b, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -9668,7 +9676,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7489671213702537474, guid: 818006728614c2d4f99a4536ea05e19b, type: 3}
       propertyPath: speed
-      value: 300
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7489671213702537474, guid: 818006728614c2d4f99a4536ea05e19b, type: 3}
       propertyPath: destinationPortal
@@ -11386,6 +11394,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid A2
       objectReference: {fileID: 0}
+    - target: {fileID: 8937348353914290724, guid: efd2b65d14e454a4eb201b997ef39f34, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 9021225437764120461, guid: f5f071afe5cee8d4da7e21977a2aa87c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11937,7 +11949,7 @@ PrefabInstance:
     - target: {fileID: -2791288991276415644, guid: 1c8d094d3145da14687c3791b026b954, type: 3}
       propertyPath: 'portalsList.Array.data[1]'
       value: 
-      objectReference: {fileID: 562506036}
+      objectReference: {fileID: 1645328202}
     - target: {fileID: 827326959169288681, guid: 1c8d094d3145da14687c3791b026b954, type: 3}
       propertyPath: m_Name
       value: Grid A3
