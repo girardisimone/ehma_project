@@ -1320,9 +1320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSelectionMenu
   characterDisplay: {fileID: 376677329}
   characterSprites:
-  - {fileID: -7527145504033472756, guid: 31f2856db5959d24eabf5bdbe511e4b3, type: 3}
-  - {fileID: -7527145504033472756, guid: d24373cc3e3ee804c955a10621848a27, type: 3}
-  - {fileID: -7527145504033472756, guid: 59884b55e779f2c4fb4f1f6a9be3885a, type: 3}
+  - {fileID: -7527145504033472756, guid: a1ffc56d9f7c80b4f9371fda137410e8, type: 3}
 --- !u!1 &1732783189
 GameObject:
   m_ObjectHideFlags: 0
