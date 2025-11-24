@@ -10,7 +10,7 @@ public class PortalTeleporter : MonoBehaviour
     public PortalType portalType = PortalType.In;
     private bool playerInside = false;
     private PortalManager portalManager;
-    public float speed = 100f;
+    public float speed = 300f;
     private void Start()
     {
         // --- MODIFICA: NASCONDI PORTALI DI ARRIVO ---
@@ -143,6 +143,10 @@ public class PortalTeleporter : MonoBehaviour
             if (DifficultyManager.Instance != null)
             {
                 DifficultyManager.Instance.RegisterPortalUse();
+            }
+            else
+            {
+                Debug.LogWarning("DifficultyManager mancante nella scena!");
             }
         }
         else
