@@ -485,6 +485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewPlayerMovement
   moveSpeed: 5
+  initialArchetype: 4
 --- !u!114 &322230743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3552,8 +3553,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc1a72254ed6b284a970e98337cbfc85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DifficultyManager
-  portalsToTriggerEffect: 1
-  effectDuration: 5
+  basePenaltyDuration: 30
+  penaltyIncrementPerPortal: 5
+  portalsToTriggerDarkness: 3
+  darknessDuration: 8
   globalLight: {fileID: 619394801}
 --- !u!114 &1451423099
 MonoBehaviour:
