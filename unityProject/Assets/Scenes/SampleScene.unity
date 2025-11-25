@@ -1595,8 +1595,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSpawner
   characterPrefabs:
-  - {fileID: 849197362360565316, guid: 87d25ab245ce4d9468f887c5126fdd90, type: 3}
   - {fileID: 7490857172078558452, guid: 637e7e6d9b2b9e842a84be50eddecf54, type: 3}
+  - {fileID: 849197362360565316, guid: 87d25ab245ce4d9468f887c5126fdd90, type: 3}
+  - {fileID: 6721638405415773591, guid: a4a36666d1ca443728733e0cb562760c, type: 3}
+  - {fileID: 6721638405415773591, guid: a1d84091551f543f7a62fe51efde9171, type: 3}
   roomCameraScript: {fileID: 160074736}
 --- !u!4 &753554803 stripped
 Transform:

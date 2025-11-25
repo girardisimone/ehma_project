@@ -1333,8 +1333,10 @@ MonoBehaviour:
   characterDisplay: {fileID: 376677329}
   selectButton: {fileID: 824908470}
   characterSprites:
-  - {fileID: -7527145504033472756, guid: a1ffc56d9f7c80b4f9371fda137410e8, type: 3}
   - {fileID: -7527145504033472756, guid: 17a09063841c88b4f98bb7af54230fa8, type: 3}
+  - {fileID: -7527145504033472756, guid: a1ffc56d9f7c80b4f9371fda137410e8, type: 3}
+  - {fileID: -7527145504033472756, guid: 04fb901495736c6429fc8fe53b67ecf1, type: 3}
+  - {fileID: -7527145504033472756, guid: 473d0b03605322247ad8283d8eeaa163, type: 3}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   selectedColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &1732783189
