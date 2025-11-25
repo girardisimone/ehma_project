@@ -1,40 +1,19 @@
 fileFormatVersion: 2
-guid: 80a4b44faa54281418f25c4fdac9534c
+guid: 9e939451432edb5428440ff04000aef9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1788626132936788117
-    second: Owl_0
+      213: 5546671543968653177
+    second: SpriteSheet_0
   - first:
-      213: -6547531000066942689
-    second: Owl_1
+      213: 8755591262435691780
+    second: SpriteSheet_1
   - first:
-      213: 1696435273948115360
-    second: Owl_2
+      213: -3459558614108198297
+    second: SpriteSheet_2
   - first:
-      213: -2957158296051965490
-    second: Owl_3
-  - first:
-      213: -5453227911411083704
-    second: Owl_4
-  - first:
-      213: 5943547782214203409
-    second: Owl_5
-  - first:
-      213: -4973822385572961100
-    second: Owl_6
-  - first:
-      213: 2224797283100166942
-    second: Owl_7
-  - first:
-      213: 7406778163035628280
-    second: Owl_8
-  - first:
-      213: -1245350860645931380
-    second: Owl_9
-  - first:
-      213: 556069731842956920
-    second: Owl_10
+      213: 659797372610145418
+    second: SpriteSheet_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -81,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 14
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -143,7 +122,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Owl_0
+      name: SpriteSheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -158,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b67725632068d27e0800000000000000
-      internalID: -1788626132936788117
+      spriteID: 97fd408b16cb9fc40800000000000000
+      internalID: 5546671543968653177
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Owl_1
+      name: SpriteSheet_1
       rect:
         serializedVersion: 2
         x: 16
@@ -180,14 +159,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f19d629ee3f7225a0800000000000000
-      internalID: -6547531000066942689
+      spriteID: 40d4ef33ddb128970800000000000000
+      internalID: 8755591262435691780
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Owl_2
+      name: SpriteSheet_2
       rect:
         serializedVersion: 2
         x: 32
@@ -202,14 +181,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0a1be10c4e2fa8710800000000000000
-      internalID: 1696435273948115360
+      spriteID: 76a207e15cd2dffc0800000000000000
+      internalID: -3459558614108198297
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Owl_3
+      name: SpriteSheet_3
       rect:
         serializedVersion: 2
         x: 48
@@ -224,14 +203,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ec1293b823016f6d0800000000000000
-      internalID: -2957158296051965490
+      spriteID: a8ce922f632182900800000000000000
+      internalID: 659797372610145418
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Owl_4
+      name: SpriteSheet_4
       rect:
         serializedVersion: 2
         x: 0
@@ -244,16 +223,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 846d8156b1e3254b0800000000000000
-      internalID: -5453227911411083704
+      spriteID: 6fabcccc9b8354d30976b1c8cb8d0427
+      internalID: 1918464435
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Owl_5
+      name: SpriteSheet_5
       rect:
         serializedVersion: 2
         x: 16
@@ -266,16 +245,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1183078b739bb7250800000000000000
-      internalID: 5943547782214203409
+      spriteID: e0daaa38580584e0faf06233ed1bb5a7
+      internalID: -489607546
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Owl_6
+      name: SpriteSheet_6
       rect:
         serializedVersion: 2
         x: 32
@@ -288,16 +267,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4b4a90c84ee69fab0800000000000000
-      internalID: -4973822385572961100
+      spriteID: 92a80fe833c634662a6aa417708d63b2
+      internalID: 1592221787
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Owl_7
+      name: SpriteSheet_7
       rect:
         serializedVersion: 2
         x: 48
@@ -310,16 +289,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e1b807c675110ee10800000000000000
-      internalID: 2224797283100166942
+      spriteID: fa23513d916164d2db523c46b2aefa43
+      internalID: -456174360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Owl_8
+      name: SpriteSheet_8
       rect:
         serializedVersion: 2
         x: 0
@@ -332,16 +311,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8f2ebd91f792ac660800000000000000
-      internalID: 7406778163035628280
+      spriteID: 64276ca286f9c45509e02772db7b17cf
+      internalID: 755326107
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Owl_9
+      name: SpriteSheet_9
       rect:
         serializedVersion: 2
         x: 16
@@ -354,16 +333,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c86e87a8dff97bee0800000000000000
-      internalID: -1245350860645931380
+      spriteID: afb76e949e00e42a587c5ca90bd69723
+      internalID: 1289806690
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Owl_10
+      name: SpriteSheet_10
       rect:
         serializedVersion: 2
         x: 32
@@ -376,16 +355,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 87e98d4997e87b700800000000000000
-      internalID: 556069731842956920
+      spriteID: 599eee914693c43d89b9b30786d3a3e9
+      internalID: 721014589
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Owl_11
+      name: SpriteSheet_11
       rect:
         serializedVersion: 2
         x: 48
@@ -400,14 +379,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 836ac9f7c2a90474392c439e0d916d94
-      internalID: -2109407013
+      spriteID: 3a063b61d989441ed9fd5891cb303959
+      internalID: 709276927
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Owl_12
+      name: SpriteSheet_12
       rect:
         serializedVersion: 2
         x: 0
@@ -422,14 +401,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f9c4cfed53c24d2faec9fd5bdb4d003
-      internalID: 1546882450
+      spriteID: a377879ff010643a5a184f2c1ffbb8ba
+      internalID: 1245065533
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Owl_13
+      name: SpriteSheet_13
       rect:
         serializedVersion: 2
         x: 16
@@ -444,14 +423,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de6c645afafe048979afac5ff3493943
-      internalID: 1732449690
+      spriteID: 36835acb3731a4d75a2c276fb10bce03
+      internalID: -476784298
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Owl_14
+      name: SpriteSheet_14
       rect:
         serializedVersion: 2
         x: 32
@@ -466,14 +445,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04984c90e6bee44028c0bc822bba6fd9
-      internalID: 11065718
+      spriteID: 8df77c24f3fc8471aae3dd45af2db8d3
+      internalID: -160539385
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Owl_15
+      name: SpriteSheet_15
       rect:
         serializedVersion: 2
         x: 48
@@ -488,8 +467,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f34db6cf15c6413584f89a85800ee20
-      internalID: -2105499455
+      spriteID: 9b0897c519548459c926ab818922b76f
+      internalID: 315492480
       vertices: []
       indices: 
       edges: []
@@ -498,7 +477,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 54115c78519864998aa75a3ace130f12
+    spriteID: 75d17dcd10bcf4d198f2ad2fa95c9218
     internalID: 0
     vertices: []
     indices: 
@@ -510,22 +489,22 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Owl_0: -1788626132936788117
-      Owl_1: -6547531000066942689
-      Owl_10: 556069731842956920
-      Owl_11: -2109407013
-      Owl_12: 1546882450
-      Owl_13: 1732449690
-      Owl_14: 11065718
-      Owl_15: -2105499455
-      Owl_2: 1696435273948115360
-      Owl_3: -2957158296051965490
-      Owl_4: -5453227911411083704
-      Owl_5: 5943547782214203409
-      Owl_6: -4973822385572961100
-      Owl_7: 2224797283100166942
-      Owl_8: 7406778163035628280
-      Owl_9: -1245350860645931380
+      SpriteSheet_0: 5546671543968653177
+      SpriteSheet_1: 8755591262435691780
+      SpriteSheet_10: 721014589
+      SpriteSheet_11: 709276927
+      SpriteSheet_12: 1245065533
+      SpriteSheet_13: -476784298
+      SpriteSheet_14: -160539385
+      SpriteSheet_15: 315492480
+      SpriteSheet_2: -3459558614108198297
+      SpriteSheet_3: 659797372610145418
+      SpriteSheet_4: 1918464435
+      SpriteSheet_5: -489607546
+      SpriteSheet_6: 1592221787
+      SpriteSheet_7: -456174360
+      SpriteSheet_8: 755326107
+      SpriteSheet_9: 1289806690
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
