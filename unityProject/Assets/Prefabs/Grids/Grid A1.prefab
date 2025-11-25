@@ -6453,6 +6453,7 @@ MonoBehaviour:
   destinationPortal: {fileID: 0}
   travelCost: 3
   portalType: 0
+  speed: 100
 --- !u!61 &2369882345891202617
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6491,7 +6492,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.09, y: 1.02}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -6546,8 +6547,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 1759213285, guid: f837d5d1262398647ac7777e01211b50, type: 3}
-  m_Color: {r: 0.7819706, g: 0.13852513, b: 0.13852513, a: 1}
+  m_Sprite: {fileID: 9021225437764120461, guid: f5f071afe5cee8d4da7e21977a2aa87c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -9801,6 +9802,7 @@ MonoBehaviour:
   destinationPortal: {fileID: 0}
   travelCost: 3
   portalType: 0
+  speed: 100
 --- !u!61 &1913083537881452079
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,40 +1,38 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.Rendering.Universal; // Importa il namespace per le luci (se usi URP)
+using UnityEngine.Rendering.Universal; // Necessario per Light2D
 
 public class DifficultyManager : MonoBehaviour
 {
-    // Singleton (per essere chiamato facilmente da PortalTeleporter)
     public static DifficultyManager Instance;
 
-    // Variabili configurabili nell'Inspector
-    [Header("Impostazioni Difficolt‡")]
-    [Tooltip("Numero di portali necessari per attivare l'effetto")]
-    public int portalsToTriggerEffect = 3;
-    [Tooltip("Durata dell'effetto in secondi")]
-    public float effectDuration = 8f;
+    [Header("--- Difficolt√† Movimento (Penalit√†) ---")]
+    [Tooltip("Durata base della penalit√† al primo portale (secondi).")]
+    public float basePenaltyDuration = 5f;
 
-    [Header("Riferimenti Scena")]
-    // Trascina il tuo Global Light 2D qui
+    [Tooltip("Quanti secondi si aggiungono alla durata per OGNI portale preso.")]
+    public float penaltyIncrementPerPortal = 5f;
+
+    // Livello attuale di difficolt√† (quanti portali ho preso)
+    private int penaltyLevel = 0;
+
+    [Header("--- Difficolt√† Visiva (Buio) ---")]
+    [Tooltip("Ogni quanti portali scatta l'effetto buio?")]
+    public int portalsToTriggerDarkness = 3;
+    public float darknessDuration = 8f;
     public Light2D globalLight;
 
-    // Variabili di stato
-    private int portalsUsedCount = 0;
-    private float originalLightIntensity; // Per memorizzare la luce iniziale
-
-    // Lo stato attuale dell'effetto (per evitare interferenze)
-    private bool isEffectActive = false;
+    private int portalsForDarknessCount = 0;
+    private float originalLightIntensity;
+    private bool isDarknessActive = false;
 
     private void Awake()
     {
+        // Singleton Pattern
         if (Instance == null)
         {
             Instance = this;
-            // Salva l'intensit‡ iniziale della luce all'avvio
-            if (globalLight != null)
-            {
-                originalLightIntensity = globalLight.intensity;
-            }
+            if (globalLight != null) originalLightIntensity = globalLight.intensity;
         }
         else
         {
@@ -42,54 +40,70 @@ public class DifficultyManager : MonoBehaviour
         }
     }
 
-    // Metodo chiamato dallo script PortalTeleporter
+    /// <summary>
+    /// Chiamato da PortalTeleporter quando il player si teletrasporta.
+    /// </summary>
     public void RegisterPortalUse()
     {
-        if (isEffectActive)
+        // 1. GESTIONE MOVIMENTO 
+        ApplyMovementPenalty();
+
+        // 2. GESTIONE LUCI 
+        HandleDarknessLogic();
+    }
+
+    private void ApplyMovementPenalty()
+    {
+        // Calcolo durata: Base + (Livello * Incremento)
+        // Es: Base 5, Inc 2.
+        // Portale 1 (lvl 0): 5s
+        // Portale 2 (lvl 1): 7s
+        // Portale 3 (lvl 2): 9s
+        float currentDuration = basePenaltyDuration + (penaltyLevel * penaltyIncrementPerPortal);
+
+        // Trova il player e applica l'effetto
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
         {
-            // Se l'effetto Ë gi‡ attivo, lo resettiamo per riavviare il timer
-            StopAllCoroutines();
-            StartCoroutine(DarknessEffectCoroutine());
-            Debug.Log("Effetto oscurit‡ resettato: il giocatore ha preso un altro portale.");
+            NewPlayerMovement movementScript = player.GetComponent<NewPlayerMovement>();
+            if (movementScript != null)
+            {
+                movementScript.ActivatePenaltyEffect(currentDuration);
+            }
+        }
+
+        // Aumenta il livello di difficolt√† per la prossima volta
+        penaltyLevel++;
+    }
+
+    private void HandleDarknessLogic()
+    {
+        // Se √® gi√† buio, resetta il timer del buio
+        if (isDarknessActive)
+        {
+            StopCoroutine("DarknessEffectCoroutine");
+            StartCoroutine("DarknessEffectCoroutine");
             return;
         }
 
-        portalsUsedCount++;
-        Debug.Log($"Portali usati: {portalsUsedCount} / {portalsToTriggerEffect}");
-
-        // Controlla se abbiamo raggiunto la soglia
-        if (portalsUsedCount >= portalsToTriggerEffect)
+        portalsForDarknessCount++;
+        
+        // Se abbiamo raggiunto la soglia, attiva il buio
+        if (portalsForDarknessCount >= portalsToTriggerDarkness)
         {
-            portalsUsedCount = 0; // Resetta il contatore
-            StartCoroutine(DarknessEffectCoroutine());
+            portalsForDarknessCount = 0;
+            StartCoroutine("DarknessEffectCoroutine");
         }
     }
 
-    // Coroutine per gestire la durata temporizzata
     IEnumerator DarknessEffectCoroutine()
     {
-        isEffectActive = true;
+        isDarknessActive = true;
+        if (globalLight != null) globalLight.intensity = 0.3f; // Luci basse
 
-        // 1. ATTIVA L'EFFETTO BUIO: Riduci l'intensit‡ della luce
-        if (globalLight != null)
-        {
-            // Puoi anche impostare la sua intensit‡ a 0.1 o un valore basso
-            globalLight.intensity = 0.3f;
-        }
+        yield return new WaitForSeconds(darknessDuration);
 
-        // 2. ATTENDI la durata specificata
-        yield return new WaitForSeconds(effectDuration);
-
-        // 3. SE NESSUN PORTALE E' STATO PRESO DURANTE L'ATTESA, DISATTIVA L'EFFETTO
-
-        // Se non abbiamo preso un portale che ha resettato la Coroutine, torniamo normale
-        // Torna all'intensit‡ originale
-        if (globalLight != null)
-        {
-            globalLight.intensity = originalLightIntensity;
-        }
-
-        isEffectActive = false;
-        Debug.Log("L'effetto oscurit‡ Ë terminato. Visione normale ripristinata.");
+        if (globalLight != null) globalLight.intensity = originalLightIntensity; // Luci normali
+        isDarknessActive = false;
     }
 }
