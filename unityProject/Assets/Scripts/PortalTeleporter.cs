@@ -138,7 +138,7 @@ public class PortalTeleporter : MonoBehaviour
         {
             player.transform.position = destinationPortal.transform.position;
             travelCost++; // Aumenta il costo per il prossimo utilizzo? (Logica tua originale)
-
+           
             // 4b. NOTIFICA IL GESTORE DELLA DIFFICOLTÀ
             if (DifficultyManager.Instance != null)
             {

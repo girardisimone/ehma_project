@@ -6448,6 +6448,8 @@ GameObject:
   - component: {fileID: 8803635455580677463}
   - component: {fileID: 6548885688340940823}
   - component: {fileID: -6807241682517422148}
+  - component: {fileID: 572090156522606175}
+  - component: {fileID: 8965241854541867973}
   m_Layer: 0
   m_Name: Grid B3
   m_TagString: Untagged
@@ -6520,6 +6522,64 @@ MonoBehaviour:
   - {fileID: 1904629020540448480}
   - {fileID: 1726080967843707658}
   - {fileID: 7579760193199987033}
+--- !u!114 &572090156522606175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660148848066111581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3030ce95e0023e43ad91f2cd5089fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomTracker
+--- !u!61 &8965241854541867973
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660148848066111581}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -50}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 24, y: 24}
+  m_EdgeRadius: 0
 --- !u!1 &2407034779805151810
 GameObject:
   m_ObjectHideFlags: 0
@@ -6531,9 +6591,9 @@ GameObject:
   - component: {fileID: 6410000621928236534}
   - component: {fileID: 4458902402924480512}
   - component: {fileID: 708449844050370776}
-  - component: {fileID: 1997400216141367446}
-  - component: {fileID: 6576516286993259112}
-  - component: {fileID: 4839292347597725579}
+  - component: {fileID: 422578462361898957}
+  - component: {fileID: 5292153098510609244}
+  - component: {fileID: 5972093621288841143}
   m_Layer: 0
   m_Name: Tilemap_wall_B3
   m_TagString: Untagged
@@ -8931,7 +8991,7 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!19719996 &1997400216141367446
+--- !u!19719996 &422578462361898957
 TilemapCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8969,7 +9029,7 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!50 &6576516286993259112
+--- !u!50 &5292153098510609244
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -8996,7 +9056,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!66 &4839292347597725579
+--- !u!66 &5972093621288841143
 CompositeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9035,7 +9095,7 @@ CompositeCollider2D:
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
-  - m_Collider: {fileID: 1997400216141367446}
+  - m_Collider: {fileID: 422578462361898957}
     m_ColliderPaths:
     - - X: -10000000
         Y: 40000000
@@ -9647,7 +9707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PortalTeleporter
   destinationPortal: {fileID: 0}
   travelCost: 3
-  portalType: 0
+  portalType: 1
   speed: 100
 --- !u!61 &5536465003239761047
 BoxCollider2D:
