@@ -17,6 +17,10 @@ public class NewPlayerMovement : MonoBehaviour
     public float moveSpeed = 10f;
 	[Header("Archetipo (Il vizio nascosto)")]
     // Seleziona qui dall'Inspector che tipo di giocatore è questo (Ubriaco, Gambler, ecc.)
+    
+    [Header("Immunità ai malus dei portali")]
+    public bool isImmuneToMalus = false; // Se vero, i portali non fanno nulla
+    public float malusDurationMultiplier = 1.0f; // 1 = normale, 2 = durata doppia
     public PlayerArchetype initialArchetype = PlayerArchetype.Normal;
 
     private Rigidbody2D rb;
@@ -97,20 +101,7 @@ public class NewPlayerMovement : MonoBehaviour
     }
 
 	
-	// --- CHIAMATO DAL DIFFICULTY MANAGER ---
-    public void ActivatePenaltyEffect(float duration)
-    {
-        // RESET: Se c'è già un timer in corso, lo fermiamo subito.
-        if (penaltyCoroutine != null)
-        {
-            StopCoroutine(penaltyCoroutine);
-            Debug.Log("Timer penalità resettato ed esteso!");
-        }
-
-        // Avviamo il nuovo timer con la durata aggiornata
-        penaltyCoroutine = StartCoroutine(PenaltyRoutine(duration));
-    }
-
+     
     private IEnumerator PenaltyRoutine(float duration)
     {
         // Attiva il movimento "Pazzo"
@@ -129,5 +120,28 @@ public class NewPlayerMovement : MonoBehaviour
     private void SetStrategy(IMovementStrategy newStrategy)
     {
         currentStrategy = newStrategy;
+    }
+    
+    // --- CHIAMATO DAL DIFFICULTY MANAGER ---
+    public void ActivatePenaltyEffect(float baseDuration)
+    {
+        // 1. Controllo Immunità
+        if (isImmuneToMalus)
+        {
+            Debug.Log("IMMUNE! Il polpo ti protegge, il portale non ha effetto.");
+            return; // Esce dalla funzione, niente malus!
+        }
+
+        // 2. Calcolo durata effettiva (se ho appena usato l'immunità il malus durerà di più del "normale")
+        float effectiveDuration = baseDuration * malusDurationMultiplier;
+
+        // RESET: Se c'è già un timer in corso, lo fermiamo.
+        if (penaltyCoroutine != null)
+        {
+            StopCoroutine(penaltyCoroutine);
+        }
+
+        // Avviamo il timer con la durata calcolata
+        penaltyCoroutine = StartCoroutine(PenaltyRoutine(effectiveDuration));
     }
 }
