@@ -16,7 +16,7 @@ public class DependencyManager : MonoBehaviour
     public static DependencyManager Instance;
     public DependencyType currentDependencies;
 
-    [Header("Configurazione Durate Malus")]
+    [Header("Durate Malus (Secondi)")]
     public float durationDrugs = 15f;
     public float durationGambling = 8f;
     public float durationInternet = 5f;
@@ -35,102 +35,97 @@ public class DependencyManager : MonoBehaviour
     void InitializeCharacterDependency()
     {
         int charIndex = PlayerPrefs.GetInt("SelectedCharacter", 0);
-        Debug.Log($"[DEBUG] Indice Personaggio Caricato: {charIndex}"); // <--- CONTROLLA QUESTO
-
         currentDependencies = DependencyType.None;
 
-        // VERIFICA CHE QUESTI NUMERI SIANO GLI STESSI DEL TUO MENU
         switch (charIndex)
         {
-            case 0:
-                Debug.Log("[DEBUG] Nessuna dipendenza assegnata.");
-                break;
-            case 1:
-                AddDependency(DependencyType.Drugs);
-                Debug.Log("[DEBUG] Assegnata dipendenza: DROGHE");
-                break;
-            case 2:
-                AddDependency(DependencyType.Gambling);
-                Debug.Log("[DEBUG] Assegnata dipendenza: GAMBLING");
-                break;
-            case 3:
-                AddDependency(DependencyType.Internet);
-                Debug.Log("[DEBUG] Assegnata dipendenza: INTERNET");
-                break;
-            default:
-                Debug.LogWarning($"[DEBUG] Indice {charIndex} non gestito nello switch!");
-                break;
+            case 0: break; // Sano
+            case 1: AddDependency(DependencyType.Drugs); break;
+            case 2: AddDependency(DependencyType.Gambling); break;
+            case 3: AddDependency(DependencyType.Internet); break;
         }
     }
 
+    // Chiamato dal Portale
     public void ApplyMovementMalus(GameObject player)
     {
-        Debug.Log("[DEBUG] Il Portale ha chiamato ApplyMovementMalus!"); // <--- IL PORTALE CHIAMA?
-
-        if (player == null)
-        {
-            Debug.LogError("[ERRORE] Il parametro 'player' passato al Manager è NULL!");
-            return;
-        }
-
         StartCoroutine(TemporaryMalusCoroutine(player));
     }
 
     IEnumerator TemporaryMalusCoroutine(GameObject player)
     {
         NewPlayerMovement playerMovement = player.GetComponent<NewPlayerMovement>();
-
-        if (playerMovement == null)
-        {
-            Debug.LogError("[ERRORE] Non ho trovato lo script 'NewPlayerMovement' sul Player!");
-            yield break;
-        }
+        if (playerMovement == null) yield break;
 
         IMovementStrategy strategyToApply = new NormalMovementStrategy();
         float currentDuration = 0f;
-        bool malusFound = false;
 
-        // Debug per vedere le flag attuali
-        Debug.Log($"[DEBUG] Controllo Dipendenze. Stato attuale: {currentDependencies}");
+        // --- LOGICA DI SCELTA ---
 
-        if (HasDependency(DependencyType.Drugs))
+        if (HasDependency(DependencyType.Internet))
+        {
+            currentDuration = durationInternet;
+
+            // 1. Movimento (Lag)
+            int rand = UnityEngine.Random.Range(0, 2);
+            if (rand == 0) strategyToApply = new InternetAddictStrategy();
+            else strategyToApply = new InternetPacketLossStrategy();
+
+            // 2. Glitch Visivo (30% probabilità)
+            if (UnityEngine.Random.value < 1.1f && DifficultyManager.Instance != null)
+            {
+                DifficultyManager.Instance.ForceGlitch(currentDuration);
+            }
+
+            Debug.Log("Malus Internet attivato");
+        }
+        else if (HasDependency(DependencyType.Drugs))
         {
             currentDuration = durationDrugs;
-            malusFound = true;
 
-            // Strategia di Test (Drunk) per essere sicuri che si veda
-            strategyToApply = new DrunkStrategy();
-            Debug.Log("[DEBUG] Trovata Flag DROGHE. Applico DrunkStrategy.");
+            // 1. Movimento (Confusione)
+            int rand = UnityEngine.Random.Range(0, 3);
+            if (rand == 0) strategyToApply = new DruggedStrategy();
+            else if (rand == 1) strategyToApply = new DrunkStrategy();
+            else strategyToApply = new DruggedSpinningStrategy();
+
+            // 2. Buio (80% probabilità)
+            if (UnityEngine.Random.value < 0.8f && DifficultyManager.Instance != null)
+            {
+                DifficultyManager.Instance.ForceDarkness(currentDuration);
+            }
+
+            Debug.Log("Malus Droghe attivato");
         }
         else if (HasDependency(DependencyType.Gambling))
         {
             currentDuration = durationGambling;
-            malusFound = true;
-            strategyToApply = new GamblerStrategy();
-            Debug.Log("[DEBUG] Trovata Flag GAMBLING.");
+
+            // 1. Movimento (Random)
+            int rand = UnityEngine.Random.Range(0, 2);
+            if (rand == 0) strategyToApply = new GamblerStrategy();
+            else strategyToApply = new GamblerRouletteStrategy();
+
+            // 2. Buio (50% probabilità)
+            if (UnityEngine.Random.value < 0.5f && DifficultyManager.Instance != null)
+            {
+                DifficultyManager.Instance.ForceDarkness(currentDuration);
+            }
+
+            Debug.Log("Malus Gambling attivato");
         }
-        else if (HasDependency(DependencyType.Internet))
+        else
         {
-            currentDuration = durationInternet;
-            malusFound = true;
-            strategyToApply = new InternetAddictStrategy();
-            Debug.Log("[DEBUG] Trovata Flag INTERNET.");
+            yield break; // Nessuna dipendenza
         }
 
-        if (!malusFound)
-        {
-            Debug.LogWarning("[DEBUG] Nessuna dipendenza attiva trovata. Il giocatore rimane normale.");
-            yield break;
-        }
-
-        // APPLICAZIONE
+        // --- APPLICAZIONE ---
         playerMovement.SetStrategy(strategyToApply);
-        Debug.Log($"[DEBUG] Strategia applicata! Attendo {currentDuration} secondi...");
 
         yield return new WaitForSeconds(currentDuration);
 
+        // --- RIPRISTINO ---
         playerMovement.SetStrategy(new NormalMovementStrategy());
-        Debug.Log("[DEBUG] Malus terminato. Ritorno alla normalità.");
     }
 
     public void AddDependency(DependencyType type) { currentDependencies |= type; }
