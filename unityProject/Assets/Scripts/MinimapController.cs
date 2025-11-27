@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using System.Text.RegularExpressions; // Serve per leggere i numeri in modo intelligente
+using System.Text.RegularExpressions; 
 
 public class MiniMapController : MonoBehaviour
 {
@@ -12,7 +12,11 @@ public class MiniMapController : MonoBehaviour
     public RectTransform playerMarker;
 
     [Header("Impostazioni Colori")]
-    public Color visitedColor = Color.gray;
+    public Color visitedColor = Color.gray; // Il colore interno (Grigio)
+    public Color borderColor = Color.black; // Il colore della cornice (Nero)
+    
+    [Header("Spessore Bordo")]
+    public int borderThickness = 3; // Quanto deve essere spesso il bordo nero
 
     private List<Image> mapCells = new List<Image>();
 
@@ -32,58 +36,76 @@ public class MiniMapController : MonoBehaviour
     System.Collections.IEnumerator Start()
     {
         yield return null; 
-        // All'avvio proviamo ad aggiornare, ma senza crashare se fallisce
-        UpdateMiniMap("A1");
+        // UpdateMiniMap("A1"); // Decommenta se vuoi forzare l'avvio su A1
     }
 
     public void UpdateMiniMap(string rawName)
     {
         if (string.IsNullOrEmpty(rawName)) return;
 
-        // 1. PULIZIA DEL NOME (Magia!)
-        // Se arriva "Grid A1" o "Grid_B2", teniamo solo le ultime 2 lettere/numeri
-        // Esempio: "Grid A1" diventa "A1"
         string cleanID = ExtractGridID(rawName);
-
         int index = CalculateIndex(cleanID);
 
         if (index >= 0 && index < mapCells.Count)
         {
-            playerMarker.position = mapCells[index].rectTransform.position;
-            mapCells[index].color = visitedColor;
+            Image targetCell = mapCells[index];
+
+            // 1. Sposta il player
+            playerMarker.position = targetCell.rectTransform.position;
+            
+            // =========================================================
+            // 2. TRUCCO DEL BORDO INTERNO
+            // =========================================================
+            
+            // Controlliamo se abbiamo già trasformato questa cella
+            // (Se ha dei figli, vuol dire che l'abbiamo già colorata)
+            if (targetCell.transform.childCount == 0)
+            {
+                // A. Trasformiamo la cella principale nel BORDO NERO
+                targetCell.color = borderColor;
+
+                // B. Creiamo un nuovo oggetto dentro che sarà il vero GRIGIO
+                GameObject innerObj = new GameObject("InnerColor");
+                innerObj.transform.SetParent(targetCell.transform, false);
+
+                // C. Aggiungiamo l'immagine e la coloriamo di GRIGIO
+                Image innerImage = innerObj.AddComponent<Image>();
+                innerImage.color = visitedColor;
+
+                // D. Impostiamo le dimensioni per lasciare lo spazio al bordo
+                RectTransform rt = innerObj.GetComponent<RectTransform>();
+                
+                // Ancoraggio totale (Stretch) su tutti i lati
+                rt.anchorMin = Vector2.zero;
+                rt.anchorMax = Vector2.one;
+                
+                // Margini (Padding) -> Questo crea lo spessore del bordo visivo!
+                // Sinistra, Basso, Destra, Alto
+                rt.offsetMin = new Vector2(borderThickness, borderThickness); 
+                rt.offsetMax = new Vector2(-borderThickness, -borderThickness);
+            }
         }
-        // Rimuoviamo il log di errore per non intasare la console, lasciamo solo se serve
     }
 
-    // Funzione che estrae "A1" da qualsiasi stringa ("Grid A1", "Room_A1", ecc)
+    // --- FUNZIONI DI SUPPORTO ---
     private string ExtractGridID(string name)
     {
-        // Cerca una lettera (A-D) seguita da un numero (1-4)
         var match = Regex.Match(name, @"([A-D])([1-4])", RegexOptions.IgnoreCase);
-        if (match.Success)
-        {
-            return match.Value.ToUpper(); // Restituisce es. "A1"
-        }
+        if (match.Success) return match.Value.ToUpper();
         return "ERROR";
     }
 
     private int CalculateIndex(string id)
     {
         if (id == "ERROR") return -1;
-
         try 
         {
-            char lettera = id[0]; // 'C'
-            int numero = int.Parse(id.Substring(1)); // 2
-
+            char lettera = id[0];
+            int numero = int.Parse(id.Substring(1));
             int colonna = char.ToUpper(lettera) - 'A'; 
             int riga = numero - 1;
-
             return (riga * 4) + colonna;
         }
-        catch
-        {
-            return -1; // Se qualcosa va storto, non crashare il gioco
-        }
+        catch { return -1; }
     }
 }
