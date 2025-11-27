@@ -6415,6 +6415,8 @@ GameObject:
   - component: {fileID: 6198004900835547335}
   - component: {fileID: 4561870270231764518}
   - component: {fileID: -2791288991276415644}
+  - component: {fileID: 3012991881740066073}
+  - component: {fileID: 8727411032623581592}
   m_Layer: 0
   m_Name: Grid A3
   m_TagString: Untagged
@@ -6487,6 +6489,64 @@ MonoBehaviour:
   - {fileID: 8602170867503134573}
   - {fileID: 3126709134832597452}
   - {fileID: 2616759809453623771}
+--- !u!114 &3012991881740066073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827326959169288681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3030ce95e0023e43ad91f2cd5089fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomTracker
+--- !u!61 &8727411032623581592
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827326959169288681}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -50}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 24, y: 24}
+  m_EdgeRadius: 0
 --- !u!1 &2659191079743293902
 GameObject:
   m_ObjectHideFlags: 0
@@ -6581,7 +6641,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PortalTeleporter
   destinationPortal: {fileID: 0}
   travelCost: 3
-  portalType: 0
+  portalType: 1
   speed: 100
 --- !u!61 &8488419249301109364
 BoxCollider2D:

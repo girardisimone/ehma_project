@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c3ac3f3ed5ec341900b6695cde5d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExitGateTrigger
-  exitPopup: {fileID: 1073519648175441447}
+  exitPopup: {fileID: 0}
 --- !u!1 &1697667876765739437
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +149,8 @@ GameObject:
   - component: {fileID: 7230329493479051276}
   - component: {fileID: 2748473769853924604}
   - component: {fileID: 109144720322930019}
+  - component: {fileID: 6201408798990963813}
+  - component: {fileID: 6174538810493035208}
   m_Layer: 0
   m_Name: Grid D4
   m_TagString: Untagged
@@ -225,6 +227,64 @@ MonoBehaviour:
   - {fileID: 6090892919779705907}
   - {fileID: 8539099360963786931}
   - {fileID: 2845178165173163770}
+--- !u!114 &6201408798990963813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697667876765739437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3030ce95e0023e43ad91f2cd5089fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomTracker
+--- !u!61 &6174538810493035208
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697667876765739437}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.5, y: -0.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 24, y: 24}
+  m_EdgeRadius: 0
 --- !u!1 &2791897766190241620
 GameObject:
   m_ObjectHideFlags: 0
@@ -10029,7 +10089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PortalTeleporter
   destinationPortal: {fileID: 0}
   travelCost: 3
-  portalType: 0
+  portalType: 1
   speed: 100
 --- !u!61 &2663936448999846938
 BoxCollider2D:
