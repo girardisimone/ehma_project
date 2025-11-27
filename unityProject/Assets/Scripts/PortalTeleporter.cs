@@ -1,65 +1,48 @@
 using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class PortalTeleporter : MonoBehaviour
 {
     [Header("Impostazioni Portale")]
-    public PortalTeleporter destinationPortal; // Portale di arrivo
-    public int travelCost = 3;                     // Costo in gemme per usare il portale
+    public PortalTeleporter destinationPortal;
+    public int travelCost = 3;
     public enum PortalType { In, Out }
     public PortalType portalType = PortalType.In;
-    private bool playerInside = false;
+
+    // Questa variabile causava il warning: ora la useremo!
+    private bool isPlayerInside = false;
+
     private PortalManager portalManager;
-    public float speed = 300f;
+    private NewPlayerMovement playerMovementScript;
+
     private void Start()
     {
-        // --- MODIFICA: NASCONDI PORTALI DI ARRIVO ---
-        // Se questo è un portale di uscita (Out), lo rendiamo invisibile
         if (portalType == PortalType.Out)
         {
-            // Cerca il componente che disegna l'immagine (SpriteRenderer) e lo spegne
             SpriteRenderer sr = GetComponent<SpriteRenderer>();
-            if (sr != null)
-            {
-                sr.enabled = false;
-            }
+            if (sr != null) sr.enabled = false;
 
-            // Se il portale ha figli grafici (es. decorazioni), nascondiamo anche quelli
-            SpriteRenderer[] childRenderers = GetComponentsInChildren<SpriteRenderer>();
-            foreach (var child in childRenderers)
-            {
+            foreach (var child in GetComponentsInChildren<SpriteRenderer>())
                 child.enabled = false;
-            }
         }
-        // ---------------------------------------------
 
-        // Registrazione nel manager
         if (PortalManager.Instance != null)
         {
             PortalManager.Instance.RegisterPortal(this);
             portalManager = PortalManager.Instance;
         }
-        else
-            Debug.LogWarning($"Nessun PortalManager trovato per {name}");
-    }
-
-    private void Reset()
-    {
-        // Assicuriamoci che il collider sia un trigger
-        var col = GetComponent<BoxCollider2D>();
-        if (col != null)
-            col.isTrigger = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Entra solo il player
         if (!other.CompareTag("Player")) return;
-
-        // SE QUESTO è un portale di ARRIVO, non fare nulla
         if (portalType == PortalType.Out) return;
 
-        playerInside = true;
+        isPlayerInside = true; // Segniamo che il player è dentro
+        playerMovementScript = other.GetComponent<NewPlayerMovement>();
+
+        if (playerMovementScript != null) playerMovementScript.enabled = false;
 
         bool canUsePortal = ScoreManager.GemCount >= travelCost;
 
@@ -67,112 +50,75 @@ public class PortalTeleporter : MonoBehaviour
         {
             PortalPopupController.Instance.Show(this, canUsePortal, travelCost);
         }
-        else
-        {
-            Debug.LogWarning("PortalPopupController non presente in scena.");
-        }
     }
-
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-
-        // Anche qui: se è un portale di arrivo, ignoriamo
-        if (portalType == PortalType.Out) return; // Nota: ho corretto il controllo qui, prima usavi CompareTag su se stesso
-
-        playerInside = false;
+        if (portalType == PortalType.Out) return;
 
         if (PortalPopupController.Instance != null)
         {
             PortalPopupController.Instance.HideIfCurrent(this);
         }
+
+        if (playerMovementScript != null) playerMovementScript.enabled = true;
+
+        isPlayerInside = false; // Segniamo che il player è uscito
     }
 
-    /// <summary>
-    /// Chiamato dal popup quando il giocatore sceglie di usare il portale.
-    /// Scala le gemme e teletrasporta il player al portale di destinazione.
-    /// </summary>
+    // Chiamato dal tasto "SÌ" del Popup
     public void TeleportPlayerAndPay()
     {
-        if (!playerInside)
+        // --- CORREZIONE WARNING ---
+        // Controlliamo se il giocatore è ancora fisicamente nel portale.
+        // Se si è allontanato (es. spinto via o bug), annulliamo tutto.
+        if (!isPlayerInside)
         {
-            // Il player è uscito dal trigger nel frattempo
-            Debug.Log("Il player non è più nel portale, teletrasporto annullato.");
+            Debug.Log("Azione annullata: il giocatore non è più nel portale.");
             return;
         }
+        // --------------------------
 
-        // destinazione casuale basata su probabilità
+        // 1. Paga il costo
+        ScoreManager.GemCount -= travelCost;
+
+        if (ScoreManager.Instance != null)
+            ScoreManager.Instance.UpdateScoreText(ScoreManager.GemCount);
+
+        // 2. Avvisa il Difficulty Manager (Effetti, Malus Movimento, ecc.)
+        if (DifficultyManager.Instance != null)
+        {
+            // NOTA: Questo ora chiamerà anche ApplyMovementMalus se lo hai configurato lì
+            DifficultyManager.Instance.RegisterPortalUse();
+
+            // Se vuoi attivare il malus movimento SPECIFICO da qui, usa DependencyManager:
+            if (DependencyManager.Instance != null && playerMovementScript != null)
+            {
+                DependencyManager.Instance.ApplyMovementMalus(playerMovementScript.gameObject);
+            }
+        }
+
+        // 3. Calcola Destinazione
         if (portalManager != null && portalManager.isRandomConnections())
         {
             var grid = portalManager.getRandomGrid();
-            if (grid != null)
-            {
-                destinationPortal = grid.getDestinationPortal();
-            }
+            if (grid != null) destinationPortal = grid.getDestinationPortal();
         }
 
-        if (destinationPortal == null)
+        // 4. Teletrasporto
+        if (destinationPortal != null && playerMovementScript != null)
         {
-            Debug.LogWarning("PortalTeleporter: destinationPortal non assegnato su " + name);
-            return;
+            playerMovementScript.transform.position = destinationPortal.transform.position;
+            Destroy(destinationPortal.gameObject);
         }
 
-        // Controllo gemme (di sicurezza)
-        if (ScoreManager.GemCount < travelCost)
-        {
-            Debug.Log("Punteggio insufficiente per usare il portale.");
-            return;
-        }
+        // 5. Riabilita Movimento
+        if (playerMovementScript != null) playerMovementScript.enabled = true;
 
-        // Scala le gemme e aggiorna la UI
-        int newScore = ScoreManager.GemCount - travelCost;
-        if (ScoreManager.Instance != null)
-        {
-            ScoreManager.Instance.UpdateScoreText(newScore);  // Aggiorna lo score in UI
-        }
-
-        // Trova il player e teletrasportalo
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            player.transform.position = destinationPortal.transform.position;
-            travelCost++; // Aumenta il costo per il prossimo utilizzo? (Logica tua originale)
-           
-            // 4b. NOTIFICA IL GESTORE DELLA DIFFICOLTÀ
-            if (DifficultyManager.Instance != null)
-            {
-                DifficultyManager.Instance.RegisterPortalUse();
-            }
-            else
-            {
-                Debug.LogWarning("DifficultyManager mancante nella scena!");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("Player con tag 'Player' non trovato in scena.");
-        }
+        isPlayerInside = false;
     }
 
-    public bool isDestinationPortal()
-    {
-        return portalType == PortalType.Out;
-    }
-
-    public int getTravelCost()
-    {
-        return travelCost;
-    }
-
-    public void setTravelCost(int newCost)
-    {
-        travelCost = newCost;
-    }
-    void Update()
-    {
-        // Ruota sull'asse Z (quello che "esce" dallo schermo in 2D)
-        // Time.deltaTime rende il movimento fluido indipendentemente dagli FPS
-        transform.Rotate(0, 0, speed * Time.deltaTime);
-    }
+    public bool isDestinationPortal() { return portalType == PortalType.Out; }
+    public void setTravelCost(int newCost) { travelCost = newCost; }
 }

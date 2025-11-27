@@ -1715,10 +1715,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSpawner
   characterPrefabs:
+  - {fileID: 6721638405415773591, guid: a1d84091551f543f7a62fe51efde9171, type: 3}
   - {fileID: 7490857172078558452, guid: 637e7e6d9b2b9e842a84be50eddecf54, type: 3}
   - {fileID: 849197362360565316, guid: 87d25ab245ce4d9468f887c5126fdd90, type: 3}
   - {fileID: 6721638405415773591, guid: a4a36666d1ca443728733e0cb562760c, type: 3}
-  - {fileID: 6721638405415773591, guid: a1d84091551f543f7a62fe51efde9171, type: 3}
   roomCameraScript: {fileID: 160074736}
 --- !u!1 &811299082
 GameObject:
@@ -3145,6 +3145,7 @@ GameObject:
   - component: {fileID: 1451423098}
   - component: {fileID: 1451423099}
   - component: {fileID: 1451423100}
+  - component: {fileID: 1451423101}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3207,10 +3208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc1a72254ed6b284a970e98337cbfc85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DifficultyManager
-  basePenaltyDuration: 30
-  penaltyIncrementPerPortal: 5
-  portalsToTriggerDarkness: 3
-  darknessDuration: 8
+  portalsToTriggerEffect: 3
+  effectDuration: 8
   globalLight: {fileID: 619394801}
 --- !u!114 &1451423099
 MonoBehaviour:
@@ -3287,6 +3286,22 @@ MonoBehaviour:
   - {fileID: 1424135012, guid: 39fe38354f5e53748a7c7ceef1fa34fa, type: 3}
   - {fileID: 1946808613, guid: 39fe38354f5e53748a7c7ceef1fa34fa, type: 3}
   - {fileID: 1853961448, guid: 39fe38354f5e53748a7c7ceef1fa34fa, type: 3}
+--- !u!114 &1451423101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451423094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b789f8e33d55ebb4691563c16be08989, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DependencyManager
+  currentDependencies: 0
+  durationDrugs: 15
+  durationGambling: 8
+  durationInternet: 5
 --- !u!1 &1451593678
 GameObject:
   m_ObjectHideFlags: 0
