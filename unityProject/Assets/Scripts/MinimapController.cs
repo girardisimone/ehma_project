@@ -11,12 +11,10 @@ public class MiniMapController : MonoBehaviour
     public Transform gridContainer;
     public RectTransform playerMarker;
 
-    [Header("Impostazioni Colori")]
-    public Color visitedColor = Color.gray; // Il colore interno (Grigio)
-    public Color borderColor = Color.black; // Il colore della cornice (Nero)
-    
-    [Header("Spessore Bordo")]
-    public int borderThickness = 3; // Quanto deve essere spesso il bordo nero
+    [Header("Colori Scacchiera")]
+    // Scegli due tonalità di grigio diverse nell'Inspector
+    public Color colorLight = new Color(0.8f, 0.8f, 0.8f, 1f); // Grigio Chiaro
+    public Color colorDark = new Color(0.5f, 0.5f, 0.5f, 1f);  // Grigio Scuro
 
     private List<Image> mapCells = new List<Image>();
 
@@ -36,7 +34,7 @@ public class MiniMapController : MonoBehaviour
     System.Collections.IEnumerator Start()
     {
         yield return null; 
-        // UpdateMiniMap("A1"); // Decommenta se vuoi forzare l'avvio su A1
+        // UpdateMiniMap("A1"); // Decommenta se vuoi l'avvio forzato su A1
     }
 
     public void UpdateMiniMap(string rawName)
@@ -44,45 +42,31 @@ public class MiniMapController : MonoBehaviour
         if (string.IsNullOrEmpty(rawName)) return;
 
         string cleanID = ExtractGridID(rawName);
-        int index = CalculateIndex(cleanID);
+        
+        // Calcoliamo indice, riga e colonna per la scacchiera
+        int col = -1;
+        int row = -1;
+        int index = CalculateIndexAndCoords(cleanID, out col, out row);
 
         if (index >= 0 && index < mapCells.Count)
         {
             Image targetCell = mapCells[index];
-
+            
             // 1. Sposta il player
             playerMarker.position = targetCell.rectTransform.position;
-            
-            // =========================================================
-            // 2. TRUCCO DEL BORDO INTERNO
-            // =========================================================
-            
-            // Controlliamo se abbiamo già trasformato questa cella
-            // (Se ha dei figli, vuol dire che l'abbiamo già colorata)
-            if (targetCell.transform.childCount == 0)
+
+            // 2. LOGICA SCACCHIERA
+            // Se la somma di riga + colonna è pari, usa un colore, altrimenti l'altro.
+            // Questo crea l'alternanza perfetta anche su griglie pari (4x4).
+            bool isEven = (col + row) % 2 == 0;
+
+            if (isEven)
             {
-                // A. Trasformiamo la cella principale nel BORDO NERO
-                targetCell.color = borderColor;
-
-                // B. Creiamo un nuovo oggetto dentro che sarà il vero GRIGIO
-                GameObject innerObj = new GameObject("InnerColor");
-                innerObj.transform.SetParent(targetCell.transform, false);
-
-                // C. Aggiungiamo l'immagine e la coloriamo di GRIGIO
-                Image innerImage = innerObj.AddComponent<Image>();
-                innerImage.color = visitedColor;
-
-                // D. Impostiamo le dimensioni per lasciare lo spazio al bordo
-                RectTransform rt = innerObj.GetComponent<RectTransform>();
-                
-                // Ancoraggio totale (Stretch) su tutti i lati
-                rt.anchorMin = Vector2.zero;
-                rt.anchorMax = Vector2.one;
-                
-                // Margini (Padding) -> Questo crea lo spessore del bordo visivo!
-                // Sinistra, Basso, Destra, Alto
-                rt.offsetMin = new Vector2(borderThickness, borderThickness); 
-                rt.offsetMax = new Vector2(-borderThickness, -borderThickness);
+                targetCell.color = colorLight;
+            }
+            else
+            {
+                targetCell.color = colorDark;
             }
         }
     }
@@ -95,16 +79,22 @@ public class MiniMapController : MonoBehaviour
         return "ERROR";
     }
 
-    private int CalculateIndex(string id)
+    // Ho modificato leggermente questa funzione per restituirci anche colonna e riga
+    private int CalculateIndexAndCoords(string id, out int colOut, out int rowOut)
     {
+        colOut = -1;
+        rowOut = -1;
+
         if (id == "ERROR") return -1;
         try 
         {
             char lettera = id[0];
             int numero = int.Parse(id.Substring(1));
-            int colonna = char.ToUpper(lettera) - 'A'; 
-            int riga = numero - 1;
-            return (riga * 4) + colonna;
+
+            colOut = char.ToUpper(lettera) - 'A'; 
+            rowOut = numero - 1;
+
+            return (rowOut * 4) + colOut;
         }
         catch { return -1; }
     }
