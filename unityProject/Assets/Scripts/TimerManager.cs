@@ -25,48 +25,58 @@ public class TimerManager : MonoBehaviour
         Debug.Log("Cronometro avviato.");
     }
 
+    // --- FUNZIONE MANCANTE CHE CAUSAVA L'ERRORE ---
+    public void AddTimePenalty(float secondsToAdd)
+    {
+        // Spostando indietro l'inizio, il tempo trascorso aumenta
+        startTime -= secondsToAdd;
+        Debug.Log($"[TIMER] Penalità applicata: +{secondsToAdd} secondi.");
+
+        // Aggiorniamo subito la grafica per dare feedback immediato
+        UpdateTimerUI();
+    }
+    // ----------------------------------------------
+
     void Update()
     {
         if (timerRunning)
         {
-            // Calcola il tempo trascorso dal momento di avvio
-            float timeElapsed = Time.time - startTime;
-
-            // Formattta il tempo in minuti e secondi
-            // Uso il casting a int per i minuti e i secondi interi
-            int minutes = (int)(timeElapsed / 60f);
-            int seconds = (int)(timeElapsed % 60f);
-
-            // I millisecondi sono facoltativi, ma utili per precisione
-            int milliseconds = (int)((timeElapsed * 100f) % 100f);
-
-            // NUOVA RIGA: Formatta la stringa SENZA "Tempo:"
-            // L'output sar�: 00:00.00
-            string formattedTime = string.Format("{0:00}:{1:00}.{2:00}", minutes, seconds, milliseconds);
-
-
-            // Aggiorna la visualizzazione UI
-            if (timerText != null)
-            {
-                // Aggiorniamo il testo con la nuova stringa formattata
-                timerText.text = formattedTime;
-            }
+            UpdateTimerUI();
         }
     }
 
-    // [OPZIONALE] Puoi aggiungere qui un metodo per fermare il timer (es. se il gioco finisce)
+    void UpdateTimerUI()
+    {
+        // Calcola il tempo trascorso dal momento di avvio
+        float timeElapsed = Time.time - startTime;
+
+        // Formattta il tempo in minuti, secondi e centesimi
+        int minutes = (int)(timeElapsed / 60f);
+        int seconds = (int)(timeElapsed % 60f);
+        int milliseconds = (int)((timeElapsed * 100f) % 100f);
+
+        string formattedTime = string.Format("{0:00}:{1:00}.{2:00}", minutes, seconds, milliseconds);
+
+        if (timerText != null)
+        {
+            timerText.text = formattedTime;
+        }
+    }
+
     public void StopTimer()
     {
         timerRunning = false;
-        Debug.Log($"Cronometro fermato. Tempo finale: {timerText.text}");
+        if (timerText != null)
+            Debug.Log($"Cronometro fermato. Tempo finale: {timerText.text}");
     }
-    // Restituisce il tempo attuale formattato come stringa (quello mostrato a schermo)
+
+    // Restituisce il tempo attuale formattato come stringa (per la schermata finale)
     public string GetCurrentTimeString()
     {
         if (timerText != null)
         {
             return timerText.text;
         }
-        return "";
+        return "00:00.00";
     }
 }

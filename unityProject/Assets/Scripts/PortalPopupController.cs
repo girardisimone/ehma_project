@@ -7,13 +7,15 @@ public class PortalPopupController : MonoBehaviour
     public static PortalPopupController Instance;
 
     [Header("Riferimenti UI")]
-    public GameObject popupPanel;        // Il pannello del popup
-    public TextMeshProUGUI messageText;  // Testo del messaggio
-    public Button usePortalButton;       // Pulsante "Accedi al portale"
-    public Button continueButton;        // Pulsante "Continua"
+    public GameObject popupPanel;
+    public TextMeshProUGUI messageText;
+    public Button usePortalButton;
+    public Button continueButton;
 
     private PortalTeleporter currentPortal;
-    private int currentCost;
+
+    // Riferimento al movimento del player per riattivarlo se annulla
+    private NewPlayerMovement playerMovementScript;
 
     private void Awake()
     {
@@ -31,25 +33,32 @@ public class PortalPopupController : MonoBehaviour
     }
 
     /// <summary>
-    /// Mostra il popup per un certo portale.
+    /// Mostra il popup. 
+    /// ORA ACCETTA UNA STRINGA 'costDescription' INVECE DI UN INT
     /// </summary>
-    public void Show(PortalTeleporter portal, bool canUsePortal, int gemCost)
+    public void Show(PortalTeleporter portal, bool canUsePortal, string costDescription)
     {
         currentPortal = portal;
-        currentCost = gemCost;
+
+        // Troviamo il player per poterlo sbloccare se preme "Annulla"
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            playerMovementScript = playerObj.GetComponent<NewPlayerMovement>();
+        }
 
         popupPanel.SetActive(true);
 
         if (canUsePortal)
         {
-            messageText.text = $"Do you want to teleport? Cost: {gemCost} gems";
+            // Usa direttamente la stringa passata dal portale (es. "Penalità: +30s")
+            messageText.text = $"Do you want to use the portal? {costDescription}";
             usePortalButton.gameObject.SetActive(true);
         }
         else
         {
-            messageText.text = $"To use the portal you need {gemCost} gems.";
+            messageText.text = $"Risorse insufficienti.\nServe: {costDescription}";
             usePortalButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
         }
     }
 
@@ -65,6 +74,11 @@ public class PortalPopupController : MonoBehaviour
 
     public void OnContinueButton()
     {
+        // Se annulla, dobbiamo riabilitare il movimento del player
+        if (playerMovementScript != null)
+        {
+            playerMovementScript.enabled = true;
+        }
         Hide();
     }
 
@@ -72,11 +86,9 @@ public class PortalPopupController : MonoBehaviour
     {
         popupPanel.SetActive(false);
         currentPortal = null;
+        playerMovementScript = null;
     }
 
-    /// <summary>
-    /// Serve per chiudere il popup se il player esce dal trigger del portale.
-    /// </summary>
     public void HideIfCurrent(PortalTeleporter portal)
     {
         if (currentPortal == portal)
