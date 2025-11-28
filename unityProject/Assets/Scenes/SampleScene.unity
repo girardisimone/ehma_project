@@ -3709,7 +3709,7 @@ MonoBehaviour:
   portalsToTriggerEffect: 3
   effectDuration: 8
   globalLight: {fileID: 619394801}
-  globalVolume: {fileID: 0}
+  globalVolume: {fileID: 1713248719}
 --- !u!114 &1451423099
 MonoBehaviour:
   m_ObjectHideFlags: 0
