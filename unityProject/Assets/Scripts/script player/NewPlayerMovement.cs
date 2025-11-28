@@ -11,6 +11,9 @@ public class NewPlayerMovement : MonoBehaviour
 
     // 1. NUOVO: La variabile che contiene la strategia attuale
     private IMovementStrategy movementStrategy;
+    
+    public bool isImmuneToMalus = false; // Se vero, i portali non fanno nulla
+    public float malusDurationMultiplier = 1.0f; // 1 = normale, 2 = durata doppia
 
     void Start()
     {

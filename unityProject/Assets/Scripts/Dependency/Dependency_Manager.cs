@@ -43,6 +43,7 @@ public class DependencyManager : MonoBehaviour
             case 1: AddDependency(DependencyType.Drugs); break;
             case 2: AddDependency(DependencyType.Gambling); break;
             case 3: AddDependency(DependencyType.Internet); break;
+            
         }
     }
 
@@ -57,72 +58,69 @@ public class DependencyManager : MonoBehaviour
         NewPlayerMovement playerMovement = player.GetComponent<NewPlayerMovement>();
         if (playerMovement == null) yield break;
 
-        IMovementStrategy strategyToApply = new NormalMovementStrategy();
-        float currentDuration = 0f;
+        // --- NUOVO: CONTROLLO IMMUNITÃ€ ---
+        if (playerMovement.isImmuneToMalus)
+        {
+            Debug.Log($"[DependencyManager] Il giocatore Ã¨ IMMUNE. Nessun malus applicato.");
+            yield break; // Esce dalla coroutine immediatamente
+        }
 
-        // --- LOGICA DI SCELTA ---
+        IMovementStrategy strategyToApply = new NormalMovementStrategy();
+        float baseDuration = 0f;
+        
+        // --- LOGICA DI SCELTA (Invariata) ---
+        bool malusSelected = false; // Flag per capire se abbiamo scelto qualcosa
 
         if (HasDependency(DependencyType.Internet))
         {
-            currentDuration = durationInternet;
+            baseDuration = durationInternet;
+            malusSelected = true;
 
-            // 1. Movimento (Lag)
             int rand = UnityEngine.Random.Range(0, 2);
             if (rand == 0) strategyToApply = new InternetAddictStrategy();
             else strategyToApply = new InternetPacketLossStrategy();
 
-            // 2. Glitch Visivo (30% probabilità)
             if (UnityEngine.Random.value < 1.1f && DifficultyManager.Instance != null)
-            {
-                DifficultyManager.Instance.ForceGlitch(currentDuration);
-            }
-
-            Debug.Log("Malus Internet attivato");
+                DifficultyManager.Instance.ForceGlitch(baseDuration * playerMovement.malusDurationMultiplier);
         }
         else if (HasDependency(DependencyType.Drugs))
         {
-            currentDuration = durationDrugs;
+            baseDuration = durationDrugs;
+            malusSelected = true;
 
-            // 1. Movimento (Confusione)
             int rand = UnityEngine.Random.Range(0, 3);
             if (rand == 0) strategyToApply = new DruggedStrategy();
             else if (rand == 1) strategyToApply = new DrunkStrategy();
             else strategyToApply = new DruggedSpinningStrategy();
 
-            // 2. Buio (80% probabilità)
             if (UnityEngine.Random.value < 0.8f && DifficultyManager.Instance != null)
-            {
-                DifficultyManager.Instance.ForceDarkness(currentDuration);
-            }
-
-            Debug.Log("Malus Droghe attivato");
+                DifficultyManager.Instance.ForceDarkness(baseDuration * playerMovement.malusDurationMultiplier);
         }
         else if (HasDependency(DependencyType.Gambling))
         {
-            currentDuration = durationGambling;
+            baseDuration = durationGambling;
+            malusSelected = true;
 
-            // 1. Movimento (Random)
             int rand = UnityEngine.Random.Range(0, 2);
             if (rand == 0) strategyToApply = new GamblerStrategy();
             else strategyToApply = new GamblerRouletteStrategy();
 
-            // 2. Buio (50% probabilità)
             if (UnityEngine.Random.value < 0.5f && DifficultyManager.Instance != null)
-            {
-                DifficultyManager.Instance.ForceDarkness(currentDuration);
-            }
+                DifficultyManager.Instance.ForceDarkness(baseDuration * playerMovement.malusDurationMultiplier);
+        }
 
-            Debug.Log("Malus Gambling attivato");
-        }
-        else
-        {
-            yield break; // Nessuna dipendenza
-        }
+        if (!malusSelected) yield break; // Se non ha dipendenze, usciamo
+
+        // --- NUOVO: CALCOLO DURATA EFFETTIVA ---
+        // Moltiplichiamo la durata base per il moltiplicatore del player
+        float effectiveDuration = baseDuration * playerMovement.malusDurationMultiplier;
+
+        Debug.Log($"Malus attivato per {effectiveDuration} secondi (Base: {baseDuration} * Molt: {playerMovement.malusDurationMultiplier})");
 
         // --- APPLICAZIONE ---
         playerMovement.SetStrategy(strategyToApply);
 
-        yield return new WaitForSeconds(currentDuration);
+        yield return new WaitForSeconds(effectiveDuration);
 
         // --- RIPRISTINO ---
         playerMovement.SetStrategy(new NormalMovementStrategy());

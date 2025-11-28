@@ -10,6 +10,8 @@ public class PortalTeleporter : MonoBehaviour
     public enum PortalType { In, Out }
     public PortalType portalType = PortalType.In;
 
+    public float speed = 300f;
+
     // Questa variabile causava il warning: ora la useremo!
     private bool isPlayerInside = false;
 
@@ -121,4 +123,11 @@ public class PortalTeleporter : MonoBehaviour
 
     public bool isDestinationPortal() { return portalType == PortalType.Out; }
     public void setTravelCost(int newCost) { travelCost = newCost; }
+    
+    void Update()
+    {
+        // Ruota sull'asse Z (quello che "esce" dallo schermo in 2D)
+        // Time.deltaTime rende il movimento fluido indipendentemente dagli FPS
+        transform.Rotate(0, 0, speed * Time.deltaTime);
+    }
 }
