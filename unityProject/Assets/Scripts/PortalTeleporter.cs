@@ -11,11 +11,11 @@ public class PortalTeleporter : MonoBehaviour
 
     [Header("Costi Base")]
     public int costGems = 3;
-    public int costHealth = 2;
+    public int costHealth = 1;
     public float costTime = 30f;
 
     [Header("Incremento Gambling")]
-    public int gamblingCostIncrease = 5; // Di quanto aumenta ogni volta?
+    public int gamblingCostIncrease = 3; // Di quanto aumenta ogni volta?
 
     private bool isPlayerInside = false;
     private PortalManager portalManager;
