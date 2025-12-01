@@ -148,6 +148,14 @@ public class PortalTeleporter : MonoBehaviour
                 break;
         }
 
+        DogCompanion cane = FindObjectOfType<DogCompanion>(); // O FindAnyObjectByType su Unity 2023+
+
+        if (cane != null)
+        {
+            // Gli dice di fermarsi e aspettare
+            cane.RestaQui();
+        }
+
         // 5. AVANZA CICLO E ATTIVA MALUS
         if (DependencyManager.Instance != null)
         {
