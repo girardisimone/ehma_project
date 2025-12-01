@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4873580602042190959}
   - component: {fileID: 8228122758216909303}
   - component: {fileID: 818752151263033678}
+  - component: {fileID: 4800740199134604856}
   m_Layer: 0
   m_Name: Character_1
   m_TagString: Player
@@ -228,7 +229,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewPlayerMovement
   moveSpeed: 5
-  initialArchetype: 0
+  isImmuneToMalus: 0
+  malusDurationMultiplier: 1
 --- !u!114 &8228122758216909303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,3 +265,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4800740199134604856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849197362360565316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e53803abcb400b4fa2a723e5677a83b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerIdentity
+  chiSono: 1

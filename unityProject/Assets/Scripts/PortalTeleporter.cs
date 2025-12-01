@@ -160,7 +160,7 @@ public class PortalTeleporter : MonoBehaviour
         if (DependencyManager.Instance != null)
         {
             DependencyManager.Instance.AdvancePaymentCycle();
-            DependencyManager.Instance.ApplyMovementMalus(playerMovementScript.gameObject);
+            DependencyManager.Instance.ApplyMovementMalus(playerMovementScript.gameObject, assignedPaymentType);
         }
 
         if (DifficultyManager.Instance != null)

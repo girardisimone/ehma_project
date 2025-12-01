@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2435304647671843861}
   - component: {fileID: 6699291237416053789}
   - component: {fileID: 3108302344379232214}
+  - component: {fileID: 1981264883510857237}
   m_Layer: 0
   m_Name: Character_0
   m_TagString: Player
@@ -161,7 +162,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.1428572, y: 1.1428572}
+    oldSize: {x: 1.3333334, y: 1.3333334}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -228,7 +229,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewPlayerMovement
   moveSpeed: 5
-  initialArchetype: 0
+  isImmuneToMalus: 0
+  malusDurationMultiplier: 1
 --- !u!114 &6699291237416053789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,3 +265,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1981264883510857237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7490857172078558452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e53803abcb400b4fa2a723e5677a83b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerIdentify
