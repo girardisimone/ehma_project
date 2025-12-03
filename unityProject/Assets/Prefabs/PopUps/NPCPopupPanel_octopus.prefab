@@ -287,6 +287,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7827023604495461415, guid: 908d47cf83e8943138bf6e392c4a447f, type: 3}
+        m_TargetAssemblyTypeName: BadNPCInteraction, Assembly-CSharp
+        m_MethodName: PlayerDiceSi
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5542784872714509549
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,6 +423,18 @@ MonoBehaviour:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Octopus_interaction, Assembly-CSharp
         m_MethodName: DeclineImmunity
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7827023604495461415, guid: 908d47cf83e8943138bf6e392c4a447f, type: 3}
+        m_TargetAssemblyTypeName: BadNPCInteraction, Assembly-CSharp
+        m_MethodName: PlayerDiceNo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

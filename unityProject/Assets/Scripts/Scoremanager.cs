@@ -17,7 +17,7 @@ public class ScoreManager : MonoBehaviour
     // Variabile privata interna
     private static int _gemCount = 0;
 
-    // Proprietà pubblica che gestisce il limite (Clamp)
+    // Proprietï¿½ pubblica che gestisce il limite (Clamp)
     public static int GemCount
     {
         get { return _gemCount; }
@@ -43,7 +43,7 @@ public class ScoreManager : MonoBehaviour
         if (gemSlider != null)
         {
             gemSlider.minValue = 0;
-            gemSlider.maxValue = maxGems; // La barra sarà piena quando arrivi a 80
+            gemSlider.maxValue = maxGems; // La barra sarï¿½ piena quando arrivi a 80
             gemSlider.value = 0;
         }
 
@@ -70,5 +70,10 @@ public class ScoreManager : MonoBehaviour
         }
 
         Debug.Log($"ScoreManager: Score aggiornato a {GemCount}");
+    }
+
+    public void ResetScore()
+    {
+        UpdateScoreText(0);
     }
 }
