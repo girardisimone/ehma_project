@@ -1556,8 +1556,8 @@ MonoBehaviour:
     staying at the top is exhausting: he knows how easy it is to crash and the temptations
     to descend are always there and hard to resist. "
   - "Mouse runs from the shadows of his past. To truly turn off the noise of memories,
-    \nhe uses a potion: this is the only thing that brings silence to his head. 
-    \r\nHe also has a lot of imagination, sometimes getting lost in made-up worlds. "
+    he uses a potion: this is the only thing that brings silence to his head.  \r\nHe
+    also has a lot of imagination, sometimes getting lost in made-up worlds. "
   - "Raccoon is drawn to anything that sparkles. In his relentless pursuit of the
     glow he has lost many friends.  \r\nHe could find peace in drinking a special
     potion that makes him feel faster and, at least for a while, helps him forget
@@ -1566,7 +1566,7 @@ MonoBehaviour:
     small: to feel like a King, he flies into the lights: he spends so much time
     there that he forgets to hunt, feeding on pixels while his nest remains empty. "
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 0, g: 1, b: 0, a: 1}
+  selectedColor: {r: 1, g: 0.49803922, b: 0.3137255, a: 1}
 --- !u!1 &1732783189
 GameObject:
   m_ObjectHideFlags: 0
