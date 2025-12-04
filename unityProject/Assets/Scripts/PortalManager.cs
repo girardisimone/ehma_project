@@ -15,8 +15,20 @@ public class PortalManager : MonoBehaviour
     [Header("📜 Elenco Portali (auto compilato)")]
     public List<PortalTeleporter> allPortals = new List<PortalTeleporter>();
     
-    [Header("Probabilità di teletrasporto per ogni griglia")]
+    [Header("🎲 Probabilità Iniziali")]
     public List<GridProbability> gridProbabilities = new List<GridProbability>();
+
+    // --- NUOVE VARIABILI PER IL TIMER ---
+    [Header("⏰ Evento Temporale (Cambio Probabilità)")]
+    [Tooltip("Dopo quanti secondi dall'avvio devono cambiare le probabilità?")]
+    public float secondsBeforeChange = 60f; 
+
+    [Tooltip("La NUOVA lista di probabilità che verrà usata scaduto il tempo.")]
+    public List<GridProbability> lateGameProbabilities = new List<GridProbability>();
+
+    private float timer = 0f;
+    private bool probabilitiesChanged = false;
+    // -------------------------------------
 
     private void Awake()
     {
@@ -30,7 +42,42 @@ public class PortalManager : MonoBehaviour
 
     private void Start()
     {
-        
+        // Il timer parte da 0 automaticamente
+    }
+
+    // --- AGGIUNTO UPDATE PER GESTIRE IL TEMPO ---
+    private void Update()
+    {
+        // Se il cambio non è ancora avvenuto...
+        if (!probabilitiesChanged)
+        {
+            // ...aumenta il timer
+            timer += Time.deltaTime;
+
+            // Se abbiamo superato il tempo limite
+            if (timer >= secondsBeforeChange)
+            {
+                CambiaProbabilita();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Scambia la lista attuale con quella nuova "precisa"
+    /// </summary>
+    private void CambiaProbabilita()
+    {
+        if (lateGameProbabilities != null && lateGameProbabilities.Count > 0)
+        {
+            gridProbabilities = lateGameProbabilities; // Sovrascrive la lista attuale con quella nuova
+            probabilitiesChanged = true; // Evita che il cambio avvenga di nuovo
+            Debug.Log($"⏰ TIMER SCADUTO! Le probabilità dei portali sono cambiate, ora è molto probabile incontrare la principessa prendendo i portali.");
+        }
+        else
+        {
+            Debug.LogWarning("È scattato il timer, ma la lista 'lateGameProbabilities' è vuota!");
+            probabilitiesChanged = true; // Blocchiamo comunque per non spammare l'errore
+        }
     }
 
     /// <summary>
@@ -42,8 +89,6 @@ public class PortalManager : MonoBehaviour
             allPortals.Add(portal);
     }
     
- 
-
     // --- METODI GLOBALI DI CONTROLLO ---
     public void SetAllCosts(int newCost)
     {
@@ -51,15 +96,12 @@ public class PortalManager : MonoBehaviour
             p.setTravelCost(newCost);
     }
 
-   
-
-    
     /// <summary>
     /// Restituisce una Grid selezionata casualmente in base alle probabilità intere
     /// </summary>
     public Grid getRandomGrid()
     {   
-        Debug.Log($"Estrazione di una griglia casuale di destinazione...");
+        // Debug.Log($"Estrazione di una griglia casuale di destinazione..."); 
         if (gridProbabilities == null || gridProbabilities.Count == 0)
         {
             Debug.LogWarning($"Non sono state inserite le griglie e le probabilità nell'oggetto PortalManager");
@@ -82,7 +124,7 @@ public class PortalManager : MonoBehaviour
         {
             if (randomValue < item.probability)
             {
-                Debug.Log($"Estratta la griglia {item.grid}");
+                Debug.Log($"Estratta la griglia {item.grid} (Probabilità attuale: {item.probability})");
                 return item.grid;
             }
 
@@ -93,10 +135,8 @@ public class PortalManager : MonoBehaviour
         return gridProbabilities[gridProbabilities.Count - 1].grid;
     }
 
-
     public bool isRandomConnections()
     {
         return randomConnections;
     }
 }
-
