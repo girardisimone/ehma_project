@@ -33,5 +33,10 @@ public class princess_interaction : MonoBehaviour
         }
     }
 
+	 public void Decline()
+    {
+        // Chiudiamo semplicemente il popup
+        if (popupWindow != null) popupWindow.SetActive(false);
+    }
 
 }
