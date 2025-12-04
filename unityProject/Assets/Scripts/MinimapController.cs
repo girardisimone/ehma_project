@@ -34,7 +34,7 @@ public class MiniMapController : MonoBehaviour
     System.Collections.IEnumerator Start()
     {
         yield return null; 
-        // UpdateMiniMap("A1"); // Decommenta se vuoi l'avvio forzato su A1
+        UpdateMiniMap("A1"); // Decommenta se vuoi l'avvio forzato su A1
     }
 
     public void UpdateMiniMap(string rawName)
