@@ -53,6 +53,7 @@ MonoBehaviour:
   costHealth: 2
   costTime: 30
   gamblingCostIncrease: 5
+  teleportSound: {fileID: 8300000, guid: 6ed0d67e8bb52e346955ee5408ccfff1, type: 3}
 --- !u!61 &100429802430991818
 BoxCollider2D:
   m_ObjectHideFlags: 0

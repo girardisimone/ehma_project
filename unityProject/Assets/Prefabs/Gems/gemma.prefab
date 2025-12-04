@@ -140,3 +140,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6efcc3e71b1746598da47318df30b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gem
+  pickupSound: {fileID: 8300000, guid: 75d16eb9b70c9464ca3b1c3b2c9cd35c, type: 3}
