@@ -11,19 +11,23 @@ public class PortalTeleporter : MonoBehaviour
 
     [Header("Costi Base")]
     public int costGems = 3;
-    public int costHealth = 1;
+    public int costHealth = 2;
     public float costTime = 30f;
 
     [Header("Incremento Gambling")]
-    public int gamblingCostIncrease = 3; // Di quanto aumenta ogni volta?
+    public int gamblingCostIncrease = 3;
+
+    // --- NUOVO: Variabile per il suono ---
+    [Header("Audio")]
+    public AudioClip teleportSound;
+    // -------------------------------------
 
     private bool isPlayerInside = false;
     private PortalManager portalManager;
     private NewPlayerMovement playerMovementScript;
 
-    // Variabili per memorizzare lo stato attuale di questo passaggio
     private DependencyType assignedPaymentType = DependencyType.None;
-    private int finalCalculatedGemCost = 0; // Per ricordare quanto costa QUESTO passaggio specifico
+    private int finalCalculatedGemCost = 0;
 
     private void Start()
     {
@@ -53,14 +57,12 @@ public class PortalTeleporter : MonoBehaviour
         string costString = "";
         bool canAfford = false;
 
-        // 1. CHIEDIAMO IL TIPO DI PAGAMENTO
         assignedPaymentType = DependencyType.None;
         if (DependencyManager.Instance != null)
         {
             assignedPaymentType = DependencyManager.Instance.GetNextPaymentDependency();
         }
 
-        // 2. CALCOLO COSTI
         switch (assignedPaymentType)
         {
             case DependencyType.Internet:
@@ -78,8 +80,6 @@ public class PortalTeleporter : MonoBehaviour
                 break;
 
             case DependencyType.Gambling:
-                // --- LOGICA INCREMENTALE ---
-                // Il costo è: Base (3) + Debito Accumulato (0, 5, 10...)
                 int currentDebt = DependencyManager.Instance != null ? DependencyManager.Instance.gamblingDebt : 0;
                 finalCalculatedGemCost = costGems + currentDebt;
 
@@ -88,14 +88,12 @@ public class PortalTeleporter : MonoBehaviour
                 break;
 
             default:
-                // Nessuna dipendenza: Costo base
                 finalCalculatedGemCost = costGems;
                 canAfford = ScoreManager.GemCount >= finalCalculatedGemCost;
                 costString = $"Costo: {finalCalculatedGemCost} Gemme";
                 break;
         }
 
-        // 3. MOSTRA POPUP
         if (PortalPopupController.Instance != null)
         {
             PortalPopupController.Instance.Show(this, canAfford, costString);
@@ -118,7 +116,14 @@ public class PortalTeleporter : MonoBehaviour
     {
         if (!isPlayerInside) return;
 
-        // 4. ESEGUI PAGAMENTO
+        // --- NUOVO: SUONO TELETRASPORTO ---
+        if (teleportSound != null)
+        {
+            // Riproduce il suono nel punto dove si trova il portale
+            AudioSource.PlayClipAtPoint(teleportSound, transform.position);
+        }
+        // ----------------------------------
+
         switch (assignedPaymentType)
         {
             case DependencyType.Internet:
@@ -131,11 +136,9 @@ public class PortalTeleporter : MonoBehaviour
                 break;
 
             case DependencyType.Gambling:
-                // Paga il costo calcolato (Base + Debito)
                 ScoreManager.GemCount -= finalCalculatedGemCost;
                 if (ScoreManager.Instance != null) ScoreManager.Instance.UpdateScoreText(ScoreManager.GemCount);
 
-                // --- AUMENTA IL DEBITO PER LA PROSSIMA VOLTA! ---
                 if (DependencyManager.Instance != null)
                 {
                     DependencyManager.Instance.IncreaseGamblingDebt(gamblingCostIncrease);
@@ -148,18 +151,18 @@ public class PortalTeleporter : MonoBehaviour
                 break;
         }
 
-        DogCompanion cane = FindObjectOfType<DogCompanion>(); // O FindAnyObjectByType su Unity 2023+
-
+        // --- TUA LOGICA CANE MANTENUTA ---
+        DogCompanion cane = FindAnyObjectByType<DogCompanion>();
         if (cane != null)
         {
-            // Gli dice di fermarsi e aspettare
             cane.RestaQui();
         }
+        // ---------------------------------
 
-        // 5. AVANZA CICLO E ATTIVA MALUS
         if (DependencyManager.Instance != null)
         {
             DependencyManager.Instance.AdvancePaymentCycle();
+            // --- TUA LOGICA MALUS MANTENUTA (con parametro extra) ---
             DependencyManager.Instance.ApplyMovementMalus(playerMovementScript.gameObject, assignedPaymentType);
         }
 
