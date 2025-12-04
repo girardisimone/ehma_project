@@ -7,31 +7,35 @@ public class CharacterSelectionMenu : MonoBehaviour
 {
     [Header("Riferimenti UI")]
     public Image characterDisplay;       // L'immagine grande del personaggio
-    public Button selectButton;          // Il pulsante (assegna qui il tuo bottone con la tua sprite)
+    public Button selectButton;          // Il pulsante "SELEZIONA"
+    public TextMeshProUGUI storyText;    // <--- NUOVO: Trascina qui il testo della storia
 
     [Header("Dati Personaggi")]
-    public Sprite[] characterSprites;    // La lista delle immagini dei personaggi
+    public Sprite[] characterSprites;    // Le immagini
+
+    [Header("Storie Personaggi")]
+    // TextArea crea un box grande nell'Inspector (Min 3 righe, Max 10 righe)
+    [TextArea(3, 10)]
+    public string[] characterStories;    // <--- NUOVO: Scrivi qui le storie in ordine
 
     [Header("Colori Pulsante")]
-    public Color normalColor = Color.white;   // Colore quando è selezionabile (Bianco = colore originale sprite)
-    public Color selectedColor = Color.green; // Colore quando è GIÀ selezionato
+    public Color normalColor = Color.white;
+    public Color selectedColor = Color.green;
 
-    // Indici per la logica
-    private int viewingIndex = 0; // Chi sto guardando
-    private int lockedIndex = 0;  // Chi ho scelto davvero
+    // Indici
+    private int viewingIndex = 0;
+    private int lockedIndex = 0;
 
     private void Start()
     {
-        // Recupera l'ultimo salvataggio (o 0 se è la prima volta)
+        // Recupera l'ultimo salvataggio
         lockedIndex = PlayerPrefs.GetInt("SelectedCharacter", 0);
-
-        // Inizia mostrando il personaggio salvato
         viewingIndex = lockedIndex;
 
         UpdateUI();
     }
 
-    // --- Navigazione (Frecce) ---
+    // --- Navigazione ---
 
     public void NextCharacter()
     {
@@ -51,19 +55,17 @@ public class CharacterSelectionMenu : MonoBehaviour
         UpdateUI();
     }
 
-    // --- Azione di Selezione ---
+    // --- Selezione ---
 
     public void SelectCharacter()
     {
         lockedIndex = viewingIndex;
 
-        // Salva la scelta in memoria
         PlayerPrefs.SetInt("SelectedCharacter", lockedIndex);
         PlayerPrefs.Save();
 
         Debug.Log($"[MENU] Hai selezionato il personaggio: {lockedIndex}");
 
-        // Aggiorna la grafica per mostrare che è stato preso
         UpdateUI();
     }
 
@@ -71,47 +73,47 @@ public class CharacterSelectionMenu : MonoBehaviour
 
     private void UpdateUI()
     {
-        // 1. Aggiorna l'immagine centrale
-        if (characterSprites.Length > 0)
+        // 1. Aggiorna l'immagine
+        if (characterSprites.Length > viewingIndex)
         {
             characterDisplay.sprite = characterSprites[viewingIndex];
-            characterDisplay.SetNativeSize(); // Mantiene le proporzioni giuste
+            characterDisplay.SetNativeSize();
         }
 
-        // 2. Gestione Colore del Pulsante (La parte importante)
+        // 2. AGGIORNA LA STORIA (NUOVO)
+        if (storyText != null && characterStories.Length > viewingIndex)
+        {
+            storyText.text = characterStories[viewingIndex];
+        }
 
-        // Otteniamo la configurazione colori attuale del bottone
+        // 3. Gestione Colore del Pulsante
         ColorBlock colors = selectButton.colors;
 
         if (viewingIndex == lockedIndex)
         {
-            // --- CASO: PERSONAGGIO GIÀ SELEZIONATO ---
-
-            // Diciamo al bottone: "Quando sei disabilitato, diventa VERDE"
+            // GIÀ SELEZIONATO
             colors.disabledColor = selectedColor;
-            colors.colorMultiplier = 1; // Assicura che il colore sia pieno
-            selectButton.colors = colors; // Applica le modifiche
-
-            // Disabilitiamo il bottone -> Unity applicherà automaticamente il 'disabledColor' (Verde)
+            colors.colorMultiplier = 1;
+            selectButton.colors = colors;
             selectButton.interactable = false;
         }
         else
         {
-            // --- CASO: PERSONAGGIO NUOVO (DA SELEZIONARE) ---
-
-            // Diciamo al bottone: "Il tuo colore normale è BIANCO"
+            // DA SELEZIONARE
             colors.normalColor = normalColor;
-            colors.highlightedColor = new Color(0.9f, 0.9f, 0.9f, 1); // Leggero effetto hover
-            selectButton.colors = colors; // Applica le modifiche
-
-            // Abilitiamo il bottone -> Unity applicherà il 'normalColor' (Bianco)
+            colors.highlightedColor = new Color(0.9f, 0.9f, 0.9f, 1);
+            selectButton.colors = colors;
             selectButton.interactable = true;
         }
     }
 
     public void PlayGame()
     {
-        // Carica la scena di gioco
+        // Salva per sicurezza anche quello che stai guardando se premi Gioca diretto
+        // (Opzionale, se vuoi forzare la selezione manuale togli queste due righe sotto)
+        // PlayerPrefs.SetInt("SelectedCharacter", lockedIndex);
+        // PlayerPrefs.Save();
+
         SceneManager.LoadScene("SampleScene");
     }
 }
