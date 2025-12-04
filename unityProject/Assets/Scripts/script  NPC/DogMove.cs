@@ -8,7 +8,6 @@ public class DogCompanion : MonoBehaviour
     public float patrolSpeed = 2f;
 
     [Header("Impostazioni Seguimi")]
-    // NON è più pubblica, se lo cerca da solo!
     private Transform player;
     public float followSpeed = 3f;
     public float stopDistance = 1.5f;
@@ -19,7 +18,7 @@ public class DogCompanion : MonoBehaviour
     private Transform targetPattuglia;
     private bool inDialogo = false;
     private bool isFollowing = false;
-    private bool isWaiting = false; // NUOVA VARIABILE: Il cane è in attesa?
+    private bool isWaiting = false;
 
     void Start()
     {
@@ -32,33 +31,27 @@ public class DogCompanion : MonoBehaviour
     void Update()
     {
         // --- RICERCA AUTOMATICA DEL PLAYER ---
-        // Se non sappiamo chi è il player (perché non è ancora spawnato)...
         if (player == null)
         {
-            // ...cerchiamo un oggetto con il tag "Player"
             GameObject p = GameObject.FindGameObjectWithTag("Player");
-
-            // Se lo troviamo, lo memorizziamo!
             if (p != null)
             {
                 player = p.transform;
             }
             else
             {
-                // Se non c'è ancora il player, il cane aspetta e non fa nulla
                 return;
             }
         }
 
         // --- LOGICA NORMALE ---
-        if(isFollowing)
-    {
+        if (isFollowing)
+        {
             SeguiIlPlayer();
         }
-    else if (isWaiting)
+        else if (isWaiting)
         {
-            // STA FERMO: Non fa nulla, non pattuglia, aspetta solo te.
-            // Puoi aggiungere qui un'animazione "Idle" o "Seduto" se ce l'hai.
+            // STA FERMO
         }
         else if (!inDialogo)
         {
@@ -87,7 +80,6 @@ public class DogCompanion : MonoBehaviour
 
     void SeguiIlPlayer()
     {
-        // Sicurezza extra: se il player muore o sparisce, smetti di seguire
         if (player == null) return;
 
         float distanza = Vector2.Distance(transform.position, player.position);
@@ -114,23 +106,32 @@ public class DogCompanion : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Verifica che chi tocca sia VERAMENTE il player (grazie al Tag)
         if (other.CompareTag("Player") && !isFollowing && !inDialogo)
         {
             AttivaDialogo();
         }
     }
-    // --- NUOVA FUNZIONE PUBBLICA DA CHIAMARE DAL PORTALE ---
-    public void RestaQui()
+
+    // --- NUOVA AGGIUNTA QUI SOTTO ---
+    private void OnTriggerExit2D(Collider2D other)
     {
-        isFollowing = false; // Smette di seguire
-        isWaiting = true;    // Entra in modalità statua
+        // Se il player si allontana e stavamo parlando (ma non seguendo)
+        if (other.CompareTag("Player") && inDialogo && !isFollowing)
+        {
+            if (popupDialogo != null) popupDialogo.SetActive(false);
+            inDialogo = false; // Questo farÃ  ripartire la pattuglia nel prossimo Update
+        }
     }
 
-    // --- MODIFICA QUESTA FUNZIONE ESISTENTE ---
+    public void RestaQui()
+    {
+        isFollowing = false;
+        isWaiting = true;
+    }
+
     void AttivaDialogo()
     {
-        isWaiting = false; // Se lo tocchi di nuovo, smette di aspettare e ti ascolta
+        isWaiting = false; 
         inDialogo = true;
         if (popupDialogo != null) popupDialogo.SetActive(true);
     }
