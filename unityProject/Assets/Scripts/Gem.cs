@@ -16,7 +16,7 @@ public class Gem : MonoBehaviour
             }
 
             // 2. Logica Punteggio (La tua logica esistente o richiamo al Manager)
-            // Nota: Se usi questo, rimuovi la logica di distruzione dal PlayerController per non farlo due volte!
+            
             ScoreManager.GemCount++;
             if (ScoreManager.Instance != null)
                 ScoreManager.Instance.UpdateScoreText(ScoreManager.GemCount);
