@@ -2165,6 +2165,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731219127}
   m_CullTransparentMesh: 1
+--- !u!1 &770782059 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 128932366869899107, guid: 5567b21d927354a2e8bf105ef29d72d8, type: 3}
+  m_PrefabInstance: {fileID: 872199194}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &811299082
 GameObject:
   m_ObjectHideFlags: 0
@@ -2604,6 +2609,22 @@ PrefabInstance:
     - target: {fileID: 2871915372357716009, guid: 5567b21d927354a2e8bf105ef29d72d8, type: 3}
       propertyPath: m_Name
       value: NPCPopupPanel_princess
+      objectReference: {fileID: 0}
+    - target: {fileID: 5347074564707114172, guid: 5567b21d927354a2e8bf105ef29d72d8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5347074564707114172, guid: 5567b21d927354a2e8bf105ef29d72d8, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5347074564707114172, guid: 5567b21d927354a2e8bf105ef29d72d8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5444808456458009728, guid: 5567b21d927354a2e8bf105ef29d72d8, type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4566,6 +4587,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451593678}
   m_CullTransparentMesh: 1
+--- !u!114 &1468275865 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5444808456458009728, guid: 5567b21d927354a2e8bf105ef29d72d8, type: 3}
+  m_PrefabInstance: {fileID: 872199194}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1485528315
 GameObject:
   m_ObjectHideFlags: 0
@@ -5194,9 +5226,30 @@ PrefabInstance:
       value: NPC_princess
       objectReference: {fileID: 0}
     - target: {fileID: 4483441351735741150, guid: 6202c02e51f934c9f8e5e0309d96453a, type: 3}
+      propertyPath: buttonNo
+      value: 
+      objectReference: {fileID: 1965549247}
+    - target: {fileID: 4483441351735741150, guid: 6202c02e51f934c9f8e5e0309d96453a, type: 3}
+      propertyPath: buttonYes
+      value: 
+      objectReference: {fileID: 770782059}
+    - target: {fileID: 4483441351735741150, guid: 6202c02e51f934c9f8e5e0309d96453a, type: 3}
+      propertyPath: messageText
+      value: 
+      objectReference: {fileID: 1468275865}
+    - target: {fileID: 4483441351735741150, guid: 6202c02e51f934c9f8e5e0309d96453a, type: 3}
       propertyPath: popupWindow
       value: 
       objectReference: {fileID: 148879018}
+    - target: {fileID: 4483441351735741150, guid: 6202c02e51f934c9f8e5e0309d96453a, type: 3}
+      propertyPath: indizioFinale
+      value: The stars know the way. Trust them.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483441351735741150, guid: 6202c02e51f934c9f8e5e0309d96453a, type: 3}
+      propertyPath: domandaIniziale
+      value: Renounce your greed. Give me all your gems, and I will guide you to
+        the exit.
+      objectReference: {fileID: 0}
     - target: {fileID: 7407076883390677851, guid: 6202c02e51f934c9f8e5e0309d96453a, type: 3}
       propertyPath: pathContainer
       value: 
@@ -5978,6 +6031,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -40}
   m_SizeDelta: {x: 52, y: 52}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1965549247 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7892496036193909325, guid: 5567b21d927354a2e8bf105ef29d72d8, type: 3}
+  m_PrefabInstance: {fileID: 872199194}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2000710684
 PrefabInstance:
   m_ObjectHideFlags: 0
