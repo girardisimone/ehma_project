@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections; // Serve per usare i Timer (IEnumerator)
 
 public class DogCompanion : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class DogCompanion : MonoBehaviour
 
     [Header("Interfaccia")]
     public GameObject popupDialogo;
+    public GameObject popupAbbandono;    // Il popup "Oh no, mi hai lasciato!"
 
     private Transform targetPattuglia;
     private bool inDialogo = false;
@@ -123,10 +125,31 @@ public class DogCompanion : MonoBehaviour
         }
     }
 
+    // --- FUNZIONE CHIAMATA DAL PORTALE ---
     public void RestaQui()
     {
+        // Se il cane stava seguendo il player quando viene chiamato questo comando...
+        if (isFollowing)
+        {
+            // ...Avvia il timer per mostrare il messaggio
+            StartCoroutine(ShowAbandonMessage());
+        }
+
         isFollowing = false;
         isWaiting = true;
+    }
+
+    // --- NUOVO TIMER ---
+    IEnumerator ShowAbandonMessage()
+    {
+        // 1. Mostra il messaggio
+        if (popupAbbandono != null) popupAbbandono.SetActive(true);
+
+        // 2. Aspetta 4 secondi
+        yield return new WaitForSeconds(4f);
+
+        // 3. Nascondi il messaggio
+        if (popupAbbandono != null) popupAbbandono.SetActive(false);
     }
 
     void AttivaDialogo()
