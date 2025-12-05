@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: -140}
-  m_SizeDelta: {x: 100, y: 40}
+  m_AnchoredPosition: {x: 120, y: -140}
+  m_SizeDelta: {x: 60, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2133026404140153534
 CanvasRenderer:
@@ -158,7 +158,7 @@ Transform:
   m_GameObject: {fileID: 826603622276986150}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.7, y: -0.8, z: 0}
+  m_LocalPosition: {x: 4.25, y: -1.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -273,8 +273,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -150, y: -65}
-  m_SizeDelta: {x: 300, y: 200}
+  m_AnchoredPosition: {x: -120, y: -72.5}
+  m_SizeDelta: {x: 350, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5943795881802449815
 CanvasRenderer:
@@ -313,7 +313,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 0.5
+  m_PixelsPerUnitMultiplier: 0.8
 --- !u!1 &1344422264312912612
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,7 +388,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 0.5
+  m_PixelsPerUnitMultiplier: 0.8
 --- !u!1 &2145144356545929021
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,18 +550,46 @@ MonoBehaviour:
   endings:
   - characterName: Howl_1
     characterPrefab: {fileID: 6721638405415773591, guid: a1d84091551f543f7a62fe51efde9171, type: 3}
-    message: messaggio specifico per il gufo
+    message: "Hai sentito la pesantezza? Quella sensazione di \"scivolare\", la difficolt\xE0
+      a fermarti o a cambiare direzione, il barcollare continuo della visuale. L'alcol
+      prometteva di sciogliere le tensioni, ma nel labirinto ti ha reso goffo e vulnerabile.
+      Ogni ostacolo \xE8 diventato pi\xF9 difficile da evitare e la strada dritta
+      sembrava impossibile da seguire. Hai superato il livello perch\xE9 hai smesso
+      di cercare conforto in ci\xF2 che ti annebbiava la vista. La lucidit\xE0 che
+      hai riconquistato \xE8 l'unica forza che ti permette di camminare a testa alta,
+      senza pi\xF9 barcollare, verso il tuo futuro."
   - characterName: Mouse_2
     characterPrefab: {fileID: 7490857172078558452, guid: 637e7e6d9b2b9e842a84be50eddecf54, type: 3}
-    message: messaggio specifico per il topo
+    message: "Hai vissuto sulla tua pelle il caos della dipendenza. Ricordi quando
+      i comandi si sono invertiti o la visuale ha iniziato a ruotare? Quella \xE8
+      la perdita di controllo sulla realt\xE0. Il Maiale ti ha offerto sostanze promettendo
+      euforia, ma in cambio ti ha lasciato disorientato e al buio. La confusione
+      nei movimenti non era un bug, ma la simulazione di come le sostanze alterano
+      la tua percezione e ti impediscono di andare dritto verso i tuoi obiettivi.
+      Sei uscito dal labirinto solo quando hai smesso di accettare quella falsa \"cura\"
+      e hai ripreso il comando delle tue azioni. La sobriet\xE0 \xE8 la tua vera
+      bussola."
   - characterName: Racoon_3
     characterPrefab: {fileID: 849197362360565316, guid: 87d25ab245ce4d9468f887c5126fdd90, type: 3}
-    message: messaggio specifico per il procione
+    message: "Hai inseguito le gemme scintillanti, credendo che accumularne di pi\xF9
+      ti avrebbe salvato. Il Sultano ti ha tentato con la promessa di vincite facili,
+      ma hai visto cosa succede affidandosi alla fortuna? A volte andavi velocissimo,
+      altre volte eri paralizzato o ti muovevi in direzioni che non avevi scelto.
+      Questa \xE8 la trappola dell'azzardo: l'illusione di poter controllare il caso.
+      Nel labirinto, come nella vita, la vera vittoria non \xE8 il \"Jackpot\", ma
+      la costanza di ogni singolo passo fatto con le tue forze, non con il lancio
+      di un dado. Hai vinto perch\xE9 hai smesso di scommettere nella tua vita."
   - characterName: Ciclope_4
     characterPrefab: {fileID: 6721638405415773591, guid: a4a36666d1ca443728733e0cb562760c, type: 3}
-    message: 'messaggio specifico per il ciclope
-
-'
+    message: Ti sei sentito "laggare"? Quei momenti in cui il personaggio si bloccava
+      immobile nonostante tu premessi i tasti rappresentano il tempo perso davanti
+      a uno schermo. Il Polpo ti ha trattenuto nella sua rete, riempiendo la tua
+      visuale di glitch e disturbi che ti impedivano di vedere la strada reale. La
+      dipendenza digitale ti scollega dal mondo fisico mentre ti illude di essere
+      connesso. Uscire dal labirinto ha significato spegnere il rumore di fondo,
+      accettare di muoverti nel mondo reale senza filtri e recuperare il tempo che
+      la rete ti stava rubando. Ora sei davvero connesso con te stesso e con gli
+      altri
 --- !u!1 &4185142666932791093
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,8 +624,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 90}
-  m_SizeDelta: {x: 570, y: 400}
+  m_AnchoredPosition: {x: 0, y: 100}
+  m_SizeDelta: {x: 570, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3567155191438997557
 CanvasRenderer:
@@ -634,9 +662,9 @@ MonoBehaviour:
     lasciandoti spesso pi\xF9 smarrito di prima, confuso tra amici veri e altri che
     ti hanno solamente ingannato e tutto questo fino a quando non hai smesso cercare
     la via pi\xF9 breve, quella pi\xF9 facile. La vera vittoria non \xE8 non cadere
-    mai, ma trovare la forza di rialzarsi e, soprattutto, saper chiedere aiuto quando
-    le difficolt\xE0 e il buio sopraggiungono. Questa non \xE8 solo la fine di un
-    livello. \xC8 l'inizio della tua libert\xE0."
+    mai, ma trovare la forza di rialzarsi, affrontare le difficolt\xE0 esaper chiedere
+    aiuto quando le difficolt\xE0 e il buio sopraggiungono. Questa non \xE8 solo
+    la fine di un livello. \xC8 l'inizio della tua libert\xE0."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -645,8 +673,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -741,8 +769,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 175, y: -40}
-  m_SizeDelta: {x: 120, y: 120}
+  m_AnchoredPosition: {x: 175, y: -50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9169351177085956944
 CanvasRenderer:
@@ -816,8 +844,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -150, y: -65}
-  m_SizeDelta: {x: 270, y: 170}
+  m_AnchoredPosition: {x: -120, y: -70}
+  m_SizeDelta: {x: 330, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &671790828723045080
 CanvasRenderer:
@@ -847,7 +875,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "qui andr\xE0 inserito il testo specifico per il personaggio "
+  m_text: 'TESTO VARIABILE
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -874,15 +904,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17
-  m_fontSizeBase: 17
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 2
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -954,8 +984,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 250, y: -140}
-  m_SizeDelta: {x: 100, y: 40}
+  m_AnchoredPosition: {x: 230, y: -140}
+  m_SizeDelta: {x: 60, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &845594092154150514
 CanvasRenderer:

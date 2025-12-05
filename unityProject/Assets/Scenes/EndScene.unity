@@ -343,147 +343,101 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1098711878082160088, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1108906367643715873, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
       propertyPath: m_text
-      value: 'TESTO VARIABILE
-
-'
+      value: TESTO VARIABILE
       objectReference: {fileID: 0}
     - target: {fileID: 1108906367643715873, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
       propertyPath: m_fontSize
-      value: 13
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1108906367643715873, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
+      propertyPath: m_margin.w
+      value: -6.7576447
+      objectReference: {fileID: 0}
+    - target: {fileID: 1108906367643715873, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
+      propertyPath: m_margin.x
+      value: -6.75766
+      objectReference: {fileID: 0}
+    - target: {fileID: 1108906367643715873, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
+      propertyPath: m_margin.y
+      value: 2.896164
       objectReference: {fileID: 0}
     - target: {fileID: 1108906367643715873, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
       propertyPath: m_fontSizeBase
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 1108906367643715873, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: m_VerticalAlignment
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 1108906367643715873, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1665828380458435201, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: m_PixelsPerUnitMultiplier
-      value: 0.8
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2736831085397921914, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736831085397921914, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3341005345914618124, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: endings.Array.data[0].message
-      value: "Hai sentito la pesantezza? Quella sensazione di \"scivolare\", la difficolt\xE0
-        a fermarti o a cambiare direzione, il barcollare continuo della visuale.
-        L'alcol prometteva di sciogliere le tensioni, ma nel labirinto ti ha reso
-        goffo e vulnerabile. Ogni ostacolo \xE8 diventato pi\xF9 difficile da evitare
-        e la strada dritta sembrava impossibile da seguire. Hai superato il livello
-        perch\xE9 hai smesso di cercare conforto in ci\xF2 che ti annebbiava la vista.
-        La lucidit\xE0 che hai riconquistato \xE8 l'unica forza che ti permette di
-        camminare a testa alta, senza pi\xF9 barcollare, verso il tuo futuro."
-      objectReference: {fileID: 0}
-    - target: {fileID: 3341005345914618124, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: endings.Array.data[1].message
-      value: "Hai vissuto sulla tua pelle il caos della dipendenza. Ricordi quando
-        i comandi si sono invertiti o la visuale ha iniziato a ruotare? Quella \xE8
-        la perdita di controllo sulla realt\xE0. Il Maiale ti ha offerto sostanze
-        promettendo euforia, ma in cambio ti ha lasciato disorientato e al buio.
-        La confusione nei movimenti non era un bug, ma la simulazione di come le
-        sostanze alterano la tua percezione e ti impediscono di andare dritto verso
-        i tuoi obiettivi. Sei uscito dal labirinto solo quando hai smesso di accettare
-        quella falsa \"cura\" e hai ripreso il comando delle tue azioni. La sobriet\xE0
-        \xE8 la tua vera bussola."
-      objectReference: {fileID: 0}
-    - target: {fileID: 3341005345914618124, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: endings.Array.data[2].message
-      value: "Hai inseguito le gemme scintillanti, credendo che accumularne di pi\xF9
-        ti avrebbe salvato. Il Sultano ti ha tentato con la promessa di vincite facili,
-        ma hai visto cosa succede affidandosi alla fortuna? A volte andavi velocissimo,
-        altre volte eri paralizzato o ti muovevi in direzioni che non avevi scelto.
-        Questa \xE8 la trappola dell'azzardo: l'illusione di poter controllare il
-        caso. Nel labirinto, come nella vita, la vera vittoria non \xE8 il \"Jackpot\",
-        ma la costanza di ogni singolo passo fatto con le tue forze, non con il lancio
-        di un dado. Hai vinto perch\xE9 hai smesso di scommettere nella tua vita."
-      objectReference: {fileID: 0}
-    - target: {fileID: 3341005345914618124, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: endings.Array.data[3].message
-      value: Ti sei sentito "laggare"? Quei momenti in cui il personaggio si bloccava
-        immobile nonostante tu premessi i tasti rappresentano il tempo perso davanti
-        a uno schermo. Il Polpo ti ha trattenuto nella sua rete, riempiendo la tua
-        visuale di glitch e disturbi che ti impedivano di vedere la strada reale.
-        La dipendenza digitale ti scollega dal mondo fisico mentre ti illude di essere
-        connesso. Uscire dal labirinto ha significato spegnere il rumore di fondo,
-        accettare di muoverti nel mondo reale senza filtri e recuperare il tempo
-        che la rete ti stava rubando. Ora sei davvero connesso con te stesso e con
-        gli altri
-      objectReference: {fileID: 0}
-    - target: {fileID: 3422878317442377610, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 2736831085397921914, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 2736831085397921914, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 105
+      objectReference: {fileID: 0}
+    - target: {fileID: 3380020688365867568, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3380020688365867568, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.8
       objectReference: {fileID: 0}
     - target: {fileID: 3422878317442377610, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 100
+      propertyPath: m_AnchoredPosition.x
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 3422878317442377610, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: -80
       objectReference: {fileID: 0}
     - target: {fileID: 3574998783457209060, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
       propertyPath: m_Name
       value: EndSceneManager_PF
       objectReference: {fileID: 0}
-    - target: {fileID: 4092684426451065910, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: m_PixelsPerUnitMultiplier
-      value: 0.8
+    - target: {fileID: 4648905803189048152, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
+      propertyPath: m_fontSize
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4648905803189048152, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: m_text
-      value: "Guardati alle spalle. Questo labirinto non era solo un gioco, ma lo
-        specchio di una dipendenza: un percorso che inizialmente appare gratificante,
-        semplice, ma che presto ti intrappola. I Portali sembravano scorciatoie invitanti,
-        vero? Eppure, usarli ha avuto un prezzo, hanno consumato le tue risorse e
-        il tuo tempo, lasciandoti spesso pi\xF9 smarrito di prima, confuso tra amici
-        veri e altri che ti hanno solamente ingannato e tutto questo fino a quando
-        non hai smesso cercare la via pi\xF9 breve, quella pi\xF9 facile. La vera
-        vittoria non \xE8 non cadere mai, ma trovare la forza di rialzarsi, affrontare
-        le difficolt\xE0 esaper chiedere aiuto quando le difficolt\xE0 e il buio
-        sopraggiungono. Questa non \xE8 solo la fine di un livello. \xC8 l'inizio
-        della tua libert\xE0."
+      propertyPath: m_fontSizeBase
+      value: 17
       objectReference: {fileID: 0}
-    - target: {fileID: 4648905803189048152, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0
+    - target: {fileID: 5115883759327991316, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 750
       objectReference: {fileID: 0}
-    - target: {fileID: 4648905803189048152, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0
+    - target: {fileID: 5115883759327991316, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 200
       objectReference: {fileID: 0}
-    - target: {fileID: 4648905803189048152, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: m_fontColor.r
-      value: 0
+    - target: {fileID: 5115883759327991316, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 105
       objectReference: {fileID: 0}
-    - target: {fileID: 4648905803189048152, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4278190080
+    - target: {fileID: 5758505371971525699, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6821710602956390968, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 330
+      value: 410.2
       objectReference: {fileID: 0}
     - target: {fileID: 6821710602956390968, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -120
+      value: -144.90002
       objectReference: {fileID: 0}
     - target: {fileID: 6821710602956390968, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -70
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 7235982349786470576, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
       propertyPath: m_LocalPosition.x
@@ -525,45 +479,65 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8042122077664185400, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
+    - target: {fileID: 7301191256598250742, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 60
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 7301191256598250742, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7559724804684268007, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8042122077664185400, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 230
+      value: 260
+      objectReference: {fileID: 0}
+    - target: {fileID: 8042122077664185400, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 8225646063832260404, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 8225646063832260404, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 8551679337103483283, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 137770003}
+    - target: {fileID: 8551679337103483283, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8768739662604165999, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 350
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 8768739662604165999, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 190
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 8768739662604165999, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -120
+      value: -150
       objectReference: {fileID: 0}
     - target: {fileID: 8768739662604165999, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -72.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888765006515276583, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 8888765006515276583, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 40
+      value: -105
       objectReference: {fileID: 0}
     - target: {fileID: 8888765006515276583, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 120
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8888765006515276583, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
