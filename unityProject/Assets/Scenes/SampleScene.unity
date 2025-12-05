@@ -128,9 +128,37 @@ PrefabInstance:
     m_TransformParent: {fileID: 1154528777}
     m_Modifications:
     - target: {fileID: 2223688833995141357, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2223688833995141357, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 485960740}
+    - target: {fileID: 2223688833995141357, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FineDialogo
+      objectReference: {fileID: 0}
+    - target: {fileID: 2223688833995141357, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DogCompanion, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089655930320813753, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089655930320813753, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 485960740}
+    - target: {fileID: 3089655930320813753, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestaQui
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089655930320813753, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DogCompanion, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4310555676517657397, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1204,6 +1232,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1432c8212facbb14aa46e8a441b16384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DogCompanion
+--- !u!1 &490422284 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5606521540035729153, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+  m_PrefabInstance: {fileID: 2000710684}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &505999442
 GameObject:
   m_ObjectHideFlags: 0
@@ -1508,6 +1541,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 883579929682459920, guid: 679f41d1484e75345b1c51e4a6d49af6, type: 3}
   m_PrefabInstance: {fileID: 4063552923009080575}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &566380715 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6616085516107159241, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+  m_PrefabInstance: {fileID: 2000710684}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &577964823
 GameObject:
   m_ObjectHideFlags: 0
@@ -2885,6 +2929,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1485536134}
   m_SourcePrefab: {fileID: 100100000, guid: 797a13119b8f64aa485d6e21e207a011, type: 3}
+--- !u!4 &975267331 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2681867584158924886, guid: 40c5d0e3ddcf73c4193ee70d64e2dcbb, type: 3}
+  m_PrefabInstance: {fileID: 1120991320}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &992319883
 GameObject:
   m_ObjectHideFlags: 0
@@ -4052,6 +4101,11 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!4 &1319724780 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 700248110485239873, guid: ddfae948c29aa0c49984a410be136927, type: 3}
+  m_PrefabInstance: {fileID: 1209556300}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1400756206 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6426662794313446101, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
@@ -4062,6 +4116,24 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4310555676517657397, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
   m_PrefabInstance: {fileID: 2000710684}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1400756210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400756206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 363e09898df757844bd17f2ad1e56a0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SultanCoinToss
+  popupWindow: {fileID: 1400756206}
+  messageText: {fileID: 566380715}
+  buttonAccept: {fileID: 490422284}
+  buttonRefuse: {fileID: 1503320700}
+  forwardLocation: {fileID: 975267331}
+  backLocation: {fileID: 1319724780}
 --- !u!1 &1427337435
 GameObject:
   m_ObjectHideFlags: 0
@@ -4880,6 +4952,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501589795}
   m_CullTransparentMesh: 1
+--- !u!1 &1503320700 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1176098054744889514, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+  m_PrefabInstance: {fileID: 2000710684}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1545948473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5909,6 +5986,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1154528777}
     m_Modifications:
+    - target: {fileID: 2223688833995141357, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1400756210}
+    - target: {fileID: 2223688833995141357, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnPlayClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 2223688833995141357, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SultanCoinToss, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470926914355807771, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -7527145504033472756, guid: 2ab6fcc04c4f3f54b9cba25a09e05aa2, type: 3}
+    - target: {fileID: 3089655930320813753, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1400756210}
+    - target: {fileID: 3089655930320813753, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnRefuseClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089655930320813753, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SultanCoinToss, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4310555676517657397, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5993,10 +6098,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC_Sultan_popup
       objectReference: {fileID: 0}
+    - target: {fileID: 6616085516107159241, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6426662794313446101, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1400756210}
   m_SourcePrefab: {fileID: 100100000, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
 --- !u!1001 &2012367770
 PrefabInstance:
