@@ -343,65 +343,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1108906367643715873, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3341005345914618124, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: endings.Array.data[0].message
-      value: "\"Did you feel the heaviness? That sensation of 'sliding,' the struggle
-        to stop or change direction, the constant swaying of your vision. Alcohol
-        promised to relieve tension, but in the labyrinth, it made you clumsy and
-        vulnerable. Every obstacle became harder to avoid, and the straight path
-        seemed impossible to follow. You cleared the level because you stopped seeking
-        comfort in what clouded your sight. The clarity you regained is the only
-        strength that allows you to walk with your head held high\u2014no longer
-        staggering\u2014towards your future.\""
-      objectReference: {fileID: 0}
-    - target: {fileID: 3341005345914618124, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: endings.Array.data[1].message
-      value: '"You lived the chaos of addiction firsthand. Remember when the controls
-        reversed or your vision started spinning? That is the loss of control over
-        reality. The Pig offered substances promising euphoria, but instead left
-        you disoriented and in the dark. The confusion in movement wasn''t a bug,
-        but a simulation of how substances alter your perception, preventing you
-        from going straight toward your goals. You escaped the labyrinth only when
-        you stopped accepting that false ''cure'' and took back command of your actions.
-        Sobriety is your true compass."'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3341005345914618124, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: endings.Array.data[2].message
-      value: '"You chased sparkling gems, believing that accumulating more would
-        save you. The Sultan tempted you with the promise of easy wins, but did you
-        see what happens when you rely on luck? Sometimes you moved incredibly fast;
-        other times, you were paralyzed or moved in directions you hadn''t chosen.
-        This is the trap of gambling: the illusion of controlling chance. In the
-        labyrinth, as in life, true victory isn''t the ''Jackpot,'' but the consistency
-        of every single step taken with your own strength, not a roll of the dice.
-        You won because you stopped gambling with your life."'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3341005345914618124, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: endings.Array.data[3].message
-      value: '"Did you feel the ''lag''? Those moments when the character froze,
-        ignoring your commands, represent time lost in front of a screen. The Octopus
-        held you in its net, filling your vision with glitches and noise that blocked
-        the real path. Digital addiction disconnects you from the physical world
-        while tricking you into feeling connected. Escaping the labyrinth meant turning
-        off the background noise, moving in the real world without filters, and reclaiming
-        the time the web was stealing. Now you are truly connected with yourself
-        and with others."'
-      objectReference: {fileID: 0}
     - target: {fileID: 3574998783457209060, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
       propertyPath: m_Name
       value: EndSceneManager_PF
-      objectReference: {fileID: 0}
-    - target: {fileID: 6821710602956390968, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 142.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6821710602956390968, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -94.7
       objectReference: {fileID: 0}
     - target: {fileID: 7235982349786470576, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
       propertyPath: m_LocalPosition.x
@@ -443,26 +387,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7553860179211120122, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 190
-      objectReference: {fileID: 0}
     - target: {fileID: 8551679337103483283, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 137770003}
-    - target: {fileID: 8768739662604165999, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 8768739662604165999, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 141
-      objectReference: {fileID: 0}
-    - target: {fileID: 8768739662604165999, guid: bdc5947b771a17b4e9792ff05e7d41ce, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -100
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
