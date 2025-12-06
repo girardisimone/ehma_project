@@ -8,7 +8,8 @@ public class EndSceneManager : MonoBehaviour
     public Transform characterSpawnPoint;
 
     [Header("Riferimenti UI")]
-    public TextMeshProUGUI specificMessageText; // Il testo che cambia
+    public TextMeshProUGUI specificMessageText; 
+    public TextMeshProUGUI timeStatsText; // <--- Qui collegheremo il nuovo testo
 
     [Header("Configurazione Finali")]
     public EndingData[] endings; 
@@ -16,10 +17,10 @@ public class EndSceneManager : MonoBehaviour
     [System.Serializable]
     public struct EndingData
     {
-        public string characterName;       // Es. "Topo" (solo per ordine visivo)
-        public GameObject characterPrefab; // Il prefab (es. NPC_boy)
+        public string characterName;
+        public GameObject characterPrefab;
         [TextArea(3,5)]
-        public string message;             // Il testo specifico per questo personaggio
+        public string message;
     }
 
     private void Start()
@@ -29,35 +30,23 @@ public class EndSceneManager : MonoBehaviour
 
     void SetupScene()
     {
-        // 1. RECUPERA SCELTA (Default 0 se non trova nulla)
+        // 1. PERSONAGGIO (Caricamento)
         int index = PlayerPrefs.GetInt("SelectedCharacter", 0);
-
-        // Sicurezza: se l'indice è fuori range, usa 0
         if (index < 0 || index >= endings.Length) index = 0;
 
         EndingData selectedEnding = endings[index];
 
-        // 2. AGGIORNA TESTO
-        if (specificMessageText != null)
-        {
-            specificMessageText.text = selectedEnding.message;
-        }
+        if (specificMessageText != null) specificMessageText.text = selectedEnding.message;
 
-        // 3. SPAWN PERSONAGGIO
         if (selectedEnding.characterPrefab != null && characterSpawnPoint != null)
         {
-            // Istanzia il personaggio
             GameObject instance = Instantiate(selectedEnding.characterPrefab, characterSpawnPoint.position, Quaternion.identity);
-            
-            // Blocca rotazione
             instance.transform.rotation = Quaternion.identity;
 
-            // === DISATTIVA MOVIMENTO E FISICA ===
-            // Spegni script di input
+            // Disattiva movimento
             var moveScript = instance.GetComponent<NewPlayerMovement>();
             if (moveScript != null) moveScript.enabled = false;
 
-            // Blocca fisica
             var rb = instance.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
@@ -65,23 +54,37 @@ public class EndSceneManager : MonoBehaviour
                 rb.linearVelocity = Vector2.zero; 
             }
 
-            // === FORZA ANIMAZIONE CAMMINATA (SUL POSTO) ===
+            // Anima sul posto
             var anim = instance.GetComponent<Animator>();
             if (anim != null)
             {
-                // Cammina verso la camera (Giù)
                 anim.SetFloat("InputY", -1f); 
                 anim.SetFloat("InputX", 0f);
             }
         }
-    }
 
-    // --- FUNZIONI PULSANTI ---
+        // 2. TEMPO (Visualizzazione)
+        if (timeStatsText != null)
+        {
+            string playerTime = PlayerPrefs.GetString("FinalTime", "00:00");
+            string idealTime = "00:07:00"; 
+
+            // these are attempts for better visualization
+           /*timeStatsText.text = $" <color=black> TIME TAKEN: <color=red>{playerTime}</color>\n" +
+                                 $" <color=black> TIME NEEDED: <color=green>{idealTime}</color>";*/
+            /*timeStatsText.text = $" <color=black> Time taken: {playerTime}</color>\n" +
+                                 $" <color=black> Time needed: {idealTime}</color>";*/
+            timeStatsText.text = $"<color=black>Time taken: </color>" +
+                                 $"<color=black>{playerTime}</color>\n\n" +
+                                 $"<color=black>Time needed: </color>" +
+                                 $"<color=black>{idealTime}</color>";
+        }
+    }
 
     public void OnPlayAgain()
     {
-        Time.timeScale = 1f; // Sblocca il tempo
-        SceneManager.LoadScene("MenuScene"); // Assicurati che il nome sia esatto
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MenuScene");
     }
 
     public void OnExitGame()

@@ -7,25 +7,27 @@ public class FinalSceneLoader : MonoBehaviour
     public string sceneName = "EndScene";
 
     [Header("Opzionale: ferma timer se serve")]
-    public TimerManager timerManager; // Trascina qui il Timer se vuoi fermarlo prima del cambio
+    public TimerManager timerManager; // Qui dovremo trascinare il GameManager!
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Controlla se è il Player a toccare l'uscita
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Uscita raggiunta! Caricamento scena finale...");
+            Debug.Log("Uscita raggiunta! Salvataggio tempo...");
 
-            // 1. Ferma il timer (se collegato) per bloccare il tempo finale
+            // 1. SALVATAGGIO TEMPO
             if (timerManager != null)
             {
                 timerManager.StopTimer();
+                string finalTime = timerManager.GetCurrentTimeString();
+                
+                // Salva nella memoria "FinalTime"
+                PlayerPrefs.SetString("FinalTime", finalTime);
+                PlayerPrefs.Save();
             }
 
-            // 2. Assicuriamoci che il tempo scorra (se era in pausa)
+            // 2. CAMBIO SCENA
             Time.timeScale = 1f;
-
-            // 3. Carica la scena finale
             SceneManager.LoadScene(sceneName);
         }
     }
