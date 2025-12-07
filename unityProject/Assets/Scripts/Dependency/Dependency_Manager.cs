@@ -16,7 +16,6 @@ public class DependencyManager : MonoBehaviour
 {
     public static DependencyManager Instance;
 
-    // Questa variabile contiene TUTTE le dipendenze attive insieme (grazie ai Flags)
     public DependencyType currentDependencies;
 
     [Header("Configurazione Durate Malus")]
@@ -26,6 +25,12 @@ public class DependencyManager : MonoBehaviour
 
     [HideInInspector]
     public int gamblingDebt = 0;
+
+    // --- NUOVI CONTATORI PER CICLICITÀ ---
+    private int paymentCycleIndex = 0; // Per alternare il tipo di pagamento
+    private int cycleInternet = 0;     // Per alternare i malus Internet
+    private int cycleDrugs = 0;        // Per alternare i malus Droghe
+    private int cycleGambling = 0;     // Per alternare i malus Gambling
 
     void Awake()
     {
@@ -44,60 +49,58 @@ public class DependencyManager : MonoBehaviour
         currentDependencies = DependencyType.None;
         gamblingDebt = 0;
 
+        // Resetta i cicli all'inizio
+        paymentCycleIndex = 0;
+        cycleInternet = 0;
+        cycleDrugs = 0;
+        cycleGambling = 0;
+
         switch (charIndex)
         {
-            case 0: break; // Topo (O default)
+            case 0: break;
             case 1: AddDependency(DependencyType.Drugs); break;
             case 2: AddDependency(DependencyType.Gambling); break;
             case 3: AddDependency(DependencyType.Internet); break;
         }
     }
 
-    // --- METODO CHIAMATO DALL'NPC CATTIVO ---
     public void AddDependency(DependencyType type)
     {
-        // L'operatore |= aggiunge il flag senza cancellare gli altri
         currentDependencies |= type;
         Debug.Log("Nuova dipendenza acquisita: " + type);
     }
 
-    // --- METODO CHIAMATO DAL PORTALE (LOGICA CASUALE) ---
+    // --- METODO CHIAMATO DAL PORTALE (ORA CICLICO) ---
     public DependencyType GetNextPaymentDependency()
     {
-        // 1. Creiamo una lista temporanea di tutte le dipendenze attive
         List<DependencyType> activeList = new List<DependencyType>();
 
         foreach (DependencyType type in Enum.GetValues(typeof(DependencyType)))
         {
             if (type == DependencyType.None) continue;
-
-            // Se il giocatore HA questa dipendenza, aggiungila alla lista possibile
             if (HasDependency(type)) activeList.Add(type);
         }
 
-        // 2. Se non ne ha nessuna, ritorna None
         if (activeList.Count == 0) return DependencyType.None;
 
-        // 3. PESCA CASUALE (Random) dalla lista
-        int randomIndex = UnityEngine.Random.Range(0, activeList.Count);
-        return activeList[randomIndex];
+        // MODIFICA: Uso il modulo (%) invece del Random
+        return activeList[paymentCycleIndex % activeList.Count];
     }
 
-    // Aumenta il debito Gambling
     public void IncreaseGamblingDebt(int amount)
     {
         gamblingDebt += amount;
         Debug.Log($"[GAMBLING] Il debito è salito! Prossimo extra costo: +{gamblingDebt}");
     }
 
-    // Questa serviva per la sequenza, ora col random serve meno ma la lasciamo per compatibilità
-    public void AdvancePaymentCycle() { }
+    // MODIFICA: Ora incrementa l'indice per il prossimo pagamento
+    public void AdvancePaymentCycle()
+    {
+        paymentCycleIndex++;
+    }
 
-    // Helper per verificare se hai una dipendenza
     public bool HasDependency(DependencyType type) { return (currentDependencies & type) != 0; }
 
-    // --- GESTIONE MALUS (INVARIATA) ---
-    // --- MODIFICA QUI: Ora chiediamo ANCHE "typeToApply" ---
     public void ApplyMovementMalus(GameObject player, DependencyType typeToApply)
     {
         StartCoroutine(TemporaryMalusCoroutine(player, typeToApply));
@@ -111,20 +114,17 @@ public class DependencyManager : MonoBehaviour
         IMovementStrategy strategyToApply = new NormalMovementStrategy();
         float currentDuration = 0f;
 
-        // --- QUI USIAMO LO SWITCH SUL TIPO PASSATO, NON SUI FLAGS ---
         switch (type)
         {
             case DependencyType.Internet:
-                // Pagato con TEMPO -> Malus Glitch/Packet Loss
                 currentDuration = durationInternet;
-                int randInt = UnityEngine.Random.Range(0, 2);
 
-                // Sceglie la strategia di movimento (Lag o Movimento a scatti)
-                strategyToApply = (randInt == 0) ? (IMovementStrategy)new InternetAddictStrategy() : new InternetPacketLossStrategy();
+                // MODIFICA CICLICA (0, 1, 0, 1...)
+                int indexInternet = cycleInternet % 2;
+                strategyToApply = (indexInternet == 0) ? (IMovementStrategy)new InternetAddictStrategy() : new InternetPacketLossStrategy();
 
-                // --- MODIFICA QUI ---
-                // Abbiamo tolto "UnityEngine.Random.value < 0.3f"
-                // Ora controlliamo solo se il DifficultyManager esiste
+                cycleInternet++; // Avanza il ciclo per la prossima volta
+
                 if (DifficultyManager.Instance != null)
                 {
                     DifficultyManager.Instance.ForceGlitch(currentDuration);
@@ -132,40 +132,39 @@ public class DependencyManager : MonoBehaviour
                 break;
 
             case DependencyType.Drugs:
-                // Pagato con VITA -> Malus Ubriachezza/Drogato
                 currentDuration = durationDrugs;
-                int randDrug = UnityEngine.Random.Range(0, 3);
-                if (randDrug == 0) strategyToApply = new DruggedStrategy();
-                else if (randDrug == 1) strategyToApply = new DrunkStrategy();
+
+                // MODIFICA CICLICA (0, 1, 2, 0, 1, 2...)
+                int indexDrugs = cycleDrugs % 3;
+                if (indexDrugs == 0) strategyToApply = new DruggedStrategy();
+                else if (indexDrugs == 1) strategyToApply = new DrunkStrategy();
                 else strategyToApply = new DruggedSpinningStrategy();
+
+                cycleDrugs++; // Avanza il ciclo
 
                 if (UnityEngine.Random.value < 0.8f && DifficultyManager.Instance != null)
                     DifficultyManager.Instance.ForceDarkness(currentDuration);
                 break;
 
             case DependencyType.Gambling:
-                // Pagato con GEMME -> Malus Oscurità/Roulette
                 currentDuration = durationGambling;
-                int randGamb = UnityEngine.Random.Range(0, 2);
-                strategyToApply = (randGamb == 0) ? (IMovementStrategy)new GamblerStrategy() : new GamblerRouletteStrategy();
+
+                // MODIFICA CICLICA (0, 1, 0, 1...)
+                int indexGambling = cycleGambling % 2;
+                strategyToApply = (indexGambling == 0) ? (IMovementStrategy)new GamblerStrategy() : new GamblerRouletteStrategy();
+
+                cycleGambling++; // Avanza il ciclo
 
                 if (UnityEngine.Random.value < 0.5f && DifficultyManager.Instance != null)
                     DifficultyManager.Instance.ForceDarkness(currentDuration);
                 break;
 
-            // Se paga "senza dipendenza" (es. costo base), nessun malus
             default:
                 yield break;
         }
 
-        // Applica strategia
         playerMovement.SetStrategy(strategyToApply);
-
-        // Aspetta
         yield return new WaitForSeconds(currentDuration);
-
-        // Ripristina
         playerMovement.SetStrategy(new NormalMovementStrategy());
     }
 }
-        

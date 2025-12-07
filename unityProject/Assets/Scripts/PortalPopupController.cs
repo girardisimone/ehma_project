@@ -32,15 +32,11 @@ public class PortalPopupController : MonoBehaviour
         Hide();
     }
 
-    /// <summary>
-    /// Mostra il popup. 
-    /// ORA ACCETTA UNA STRINGA 'costDescription' INVECE DI UN INT
-    /// </summary>
     public void Show(PortalTeleporter portal, bool canUsePortal, string costDescription)
     {
         currentPortal = portal;
 
-        // Troviamo il player per poterlo sbloccare se preme "Annulla"
+        // Troviamo il player
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
         {
@@ -51,14 +47,31 @@ public class PortalPopupController : MonoBehaviour
 
         if (canUsePortal)
         {
-            // Usa direttamente la stringa passata dal portale (es. "Penalità: +30s")
+            // --- CASO 1: PUÒ PAGARE ---
+            // Il player resta bloccato finché non sceglie Si o No
+
             messageText.text = $"Do you want to use the portal? {costDescription}";
+
             usePortalButton.gameObject.SetActive(true);
+            continueButton.gameObject.SetActive(true); // Assicurati che il tasto "No" sia visibile
         }
         else
         {
-            messageText.text = $"Risorse insufficienti.\nServe: {costDescription}";
+            // --- CASO 2: NON PUÒ PAGARE ---
+            // Mostriamo il messaggio ma SBLOCCHIAMO subito il movimento
+
+            messageText.text = $"You don't have enough resources \n {costDescription}";
+
+            // Nascondiamo i pulsanti perché non c'è nulla da cliccare
             usePortalButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+
+            // *** MODIFICA FONDAMENTALE ***
+            // Riattiviamo subito il movimento così il player può andarsene
+            if (playerMovementScript != null)
+            {
+                playerMovementScript.enabled = true;
+            }
         }
     }
 

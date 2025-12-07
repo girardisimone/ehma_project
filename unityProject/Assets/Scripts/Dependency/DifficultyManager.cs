@@ -82,7 +82,6 @@ public class DifficultyManager : MonoBehaviour
 
         while (timer < duration)
         {
-            // Valori casuali per il disturbo
             if (chromaticAberration != null)
                 chromaticAberration.intensity.value = Random.Range(0.5f, 1f);
 
