@@ -273,12 +273,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 485960740}
     - target: {fileID: 3089655930320813753, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 485960740}
+    - target: {fileID: 3089655930320813753, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CliccatoNo
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089655930320813753, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: RestaQui
       objectReference: {fileID: 0}
     - target: {fileID: 3089655930320813753, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: DogCompanion, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089655930320813753, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: DogCompanion, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089655930320813753, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3977564079137593872, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
       propertyPath: m_AnchoredPosition.y

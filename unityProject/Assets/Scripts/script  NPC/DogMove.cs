@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections; // Serve per usare i Timer (IEnumerator)
+using System.Collections;
 
 public class DogCompanion : MonoBehaviour
 {
@@ -15,12 +15,15 @@ public class DogCompanion : MonoBehaviour
 
     [Header("Interfaccia")]
     public GameObject popupDialogo;
-    public GameObject popupAbbandono;    // Il popup "Oh no, mi hai lasciato!"
+    public GameObject popupAbbandono;
 
     private Transform targetPattuglia;
     private bool inDialogo = false;
     private bool isFollowing = false;
     private bool isWaiting = false;
+
+    // Timer per ignorare il player dopo aver detto NO
+    private float timerIgnoraPlayer = 0f;
 
     void Start()
     {
@@ -28,25 +31,26 @@ public class DogCompanion : MonoBehaviour
         targetPattuglia = puntoB;
 
         if (popupDialogo != null) popupDialogo.SetActive(false);
+        if (popupAbbandono != null) popupAbbandono.SetActive(false);
     }
 
     void Update()
     {
+        // 1. GESTIONE TIMER: Se è maggiore di 0, scende
+        if (timerIgnoraPlayer > 0)
+        {
+            timerIgnoraPlayer -= Time.deltaTime;
+        }
+
         // --- RICERCA AUTOMATICA DEL PLAYER ---
         if (player == null)
         {
             GameObject p = GameObject.FindGameObjectWithTag("Player");
-            if (p != null)
-            {
-                player = p.transform;
-            }
-            else
-            {
-                return;
-            }
+            if (p != null) player = p.transform;
+            else return;
         }
 
-        // --- LOGICA NORMALE ---
+        // --- LOGICA MOVIMENTO ---
         if (isFollowing)
         {
             SeguiIlPlayer();
@@ -91,14 +95,8 @@ public class DogCompanion : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, player.position, followSpeed * Time.deltaTime);
         }
 
-        if (player.position.x > transform.position.x)
-        {
-            Girati(1);
-        }
-        else
-        {
-            Girati(-1);
-        }
+        if (player.position.x > transform.position.x) Girati(1);
+        else Girati(-1);
     }
 
     void Girati(int direzioneX)
@@ -106,63 +104,71 @@ public class DogCompanion : MonoBehaviour
         transform.localScale = new Vector3(direzioneX, 1, 1);
     }
 
+    // --- COLLISIONI ---
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !isFollowing && !inDialogo)
+        // MODIFICA IMPORTANTE: Aggiunto && timerIgnoraPlayer <= 0
+        // Se il timer è attivo (ho appena detto no), NON apre il dialogo
+        if (other.CompareTag("Player") && !isFollowing && !inDialogo && timerIgnoraPlayer <= 0)
         {
             AttivaDialogo();
         }
     }
 
-    // --- NUOVA AGGIUNTA QUI SOTTO ---
     private void OnTriggerExit2D(Collider2D other)
     {
-        // Se il player si allontana e stavamo parlando (ma non seguendo)
+        // Se il player si allontana mentre il popup è aperto, lo chiudiamo
         if (other.CompareTag("Player") && inDialogo && !isFollowing)
         {
             if (popupDialogo != null) popupDialogo.SetActive(false);
-            inDialogo = false; // Questo farà ripartire la pattuglia nel prossimo Update
+            inDialogo = false;
         }
     }
 
-    // --- FUNZIONE CHIAMATA DAL PORTALE ---
-    public void RestaQui()
+    // --- FUNZIONI UI ---
+
+    public void AttivaDialogo()
     {
-        // Se il cane stava seguendo il player quando viene chiamato questo comando...
-        if (isFollowing)
-        {
-            // ...Avvia il timer per mostrare il messaggio
-            StartCoroutine(ShowAbandonMessage());
-        }
-
-        isFollowing = false;
-        isWaiting = true;
-    }
-
-    // --- NUOVO TIMER ---
-    IEnumerator ShowAbandonMessage()
-    {
-        // 1. Mostra il messaggio
-        if (popupAbbandono != null) popupAbbandono.SetActive(true);
-
-        // 2. Aspetta 4 secondi
-        yield return new WaitForSeconds(4f);
-
-        // 3. Nascondi il messaggio
-        if (popupAbbandono != null) popupAbbandono.SetActive(false);
-    }
-
-    void AttivaDialogo()
-    {
-        isWaiting = false; 
+        isWaiting = false;
         inDialogo = true;
         if (popupDialogo != null) popupDialogo.SetActive(true);
     }
 
-    public void FineDialogo()
+    public void FineDialogo() // Tasto SI
     {
         if (popupDialogo != null) popupDialogo.SetActive(false);
         inDialogo = false;
         isFollowing = true;
+    }
+
+    public void CliccatoNo() // Tasto NO
+    {
+        // 1. Chiudi il popup
+        if (popupDialogo != null) popupDialogo.SetActive(false);
+
+        // 2. Resetta lo stato di dialogo
+        inDialogo = false;
+
+        // 3. IMPOSTA IL TIMER: Per 2 secondi il cane ignorerà il player
+        // Questo permette al cane di allontanarsi senza riaprire il popup
+        timerIgnoraPlayer = 2.0f;
+    }
+
+    public void RestaQui()
+    {
+        if (isFollowing)
+        {
+            StartCoroutine(ShowAbandonMessage());
+        }
+        isFollowing = false;
+        isWaiting = true;
+    }
+
+    IEnumerator ShowAbandonMessage()
+    {
+        if (popupAbbandono != null) popupAbbandono.SetActive(true);
+        yield return new WaitForSeconds(4f);
+        if (popupAbbandono != null) popupAbbandono.SetActive(false);
     }
 }
