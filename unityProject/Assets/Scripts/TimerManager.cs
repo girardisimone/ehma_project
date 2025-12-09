@@ -67,4 +67,20 @@ public class TimerManager : MonoBehaviour
         // Restituisce la stringa formattata: 00:00:00
         return string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
     }
+    
+    
+    // --- FUNZIONE PER TOGLIERE TEMPO interazione con il samurai ---
+    public void RemoveTime(float secondsToRemove)
+    {
+        startTime += secondsToRemove; // Sposta in avanti l'inizio per ridurre il tempo trascorso
+        
+        // Sicurezza: se il bonus è troppo grande, il tempo non scende sotto zero
+        if (Time.time - startTime < 0)
+        {
+            startTime = Time.time; // Resetta a 00:00
+        }
+
+        Debug.Log($"[TIMER] Bonus applicato: -{secondsToRemove} secondi.");
+        UpdateTimerUI();
+    }
 }

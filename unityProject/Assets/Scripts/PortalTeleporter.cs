@@ -153,6 +153,10 @@ public class PortalTeleporter : MonoBehaviour
             if (grid != null) destinationPortal = grid.getDestinationPortal();
         }
 
+        if (destinationPortal == null)
+        {
+            Debug.LogWarning($"Il destinational portal e' null");
+        }
         // --- 3. TELETRASPORTO ---
         if (destinationPortal != null && playerMovementScript != null)
         {
@@ -163,8 +167,13 @@ public class PortalTeleporter : MonoBehaviour
             {
                 audioSource.PlayOneShot(arrivalSound, volumeTeletrasporto);
             }
-
-            Destroy(destinationPortal.gameObject, 0.1f);
+            
+            // il samurai deve essere avvisato se il giocatore usa il portale
+            if (samurai_interaction.Instance != null)
+            {
+                samurai_interaction.Instance.GiocatoreHaUsatoPortale();
+            }
+            //Destroy(destinationPortal.gameObject, 0.1f);
         }
 
         if (playerMovementScript != null) playerMovementScript.enabled = true;

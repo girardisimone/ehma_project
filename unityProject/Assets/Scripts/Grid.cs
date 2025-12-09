@@ -61,6 +61,7 @@ public class Grid : MonoBehaviour
             {
                 return p;
             }
+            
         }
         Debug.LogWarning($"Non c'è un portale di arrivo nella griglia selezionata come destinazione del portale");
         return null;

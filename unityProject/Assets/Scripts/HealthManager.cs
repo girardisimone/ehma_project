@@ -91,6 +91,14 @@ public class HealthManager : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("GAME OVER! Il giocatore è morto.");
+        Debug.Log("GAME OVER! Il giocatore ï¿½ morto.");
+    }
+    
+    // --- per l'interazione con il samurai ---
+    public void RestoreMaxHealth()
+    {
+        currentHealth = maxHealth;
+        UpdateHealthUI();
+        Debug.Log("Salute completamente ripristinata!");
     }
 }
