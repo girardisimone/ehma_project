@@ -1095,11 +1095,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8397008859319029221, guid: bced34c43f508be4bbcabba6e21cc1b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.886101
+      value: 48.439
       objectReference: {fileID: 0}
     - target: {fileID: 8397008859319029221, guid: bced34c43f508be4bbcabba6e21cc1b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.9330711
+      value: -19.933071
       objectReference: {fileID: 0}
     - target: {fileID: 8397008859319029221, guid: bced34c43f508be4bbcabba6e21cc1b9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1699,17 +1699,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 883579929682459920, guid: 679f41d1484e75345b1c51e4a6d49af6, type: 3}
   m_PrefabInstance: {fileID: 4063552923009080575}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &566380715 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6616085516107159241, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
-  m_PrefabInstance: {fileID: 2000710684}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &541384286
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,6 +1835,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541384286}
   m_CullTransparentMesh: 1
+--- !u!114 &566380715 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6616085516107159241, guid: 69fd3f9d537d05740a89b168188eb6a8, type: 3}
+  m_PrefabInstance: {fileID: 2000710684}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &577964823
 GameObject:
   m_ObjectHideFlags: 0
@@ -4986,7 +4986,72 @@ MonoBehaviour:
   - grid: {fileID: 7448608310957070317}
     probability: 1
   secondsBeforeChange: 60
-  lateGameProbabilities: []
+  lateGameProbabilities:
+  - grid: {fileID: 4436905515968785034}
+    probability: 1
+  - grid: {fileID: 6229646068333107560}
+    probability: 1
+  - grid: {fileID: 7042412588462521139}
+    probability: 1
+  - grid: {fileID: 8681498396503156609}
+    probability: 100
+  - grid: {fileID: 8101716601790747107}
+    probability: 1
+  - grid: {fileID: 632074125653864448}
+    probability: 1
+  - grid: {fileID: 6336235149220946191}
+    probability: 1
+  - grid: {fileID: 3412860048380667725}
+    probability: 1
+  - grid: {fileID: 6817700002837288297}
+    probability: 1
+  - grid: {fileID: 771259304839674954}
+    probability: 1
+  - grid: {fileID: 2909291879586270634}
+    probability: 1
+  - grid: {fileID: 8243306781516078349}
+    probability: 1
+  - grid: {fileID: 3111249159330506220}
+    probability: 1
+  - grid: {fileID: 1135393702923469239}
+    probability: 1
+  - grid: {fileID: 1905121557085042935}
+    probability: 1
+  - grid: {fileID: 7448608310957070317}
+    probability: 1
+  toSamuraiGridProbalities:
+  - grid: {fileID: 4436905515968785034}
+    probability: 1
+  - grid: {fileID: 6229646068333107560}
+    probability: 1
+  - grid: {fileID: 7042412588462521139}
+    probability: 1
+  - grid: {fileID: 8681498396503156609}
+    probability: 0
+  - grid: {fileID: 8101716601790747107}
+    probability: 1
+  - grid: {fileID: 632074125653864448}
+    probability: 1
+  - grid: {fileID: 6336235149220946191}
+    probability: 1
+  - grid: {fileID: 3412860048380667725}
+    probability: 1
+  - grid: {fileID: 6817700002837288297}
+    probability: 1
+  - grid: {fileID: 771259304839674954}
+    probability: 100
+  - grid: {fileID: 2909291879586270634}
+    probability: 1
+  - grid: {fileID: 8243306781516078349}
+    probability: 1
+  - grid: {fileID: 3111249159330506220}
+    probability: 1
+  - grid: {fileID: 1135393702923469239}
+    probability: 1
+  - grid: {fileID: 1905121557085042935}
+    probability: 1
+  - grid: {fileID: 7448608310957070317}
+    probability: 1
 --- !u!114 &1451423100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4999,6 +5064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 834831617397b674fbe9940fa0a568d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthManager
+  portalManager: {fileID: 1451423099}
   numberOfHearts: 5
   currentHealth: 0
   maxHealth: 0

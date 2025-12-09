@@ -5,6 +5,8 @@ using UnityEngine.InputSystem; // <--- FONDAMENTALE: Aggiungi questa libreria
 public class HealthManager : MonoBehaviour
 {
     public static HealthManager Instance;
+    
+    public PortalManager portalManager;
 
     [Header("Configurazione")]
     [Tooltip("Numero di cuori da mostrare a schermo")]
@@ -56,10 +58,17 @@ public class HealthManager : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
+        // currentHealth -= damage;
+        
+        currentHealth -= 16; // da togliere
         if (currentHealth < 0) currentHealth = 0;
 
         UpdateHealthUI();
+        
+        if (currentHealth <= 2)
+        {
+            portalManager.CambiaProbabilitaToSamurai();
+        }
 
         if (currentHealth <= 0)
         {
@@ -91,7 +100,7 @@ public class HealthManager : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("GAME OVER! Il giocatore � morto.");
+        Debug.Log("GAME OVER! Il giocatore è morto.");
     }
     
     // --- per l'interazione con il samurai ---

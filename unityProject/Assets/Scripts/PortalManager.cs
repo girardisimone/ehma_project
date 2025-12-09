@@ -26,8 +26,12 @@ public class PortalManager : MonoBehaviour
     [Tooltip("La NUOVA lista di probabilità che verrà usata scaduto il tempo.")]
     public List<GridProbability> lateGameProbabilities = new List<GridProbability>();
 
+    public List<GridProbability> toSamuraiGridProbalities = new List<GridProbability>();
+
     private float timer = 0f;
     private bool probabilitiesChanged = false;
+
+    private bool toSamuraiProbabilitiesChanged = false;
     // -------------------------------------
 
     private void Awake()
@@ -77,6 +81,24 @@ public class PortalManager : MonoBehaviour
         {
             Debug.LogWarning("È scattato il timer, ma la lista 'lateGameProbabilities' è vuota!");
             probabilitiesChanged = true; // Blocchiamo comunque per non spammare l'errore
+        }
+    }
+    
+    public void CambiaProbabilitaToSamurai()
+    {
+        if (toSamuraiGridProbalities != null && toSamuraiGridProbalities.Count > 0 && toSamuraiProbabilitiesChanged  == false )
+        {
+            
+            gridProbabilities = toSamuraiGridProbalities; // Sovrascrive la lista attuale con quella nuova
+            toSamuraiProbabilitiesChanged = true;
+            
+            Debug.Log($"Cambio delle probabilità per arrivare nella griglia del samurai");
+        }
+        else
+        {
+            Debug.LogWarning("È scattato il timer, ma la lista 'toSamuraiGridProbalities' è vuota!");
+            toSamuraiProbabilitiesChanged = true;
+             // Blocchiamo comunque per non spammare l'errore
         }
     }
 
