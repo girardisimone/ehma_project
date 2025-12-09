@@ -58,9 +58,8 @@ public class HealthManager : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        // currentHealth -= damage;
+        currentHealth -= damage;
         
-        currentHealth -= 16; // da togliere
         if (currentHealth < 0) currentHealth = 0;
 
         UpdateHealthUI();
