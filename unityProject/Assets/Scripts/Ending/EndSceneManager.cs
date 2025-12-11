@@ -74,10 +74,10 @@ public class EndSceneManager : MonoBehaviour
                                  $" <color=black> TIME NEEDED: <color=green>{idealTime}</color>";*/
             /*timeStatsText.text = $" <color=black> Time taken: {playerTime}</color>\n" +
                                  $" <color=black> Time needed: {idealTime}</color>";*/
-            timeStatsText.text = $"<color=black>Time taken: </color>" +
-                                 $"<color=black>{playerTime}</color>\n\n" +
+            timeStatsText.text = $"<color=black>Time taken: </color> \n" +
+                                 $"<color=black>{playerTime}</color>"; /*+
                                  $"<color=black>Time needed: </color>" +
-                                 $"<color=black>{idealTime}</color>";
+                                 $"<color=black>{idealTime}</color>";*/
         }
     }
 

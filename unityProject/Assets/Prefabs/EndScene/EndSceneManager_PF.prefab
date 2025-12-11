@@ -233,12 +233,141 @@ Transform:
   m_GameObject: {fileID: 826603622276986150}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.07, y: -1.75, z: 0}
+  m_LocalPosition: {x: -6.78, y: -1.83, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7235982349786470576}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &852335937970714702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3153371273204000285}
+  - component: {fileID: 1376375442881469769}
+  m_Layer: 0
+  m_Name: BackgroundMusic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3153371273204000285
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852335937970714702}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7235982349786470576}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1376375442881469769
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852335937970714702}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 474ffbfaec7cbf74aa0623a1a0575d84, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &992327406483950869
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,9 +816,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -157.7, y: -81}
-  m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -185.91, y: -81}
+  m_SizeDelta: {x: 102.23, y: 50}
+  m_Pivot: {x: 0.49999997, y: 0.5}
 --- !u!222 &110896203307907403
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -745,14 +874,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13
-  m_fontSizeBase: 13
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -783,7 +912,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -22.525085, y: 0, z: 66.73932, w: 0}
+  m_margin: {x: 0.38059235, y: 0, z: -0.86031914, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -896,6 +1025,7 @@ Transform:
   m_Children:
   - {fileID: 58886566855487602}
   - {fileID: 3380020688365867568}
+  - {fileID: 3153371273204000285}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3341005345914618124
@@ -914,46 +1044,40 @@ MonoBehaviour:
   specificMessageText: {fileID: 1108906367643715873}
   timeStatsText: {fileID: 5771065711440946269}
   endings:
-  - characterName: Howl_1
+  - characterName: Owl_1
     characterPrefab: {fileID: 6721638405415773591, guid: a1d84091551f543f7a62fe51efde9171, type: 3}
-    message: "\"Did you feel the heaviness? That sensation of 'sliding,' the struggle
-      to stop or change direction, the constant swaying of your vision. Alcohol promised
-      to relieve tension, but in the labyrinth, it made you clumsy and vulnerable.
-      Every obstacle became harder to avoid, and the straight path seemed impossible
-      to follow. You cleared the level because you stopped seeking comfort in what
-      clouded your sight. The clarity you regained is the only strength that allows
-      you to walk with your head held high\u2014no longer staggering\u2014towards
-      your future.\""
+    message: 'You started your journey full of temptations, ultimately risking being
+      trapped in multiple addictions. Alcohol and substances promised power and strength,
+      while gambling or internet abuse may have seemed like easy ways to overcome
+      difficulties. But they were all illusions that came at a price: heavy inertia,
+      blurred reality, and a loss of control that prevented you from escaping your
+      situation and reaching your goals. You escaped when you chose not to rely on
+      any quick fixes, taking back full command of your path.'
   - characterName: Mouse_2
     characterPrefab: {fileID: 7490857172078558452, guid: 637e7e6d9b2b9e842a84be50eddecf54, type: 3}
-    message: '"You lived the chaos of addiction firsthand. Remember when the controls
-      reversed or your vision started spinning? That is the loss of control over
-      reality. The Pig offered substances promising euphoria, but instead left you
-      disoriented and in the dark. The confusion in movement wasn''t a bug, but a
-      simulation of how substances alter your perception, preventing you from going
-      straight toward your goals. You escaped the labyrinth only when you stopped
-      accepting that false ''cure'' and took back command of your actions. Sobriety
-      is your true compass."'
+    message: 'You faced the chaos of drug addiction, where substances promised power
+      and an easy escape. During your journey, drug abuse and maybe also internet
+      addiction may have seemed like easy ways to overcome difficulties. But unfortunately,
+      they were all illusions that came at a price: a complete loss of control over
+      reality and altered perception that prevented you from reaching your goals.
+      You escaped when you chose not to rely on false quick fixes, taking back full
+      command of your path.'
   - characterName: Racoon_3
     characterPrefab: {fileID: 849197362360565316, guid: 87d25ab245ce4d9468f887c5126fdd90, type: 3}
-    message: '"You chased sparkling gems, believing that accumulating more would
-      save you. The Sultan tempted you with the promise of easy wins, but did you
-      see what happens when you rely on luck? Sometimes you moved incredibly fast;
-      other times, you were paralyzed or moved in directions you hadn''t chosen.
-      This is the trap of gambling: the illusion of controlling chance. In the labyrinth,
-      as in life, true victory isn''t the ''Jackpot,'' but the consistency of every
-      single step taken with your own strength, not a roll of the dice. You won because
-      you stopped gambling with your life."'
+    message: 'You faced the spiral of gambling: you chased gems, believing that accumulating
+      more would help you. The thrill of portals promised a quick fix or a sudden
+      life change. Alcohol, too may have seemed like an easy way to escape from your
+      reality, but they were all illusions that came at a price: erratic movements
+      and loss of control. You escaped when you chose not to bet your life on luck,
+      taking back full command of your path.'
   - characterName: Ciclope_4
     characterPrefab: {fileID: 6721638405415773591, guid: a4a36666d1ca443728733e0cb562760c, type: 3}
-    message: '"Did you feel the ''lag''? Those moments when the character froze,
-      ignoring your commands, represent time lost in front of a screen. The Octopus
-      held you in its net, filling your vision with glitches and noise that blocked
-      the real path. Digital addiction disconnects you from the physical world while
-      tricking you into feeling connected. Escaping the labyrinth meant turning off
-      the background noise, moving in the real world without filters, and reclaiming
-      the time the web was stealing. Now you are truly connected with yourself and
-      with others."'
+    message: 'You faced the chaos of internet addiction, where the screen promised
+      endless solutions and an easy escape from your struggles. Unfortunately, they
+      were all illusions that came at a price: sudden ''lag'', frozen moments, and
+      a distorted perception that prevented you from going straight toward your goals.
+      You escaped when you chose not to rely on a false digital reality, taking back
+      full command of your path.'
 --- !u!1 &3828360447195221860
 GameObject:
   m_ObjectHideFlags: 0
@@ -1094,15 +1218,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '"Look back. This maze wasn''t just a game; it was a mirror of addiction:
-    a path that initially seems rewarding and simple, but soon traps you. The Portals
-    seemed like inviting shortcuts, didn''t they? Yet, using them came at a price.
-    They consumed your resources and time, often leaving you more lost than before,
-    confused between true friends and those who only deceived you. All of this lasted
-    until you stopped looking for the shortest, easiest way out. True victory isn''t
-    about never falling, but finding the strength to get back up, to face challenges,
-    and to know how to ask for help when darkness sets in. This isn''t just the end
-    of a level. It is the beginning of your freedom."'
+  m_text: 'This maze was not just a game, but a mirror of addiction: a path that
+    initially seems simple and rewarding, yet soon traps you. The portals looked
+    like inviting shortcuts, but using them came at a price: consuming your resources,
+    time and often leaving you more lost than before. You found yourself between
+    true friends and those who only wanted to deceive you. All this lasted until
+    you stopped looking for the easiest way out. True victory is not about never
+    failing, but finding the strength to get back up, face challenges, and ask for
+    help when darkness sets in. Now here, you are not just at the end of the game
+    but at the beginning of your freedom.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1283,9 +1407,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 142.8, y: -94.7}
-  m_SizeDelta: {x: 410.2, y: 170}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 140.59, y: -99.3}
+  m_SizeDelta: {x: 414.62, y: 179.2}
+  m_Pivot: {x: 0.50000006, y: 0.5}
 --- !u!222 &671790828723045080
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1314,7 +1438,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TESTO VARIABILE
+  m_text: specific sentence
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1341,15 +1465,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 2
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1379,7 +1503,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -6.75766, y: 2.896164, z: 0, w: -6.7576447}
+  m_margin: {x: -2.33609, y: 2.896164, z: 0, w: -2.8995361}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
