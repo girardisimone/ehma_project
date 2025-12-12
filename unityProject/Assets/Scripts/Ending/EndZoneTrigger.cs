@@ -5,7 +5,7 @@ public class EndZoneTrigger : MonoBehaviour
     public TimerManager timerManager;
     public EndScreenManager endScreenManager;
 
-    // PRIMA: public MonoBehaviour playerMovementScript;
+  
     public NewPlayerMovement playerMovementScript;
 
     private bool hasTriggered = false;
@@ -34,6 +34,6 @@ public class EndZoneTrigger : MonoBehaviour
             endScreenManager.ShowEndScreen(finalTime);
         }
 
-        // opzionale: Time.timeScale = 0f;
+        
     }
 }

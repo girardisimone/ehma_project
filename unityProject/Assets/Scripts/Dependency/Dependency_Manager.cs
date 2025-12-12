@@ -26,7 +26,7 @@ public class DependencyManager : MonoBehaviour
     [HideInInspector]
     public int gamblingDebt = 0;
 
-    // --- NUOVI CONTATORI PER CICLICITÀ ---
+    // CONTATORI PER CICLICITÀ
     private int paymentCycleIndex = 0; // Per alternare il tipo di pagamento
     private int cycleInternet = 0;     // Per alternare i malus Internet
     private int cycleDrugs = 0;        // Per alternare i malus Droghe
@@ -70,7 +70,7 @@ public class DependencyManager : MonoBehaviour
         Debug.Log("Nuova dipendenza acquisita: " + type);
     }
 
-    // --- METODO CHIAMATO DAL PORTALE (ORA CICLICO) ---
+    //METODO CHIAMATO DAL PORTALE
     public DependencyType GetNextPaymentDependency()
     {
         List<DependencyType> activeList = new List<DependencyType>();
@@ -83,7 +83,6 @@ public class DependencyManager : MonoBehaviour
 
         if (activeList.Count == 0) return DependencyType.None;
 
-        // MODIFICA: Uso il modulo (%) invece del Random
         return activeList[paymentCycleIndex % activeList.Count];
     }
 
@@ -93,7 +92,7 @@ public class DependencyManager : MonoBehaviour
         Debug.Log($"[GAMBLING] Il debito è salito! Prossimo extra costo: +{gamblingDebt}");
     }
 
-    // MODIFICA: Ora incrementa l'indice per il prossimo pagamento
+   
     public void AdvancePaymentCycle()
     {
         paymentCycleIndex++;
@@ -119,12 +118,11 @@ public class DependencyManager : MonoBehaviour
             case DependencyType.Internet:
                 currentDuration = durationInternet;
 
-                // MODIFICA CICLICA (0, 1, 0, 1...)
+               
                 int indexInternet = cycleInternet % 2;
                 strategyToApply = (indexInternet == 0) ? (IMovementStrategy)new InternetAddictStrategy() : new InternetPacketLossStrategy();
 
-                cycleInternet++; // Avanza il ciclo per la prossima volta
-
+                cycleInternet++; 
                 if (DifficultyManager.Instance != null)
                 {
                     DifficultyManager.Instance.ForceGlitch(currentDuration);
@@ -134,7 +132,7 @@ public class DependencyManager : MonoBehaviour
             case DependencyType.Drugs:
                 currentDuration = durationDrugs;
 
-                // MODIFICA CICLICA (0, 1, 2, 0, 1, 2...)
+              
                 int indexDrugs = cycleDrugs % 3;
                 if (indexDrugs == 0) strategyToApply = new DruggedStrategy();
                 else if (indexDrugs == 1) strategyToApply = new DrunkStrategy();

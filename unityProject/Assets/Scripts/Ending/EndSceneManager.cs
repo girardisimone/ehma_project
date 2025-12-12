@@ -9,7 +9,7 @@ public class EndSceneManager : MonoBehaviour
 
     [Header("Riferimenti UI")]
     public TextMeshProUGUI specificMessageText; 
-    public TextMeshProUGUI timeStatsText; // <--- Qui collegheremo il nuovo testo
+    public TextMeshProUGUI timeStatsText; 
 
     [Header("Configurazione Finali")]
     public EndingData[] endings; 
@@ -69,15 +69,8 @@ public class EndSceneManager : MonoBehaviour
             string playerTime = PlayerPrefs.GetString("FinalTime", "00:00");
             string idealTime = "00:07:00"; 
 
-            // these are attempts for better visualization
-           /*timeStatsText.text = $" <color=black> TIME TAKEN: <color=red>{playerTime}</color>\n" +
-                                 $" <color=black> TIME NEEDED: <color=green>{idealTime}</color>";*/
-            /*timeStatsText.text = $" <color=black> Time taken: {playerTime}</color>\n" +
-                                 $" <color=black> Time needed: {idealTime}</color>";*/
             timeStatsText.text = $"<color=black>Time taken: </color> \n" +
-                                 $"<color=black>{playerTime}</color>"; /*+
-                                 $"<color=black>Time needed: </color>" +
-                                 $"<color=black>{idealTime}</color>";*/
+                                 $"<color=black>{playerTime}</color>"; 
         }
     }
 

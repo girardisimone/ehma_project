@@ -35,7 +35,7 @@ public class Pig_interaction : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             if (popupWindow != null) popupWindow.SetActive(false);
-            // currentPlayer = null; // Facoltativo: resetta il player se esce
+            
         }
     }
 

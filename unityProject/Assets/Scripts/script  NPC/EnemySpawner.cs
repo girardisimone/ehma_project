@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour
     // Questa funzione viene chiamata dal Player appena entra
     public void AccendiNemiciGiusti(PlayerIdentity.HeroType eroe)
     {
-        // DEBUG: Vediamo chi sta parlando!
+        
         Debug.Log("ATTENZIONE! L'ordine è arrivato da questo oggetto: " + eroe);
 
         // Spegniamo tutto
@@ -31,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
                 if (maiale != null) maiale.SetActive(true);
                 break;
 
-            // ... (gli altri case rimangono uguali)
+           
             case PlayerIdentity.HeroType.CiclopeRosso:
                 if (octopus != null) octopus.SetActive(true);
                 break;

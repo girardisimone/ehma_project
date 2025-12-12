@@ -34,7 +34,7 @@ public class Octopus_interaction : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             if (popupWindow != null) popupWindow.SetActive(false);
-            // currentPlayer = null; // Facoltativo: resetta il player se esce
+            
         }
     }
 
@@ -59,7 +59,7 @@ public class Octopus_interaction : MonoBehaviour
         if (popupWindow != null) popupWindow.SetActive(false);
     }
 
-    // --- LA LOGICA DELL'IMMUNITA' ---
+    // IMMUNITA'
     private IEnumerator ImmunityRoutine(NewPlayerMovement player)
     {
         // FASE 1:  Immunità
@@ -71,7 +71,7 @@ public class Octopus_interaction : MonoBehaviour
 
         // FASE 2: Malus prolungati
         player.isImmuneToMalus = false;
-        player.malusDurationMultiplier = penaltyMultiplier; // Es. x2
+        player.malusDurationMultiplier = penaltyMultiplier; 
         Debug.Log("IMMUNITY: Finito l'effetto dell'immunità... ora i malus dei portali dureranno di più!");
 
         yield return new WaitForSeconds(penaltyDuration);

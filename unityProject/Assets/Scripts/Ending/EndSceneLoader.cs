@@ -7,7 +7,7 @@ public class FinalSceneLoader : MonoBehaviour
     public string sceneName = "EndScene";
 
     [Header("Opzionale: ferma timer se serve")]
-    public TimerManager timerManager; // Qui dovremo trascinare il GameManager!
+    public TimerManager timerManager; 
 
     private void OnTriggerEnter2D(Collider2D other)
     {

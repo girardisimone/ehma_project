@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.UI; // Serve se vuoi mostrare un testo a schermo
+using UnityEngine.UI; 
 
 public class samurai_interaction : MonoBehaviour
 {
@@ -8,7 +8,7 @@ public class samurai_interaction : MonoBehaviour
 
     [Header("Collegamenti UI")]
     public GameObject popupWindow;
-    public GameObject messaggioSfidaUI; // Opzionale: Un testo tipo "Non entrare nei portali!"
+    public GameObject messaggioSfidaUI; 
 
     [Header("Impostazioni Sfida")]
     public float tempoDiAstinenza = 10.0f; // Quanto tempo devi resistere senza portali
@@ -59,7 +59,7 @@ public class samurai_interaction : MonoBehaviour
         // Aspetta il tempo necessario (mentre il giocatore gioca)
         yield return new WaitForSeconds(tempoDiAstinenza);
 
-        // --- SE ARRIVI QUI, HAIVINTO! ---
+        // --- SE ARRIVA QUI, HA VINTO! ---
         ApplicaCura();
     }
 
@@ -126,7 +126,7 @@ public class samurai_interaction : MonoBehaviour
     
     public void Decline()
     {
-        // Chiudiamo semplicemente il popup
+        
         if (popupWindow != null) popupWindow.SetActive(false);
     }
 }

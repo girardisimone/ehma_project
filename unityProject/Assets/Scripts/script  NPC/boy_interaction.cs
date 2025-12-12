@@ -6,7 +6,7 @@ public class boy_interaction : MonoBehaviour
     [Header("Collegamenti UI")] public GameObject popupWindow;
 
 
-    // Riferimento interno al player corrente
+   
     private NewPlayerMovement currentPlayer;
 
     private void Start()
@@ -29,7 +29,7 @@ public class boy_interaction : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             if (popupWindow != null) popupWindow.SetActive(false);
-            // currentPlayer = null; // Facoltativo: resetta il player se esce
+            
         }
     }
 

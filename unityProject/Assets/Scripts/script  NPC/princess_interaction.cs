@@ -1,15 +1,15 @@
 using UnityEngine;
-using TMPro; // NECESSARIO per modificare il testo
+using TMPro; 
 using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
 public class princess_interaction : MonoBehaviour
 {
     [Header("Collegamenti UI")]
-    public GameObject popupWindow;      // La finestra intera
-    public TextMeshProUGUI messageText; // TRASCINA QUI l'oggetto testo del messaggio
-    public GameObject buttonYes;        // TRASCINA QUI il pulsante "Sì"
-    public GameObject buttonNo;         // TRASCINA QUI il pulsante "No"
+    public GameObject popupWindow;      
+    public TextMeshProUGUI messageText; 
+    public GameObject buttonYes;        
+    public GameObject buttonNo;         
 
     [Header("Testi")]
     [TextArea] public string domandaIniziale = "Ciao viaggiatore! Sembri perso... Vuoi un aiuto?";
@@ -66,14 +66,14 @@ public class princess_interaction : MonoBehaviour
             audioSource.PlayOneShot(pathRevealSound, volumeSuono);
         }
 
-        // 2. Nascondi i pulsanti (così non si può cliccare di nuovo)
+        // 2. Nascondo i pulsanti 
         if (buttonYes != null) buttonYes.SetActive(false);
         if (buttonNo != null) buttonNo.SetActive(false);
 
-        // 3. Mostra l'indizio finale
+        // 3. Mostro l'indizio finale
         if (messageText != null) messageText.text = indizioFinale;
 
-        // 4. Avvia la procedura finale (attendi e poi chiudi)
+        // 4. Avvi0 la procedura finale 
         StartCoroutine(FinishInteractionSequence());
     }
 
@@ -96,10 +96,10 @@ public class princess_interaction : MonoBehaviour
         DisableTemptations();
     }
 
-    // --- TUA FUNZIONE ORIGINALE ---
+   
     private void DisableTemptations()
     {
-        // 1. Trova e disattiva tutte le GEMME
+        
         GameObject[] gems = GameObject.FindGameObjectsWithTag("Gem");
         foreach (GameObject gem in gems)
         {
@@ -107,8 +107,7 @@ public class princess_interaction : MonoBehaviour
         }
         Debug.Log($"Principessa: Rimossi {gems.Length} diamanti.");
 
-        // 2. Trova e disattiva tutti i PORTALI
-        // Nota: FindObjectsByType è per Unity 2023+, se usi versioni vecchie usa FindObjectsOfType
+        
         PortalTeleporter[] portals = FindObjectsByType<PortalTeleporter>(FindObjectsSortMode.None);
 
         foreach (PortalTeleporter portal in portals)
@@ -117,7 +116,6 @@ public class princess_interaction : MonoBehaviour
         }
         Debug.Log($"Principessa: Rimossi {portals.Length} portali.");
 
-        // Qui potresti chiamare la funzione per mostrare le stelle, se ne hai una
-        // ShowPath(); 
+       
     }
 }

@@ -108,7 +108,7 @@ public class DogCompanion : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // MODIFICA IMPORTANTE: Aggiunto && timerIgnoraPlayer <= 0
+        
         // Se il timer è attivo (ho appena detto no), NON apre il dialogo
         if (other.CompareTag("Player") && !isFollowing && !inDialogo && timerIgnoraPlayer <= 0)
         {
