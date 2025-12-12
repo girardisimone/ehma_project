@@ -96,7 +96,7 @@ public class PortalTeleporter : MonoBehaviour
             default:
                 finalCalculatedGemCost = costGems;
                 canAfford = ScoreManager.GemCount >= finalCalculatedGemCost;
-                costString = $"Costo: {finalCalculatedGemCost} Gemme";
+                costString = $"Cost: {finalCalculatedGemCost} Gems";
                 break;
         }
 

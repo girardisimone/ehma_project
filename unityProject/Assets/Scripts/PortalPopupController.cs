@@ -14,7 +14,7 @@ public class PortalPopupController : MonoBehaviour
 
     private PortalTeleporter currentPortal;
 
-    // Riferimento al movimento del player per riattivarlo se annulla
+   
     private NewPlayerMovement playerMovementScript;
 
     private void Awake()
