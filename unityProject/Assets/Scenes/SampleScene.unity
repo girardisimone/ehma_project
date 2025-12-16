@@ -5063,7 +5063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b8d8b6c8be07dc41966492f1610fa34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
-  maxGems: 10
+  maxGems: 20
   scoreText: {fileID: 1889992190}
   gemSlider: {fileID: 1290950659}
 --- !u!4 &1451423096
